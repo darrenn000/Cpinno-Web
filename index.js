@@ -44,6 +44,7 @@ const observer = new IntersectionObserver(
       if (entry.isIntersecting) {
         entry.target.style.opacity = "1";
         entry.target.style.transform = "translate(0, 0)";
+        observer.unobserve(entry.target); 
       }
     });
   },
