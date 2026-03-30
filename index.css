@@ -173,7 +173,7 @@ nav {
 /* ── HERO ────────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  height: 900px;
+  height: 950px;
   overflow: hidden;
 }
 
@@ -205,7 +205,7 @@ nav {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 353px;
+  height: 330px;
   background: linear-gradient(
     180deg,
     rgba(217, 217, 217, 0) 0%,
@@ -217,10 +217,10 @@ nav {
 
 .hero-content-bg {
   position: absolute;
-  top: 270px;
+  top: 330px;
   left: 0;
   right: 0;
-  height: 302px;
+  height: 190px;
   background: rgba(0, 0, 0, 0.32);
 }
 
@@ -399,9 +399,7 @@ nav {
   background: linear-gradient(
     90deg,
     rgba(39, 39, 39, 0) 0%,
-    rgba(39, 39, 39, 0.31) 14%,
-    rgba(39, 39, 39, 0.72) 27%,
-    rgb(39, 39, 39) 44%
+    rgb(39, 39, 39) 80%
   );
 }
 
