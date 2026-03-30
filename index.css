@@ -28,6 +28,7 @@ body {
   overflow-x: clip;
 }
 
+
 /* ── NAV ─────────────────────────────────────────────────────── */
 nav {
   position: fixed;
@@ -701,10 +702,6 @@ footer {
   border-top-color: #b0fd30;
   border-radius: 50%;
   animation: spin 0.9s linear infinite;
-}
-
-.footer-col ul a:visited {
-  color: var(--white);
 }
 
 @keyframes spin {
