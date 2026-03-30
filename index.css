@@ -703,6 +703,10 @@ footer {
   animation: spin 0.9s linear infinite;
 }
 
+.footer-col ul a:visited {
+  color: var(--white);
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
