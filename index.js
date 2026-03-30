@@ -8,7 +8,7 @@ function openMenu() {
   mobileMenu.classList.add("open");
   hamburger.setAttribute("aria-expanded", "true");
   mobileMenu.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden"; // prevent background scroll
+  document.body.style.overflow = "hidden";
 }
 
 function closeMenu() {
@@ -23,56 +23,43 @@ hamburger.addEventListener("click", () => {
   hamburger.classList.contains("open") ? closeMenu() : openMenu();
 });
 
-// Close menu when a mobile link is tapped
 document.querySelectorAll(".mobile-link").forEach((link) => {
   link.addEventListener("click", closeMenu);
 });
 
-// Close menu on Escape key
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMenu();
 });
 
-// ── Smooth scroll for all anchor links ─────────────────────────
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    const target = document.querySelector(link.getAttribute("href"));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-});
-
-// ── Sticky nav: darken background on scroll ─────────────────────
+// ── Sticky nav ──────────────────────────────────────────────────
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 60) {
-    nav.style.background = "rgba(0,0,0,0.88)";
-  } else {
-    nav.style.background = "rgba(0,0,0,0.52)";
-  }
+  nav.style.background =
+    window.scrollY > 60 ? "rgba(0,0,0,0.88)" : "rgba(0,0,0,0.52)";
 });
 
-// ── Fade-in on scroll for sections ─────────────────────────────
+// ── Directional fade-in on scroll ──────────────────────────────
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
+        entry.target.style.transform = "translate(0, 0)";
       }
     });
   },
-  { threshold: 0.1 },
+  { threshold: 0.1 }
 );
 
-document
-  .querySelectorAll(
-    ".about, .service-block, .footer-col, .footer-company, .footer-newsletter",
-  )
-  .forEach((el) => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-    observer.observe(el);
-  });
+function observe(el, translateX) {
+  el.style.opacity = "0";
+  el.style.transform = `translateX(${translateX}px)`;
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+  observer.observe(el);
+}
+
+const about = document.querySelector(".about");
+if (about) observe(about, 80);
+
+const serviceBlocks = document.querySelectorAll(".service-block");
+if (serviceBlocks[0]) observe(serviceBlocks[0], -80);
+if (serviceBlocks[1]) observe(serviceBlocks[1], 80);
