@@ -16,10 +16,15 @@
   --white: #ffffff;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
 body {
   font-family: "Inter", sans-serif;
   color: #333;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* ── NAV ─────────────────────────────────────────────────────── */
@@ -106,7 +111,6 @@ nav {
   transform-origin: center;
 }
 
-/* Animate to X when open */
 .hamburger.open span:nth-child(1) {
   transform: translateY(9px) rotate(45deg);
 }
@@ -131,7 +135,6 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.35s ease;
@@ -234,7 +237,6 @@ nav {
 }
 
 .hero-text h1 {
-  
   font-size: clamp(52px, 6.25vw, 90px);
   font-weight: 700;
   color: var(--white);
@@ -303,7 +305,6 @@ nav {
   content: "";
   position: absolute;
   inset: 0;
-  right: 0;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
@@ -311,7 +312,6 @@ nav {
   );
 }
 
-/* Contact Us button */
 .contact-btn-wrap {
   grid-column: 1 / -1;
   display: flex;
@@ -357,7 +357,6 @@ nav {
   margin-bottom: 50px;
 }
 
-/* Service block */
 .service-block {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -516,7 +515,6 @@ footer {
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 
-/* Tablet */
 @media (max-width: 1024px) {
   .nav-links a {
     font-size: 18px;
@@ -535,9 +533,7 @@ footer {
   }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
-  /* Nav: hide desktop links, show hamburger */
   nav {
     padding: 0 20px;
     height: 70px;
@@ -559,7 +555,6 @@ footer {
     display: flex;
   }
 
-  /* Hero */
   .hero {
     height: 100svh;
     min-height: 480px;
@@ -583,14 +578,13 @@ footer {
   }
 
   .hero-content-bg {
-  top: 50%;
-  transform: translateY(-50%);
-  height: 190px;
-  left: 0;
-  right: 0;
-}
+    top: 50%;
+    transform: translateY(-50%);
+    height: 190px;
+    left: 0;
+    right: 0;
+  }
 
-  /* About */
   .about {
     grid-template-columns: 1fr;
     padding: 60px 20px 40px;
@@ -616,7 +610,6 @@ footer {
     padding: 12px 24px;
   }
 
-  /* Services */
   .services {
     padding: 40px 20px 60px;
   }
@@ -649,7 +642,6 @@ footer {
     font-size: 16px;
   }
 
-  /* Footer */
   footer {
     padding: 40px 20px 32px;
   }
@@ -672,7 +664,6 @@ footer {
   }
 }
 
-/* Very small phones */
 @media (max-width: 380px) {
   .hero-text h1 {
     font-size: 28px;
