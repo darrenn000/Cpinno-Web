@@ -50,16 +50,37 @@ const observer = new IntersectionObserver(
   { threshold: 0.1 }
 );
 
-function observe(el, translateX) {
+function observe(el, translateX, translateY = 0) {
   el.style.opacity = "0";
-  el.style.transform = `translateX(${translateX}px)`;
+  el.style.transform = `translate(${translateX}px, ${translateY}px)`;
   el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
   observer.observe(el);
 }
 
-const about = document.querySelector(".about");
-if (about) observe(about, 80);
 
-const serviceBlocks = document.querySelectorAll(".service-block");
-if (serviceBlocks[0]) observe(serviceBlocks[0], -80);
-if (serviceBlocks[1]) observe(serviceBlocks[1], 80);
+// ── Override animations to bottom-to-top on mobile ──────────────
+function resetMobileAnimations() {
+  const isMobile = window.innerWidth <= 768;
+
+  const about = document.querySelector(".about");
+  const serviceBlocks = document.querySelectorAll(".service-block");
+
+  if (isMobile) {
+    if (about) observe(about, 0, 40);
+    if (serviceBlocks[0]) observe(serviceBlocks[0], 0, 40);
+    if (serviceBlocks[1]) observe(serviceBlocks[1], 0, 40);
+  } else {
+    if (about) observe(about, 80);
+    if (serviceBlocks[0]) observe(serviceBlocks[0], -30);
+    if (serviceBlocks[1]) observe(serviceBlocks[1], 30);
+  }
+}
+
+resetMobileAnimations();
+window.addEventListener("resize", resetMobileAnimations);
+
+// ── Loading screen ──────────────────────────────────────────────
+window.addEventListener("load", () => {
+  const loadingScreen = document.getElementById("loading-screen");
+  loadingScreen.classList.add("hidden");
+});
