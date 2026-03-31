@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "fs-extra": "^11.3.4",
+    "xlsx": "^0.18.5"
+  }
+}

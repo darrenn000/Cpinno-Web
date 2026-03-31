@@ -1,0 +1,19 @@
+# ── Node packages ─────────────────────────────────────────────
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ── Excel source file ──────────────────────────────────────────
+# Keep this local — do not commit your master data file
+catalog.xlsx
+
+# ── OS files ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Editor files ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
