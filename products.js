@@ -9,6 +9,6 @@ const PRODUCTS = [
     "thickness": 8,
     "weight": 9,
     "designType": "Timber designs",
-    "image": "images/560000.png"
+    "image": "https://sketchfab.com/3d-models/biberach-23db86d5ee80482ba0cf5773aa468fc0"
   }
 ];
