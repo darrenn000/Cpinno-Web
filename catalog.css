@@ -41,11 +41,10 @@
   --font-body:    'Barlow', sans-serif;
 
   /* Spacing */
-  --nav-height:       80px;
-  --hero-height:      72px;
-  --sidebar-width:    260px;
-  --content-max:      1440px;
-  --page-padding:     40px;
+  --nav-height:    80px;
+  --sidebar-width: 260px;
+  --content-max:   1440px;
+  --page-padding:  40px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -74,10 +73,7 @@ body {
 
 img { display: block; max-width: 100%; }
 
-button, select, input {
-  font-family: inherit;
-  font-size: inherit;
-}
+button, select, input { font-family: inherit; font-size: inherit; }
 
 
 /* ── 3. Navigation ────────────────────────────────────────── */
@@ -115,7 +111,6 @@ button, select, input {
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 0;
 }
 
 .nav__link {
@@ -129,14 +124,9 @@ button, select, input {
   transition: color var(--dur-fast);
 }
 
-.nav__link:hover,
-.nav__link--active {
-  color: #ffffff;
-}
+.nav__link:hover { color: #ffffff; }
 
-.nav__link--active {
-  color: var(--color-accent);
-}
+.nav__link--active { color: var(--color-accent); }
 
 .nav__divider {
   display: block;
@@ -168,19 +158,11 @@ button, select, input {
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1;
-  color: var(--color-text-primary);
-}
-
-.hero-bar__meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
 }
 
 .hero-bar__count {
   font-size: 14px;
   color: var(--color-text-muted);
-  font-weight: 400;
 }
 
 
@@ -225,7 +207,6 @@ button, select, input {
   margin-bottom: 14px;
 }
 
-/* Filter list */
 .sidebar__list {
   list-style: none;
   display: flex;
@@ -244,9 +225,7 @@ button, select, input {
   user-select: none;
 }
 
-.sidebar__item:hover {
-  background: var(--color-bg);
-}
+.sidebar__item:hover { background: var(--color-bg); }
 
 /* Custom checkbox */
 .sidebar__checkbox {
@@ -325,7 +304,6 @@ button, select, input {
   left: 13px;
   color: var(--color-text-muted);
   pointer-events: none;
-  flex-shrink: 0;
 }
 
 .toolbar__search input {
@@ -340,13 +318,8 @@ button, select, input {
   transition: border-color var(--dur-fast);
 }
 
-.toolbar__search input:focus {
-  border-color: var(--color-accent);
-}
-
-.toolbar__search input::placeholder {
-  color: var(--color-text-muted);
-}
+.toolbar__search input:focus { border-color: var(--color-accent); }
+.toolbar__search input::placeholder { color: var(--color-text-muted); }
 
 .toolbar__sort {
   display: flex;
@@ -379,9 +352,7 @@ button, select, input {
   transition: border-color var(--dur-fast);
 }
 
-.toolbar__sort select:focus {
-  border-color: var(--color-accent);
-}
+.toolbar__sort select:focus { border-color: var(--color-accent); }
 
 
 /* ── 8. Product grid & cards ──────────────────────────────── */
@@ -391,7 +362,6 @@ button, select, input {
   gap: 20px;
 }
 
-/* Card */
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -431,9 +401,7 @@ button, select, input {
   transition: transform 320ms var(--ease-out);
 }
 
-.card:hover .card__image-wrap img {
-  transform: scale(1.04);
-}
+.card:hover .card__image-wrap img { transform: scale(1.04); }
 
 .card__image-placeholder {
   width: 100%;
@@ -444,6 +412,20 @@ button, select, input {
   color: var(--color-text-muted);
   font-size: 12px;
   background: #eeecea;
+}
+
+/* 3D badge shown on cards that have a Sketchfab link */
+.card__3d-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--color-dark);
+  color: var(--color-accent);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  border-radius: 4px;
 }
 
 .card__body {
@@ -508,10 +490,6 @@ button, select, input {
   opacity: 0.4;
 }
 
-.grid-empty p {
-  font-size: 15px;
-}
-
 
 /* ── 9. Modal ─────────────────────────────────────────────── */
 .modal-overlay {
@@ -527,9 +505,7 @@ button, select, input {
   padding: 24px;
 }
 
-.modal-overlay--open {
-  display: flex;
-}
+.modal-overlay--open { display: flex; }
 
 .modal {
   background: var(--color-surface);
@@ -550,7 +526,6 @@ button, select, input {
   to   { opacity: 1; transform: scale(1) translateY(0); }
 }
 
-/* Close button */
 .modal__close {
   position: absolute;
   top: 14px;
@@ -575,32 +550,43 @@ button, select, input {
   border-color: var(--color-dark);
 }
 
-/* Modal image panel */
+/* Modal left panel — image / 3D */
 .modal__image-wrap {
   border-radius: 12px 0 0 12px;
   overflow: hidden;
   background: var(--color-bg);
   min-height: 300px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
 }
 
-.modal__image-wrap img {
+.modal__image-wrap > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
+.modal__image-wrap > iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  border: 0;
+  display: block;
+}
+
 .modal__image-placeholder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-text-muted);
   font-size: 13px;
 }
 
-/* Modal body */
+/* Modal right panel — specs */
 .modal__body {
-  padding: 32px 28px 32px;
+  padding: 32px 28px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -635,20 +621,14 @@ button, select, input {
   letter-spacing: 0.02em;
 }
 
-/* Specs table */
 .modal__specs {
   width: 100%;
   border-collapse: collapse;
   margin-top: 6px;
 }
 
-.modal__specs tr {
-  border-bottom: 1px solid var(--color-border);
-}
-
-.modal__specs tr:last-child {
-  border-bottom: none;
-}
+.modal__specs tr { border-bottom: 1px solid var(--color-border); }
+.modal__specs tr:last-child { border-bottom: none; }
 
 .modal__specs td {
   padding: 9px 0;
@@ -667,10 +647,7 @@ button, select, input {
   font-weight: 500;
 }
 
-/* Accent line on first column */
-.modal__specs tr:first-child td:first-child {
-  color: var(--color-accent-dark);
-}
+.modal__specs tr:first-child td:first-child { color: var(--color-accent-dark); }
 
 
 /* ── 10. Pagination ───────────────────────────────────────── */
@@ -731,18 +708,16 @@ button, select, input {
 
 
 /* ── 11. Utilities & animations ───────────────────────────── */
-/* Stagger card reveal */
-.card:nth-child(1)  { animation-delay: 0ms; }
-.card:nth-child(2)  { animation-delay: 30ms; }
-.card:nth-child(3)  { animation-delay: 60ms; }
-.card:nth-child(4)  { animation-delay: 90ms; }
-.card:nth-child(5)  { animation-delay: 120ms; }
-.card:nth-child(6)  { animation-delay: 150ms; }
-.card:nth-child(7)  { animation-delay: 180ms; }
-.card:nth-child(8)  { animation-delay: 210ms; }
+.card:nth-child(1)   { animation-delay: 0ms; }
+.card:nth-child(2)   { animation-delay: 30ms; }
+.card:nth-child(3)   { animation-delay: 60ms; }
+.card:nth-child(4)   { animation-delay: 90ms; }
+.card:nth-child(5)   { animation-delay: 120ms; }
+.card:nth-child(6)   { animation-delay: 150ms; }
+.card:nth-child(7)   { animation-delay: 180ms; }
+.card:nth-child(8)   { animation-delay: 210ms; }
 .card:nth-child(n+9) { animation-delay: 240ms; }
 
-/* Focus ring */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
@@ -755,21 +730,15 @@ button, select, input {
     --sidebar-width: 220px;
     --page-padding: 24px;
   }
-  .catalog-layout {
-    gap: 24px;
-  }
+  .catalog-layout { gap: 24px; }
 }
 
 @media (max-width: 680px) {
   :root { --page-padding: 16px; }
 
-  .catalog-layout {
-    grid-template-columns: 1fr;
-  }
+  .catalog-layout { grid-template-columns: 1fr; }
 
-  .sidebar {
-    position: static;
-  }
+  .sidebar { position: static; }
 
   .sidebar__list {
     display: grid;
@@ -787,31 +756,4 @@ button, select, input {
   }
 
   .hero-bar__title { font-size: 36px; }
-}
-
-/* 3D badge on card thumbnail */
-.card__image-wrap {
-  position: relative;   /* already set, just confirming */
-}
-
-.card__3d-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: var(--color-dark);
-  color: var(--color-accent);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  padding: 3px 7px;
-  border-radius: 4px;
-}
-
-/* Modal iframe panel — ensure it fills the left half */
-.modal__image-wrap iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 340px;
-  border: 0;
 }

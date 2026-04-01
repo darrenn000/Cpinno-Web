@@ -9,6 +9,51 @@ const PRODUCTS = [
     "thickness": 8,
     "weight": 9,
     "designType": "Timber designs",
-    "image": "https://sketchfab.com/3d-models/biberach-23db86d5ee80482ba0cf5773aa468fc0"
+    "image": "images/560000.png",
+    "link3d": "https://sketchfab.com/3d-models/biberach-23db86d5ee80482ba0cf5773aa468fc0"
+  },
+  {
+    "partNo": "569130",
+    "description": "Palma",
+    "matSizeA": "",
+    "matSizeB": "",
+    "thickness": "",
+    "weight": "",
+    "designType": "",
+    "image": "images/569130.jpg",
+    "link3d": ""
+  },
+  {
+    "partNo": "564600",
+    "description": "Riad",
+    "matSizeA": "",
+    "matSizeB": "",
+    "thickness": "",
+    "weight": "",
+    "designType": "",
+    "image": "images/564600.jpg",
+    "link3d": ""
+  },
+  {
+    "partNo": "569329",
+    "description": "Lahr",
+    "matSizeA": "",
+    "matSizeB": "",
+    "thickness": "",
+    "weight": "",
+    "designType": "",
+    "image": "images/569329.jpg",
+    "link3d": ""
+  },
+  {
+    "partNo": "",
+    "description": "",
+    "matSizeA": "",
+    "matSizeB": "",
+    "thickness": "",
+    "weight": "",
+    "designType": "",
+    "image": "",
+    "link3d": ""
   }
 ];
