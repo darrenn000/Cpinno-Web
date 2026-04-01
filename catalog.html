@@ -4,40 +4,56 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NOE Formliners – Product Catalog</title>
+
+  <!-- Fonts: Inter (matches index) + Barlow for catalog headings -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="catalog.css" />
 </head>
 <body>
 
   <!-- ═══════════════════════════════════════════════
-       NAVIGATION
+       MOBILE MENU DRAWER
   ═══════════════════════════════════════════════ -->
-  <header class="nav">
-    <div class="nav__inner">
-      <a href="/" class="nav__logo">
-        <!-- Replace src with your actual logo path -->
-        <img src="https://www.figma.com/api/mcp/asset/a93356a1-312a-44aa-a8fb-86548c7145fa"
-             alt="Construction Products Innovation Pte Ltd" />
-      </a>
-      <nav class="nav__links">
-        <a href="#" class="nav__link">JLIFE</a>
-        <span class="nav__divider"></span>
-        <a href="#" class="nav__link nav__link--active">FORMLINERS</a>
-      </nav>
-    </div>
-  </header>
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="jlife.html" class="mobile-link">JLIFE</a></li>
+      <li><a href="catalog.html" class="mobile-link">FORMLINERS</a></li>
+    </ul>
+  </div>
 
   <!-- ═══════════════════════════════════════════════
-       PAGE HERO / BREADCRUMB BAR
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <nav class="nav">
+    <a class="nav-logo" href="index.html">
+      <img src="assets/CpinnoLogo.svg" alt="CPInno Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="jlife.html">JLIFE</a></li>
+      <li><a href="catalog.html" class="nav-link--active">FORMLINERS</a></li>
+    </ul>
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════
+       PAGE HERO BAR
   ═══════════════════════════════════════════════ -->
   <div class="hero-bar">
     <div class="hero-bar__inner">
       <h1 class="hero-bar__title">NOE</h1>
-      <div class="hero-bar__meta">
-        <span class="hero-bar__count" id="js-count">— Products</span>
-      </div>
+      <span class="hero-bar__count" id="js-count">— Products</span>
     </div>
   </div>
 

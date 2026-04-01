@@ -18,41 +18,37 @@
  * ──────────────────────────────────────────────────────────────
  */
 
-
 /* ── 1. Config ────────────────────────────────────────────── */
 const CONFIG = {
-  ITEMS_PER_PAGE : 20,     // products shown per page
-  ALL_LABEL      : "All",  // label used for the "show all" filter
+  ITEMS_PER_PAGE: 20, // products shown per page
+  ALL_LABEL: "All", // label used for the "show all" filter
 };
-
 
 /* ── 2. State ─────────────────────────────────────────────── */
 const state = {
-  activeDesigns : new Set([CONFIG.ALL_LABEL]), // selected filter checkboxes
-  sort          : "default",                   // 'default' | 'az'
-  query         : "",                          // search string (lowercase)
-  page          : 1,                           // current page (1-indexed)
+  activeDesigns: new Set([CONFIG.ALL_LABEL]), // selected filter checkboxes
+  sort: "default", // 'default' | 'az'
+  query: "", // search string (lowercase)
+  page: 1, // current page (1-indexed)
 };
-
 
 /* ── 3. DOM references ────────────────────────────────────── */
 const dom = {
-  filterList   : document.getElementById("js-filter-list"),
-  grid         : document.getElementById("js-grid"),
-  pagination   : document.getElementById("js-pagination"),
-  count        : document.getElementById("js-count"),
-  search       : document.getElementById("js-search"),
-  sort         : document.getElementById("js-sort"),
-  modalOverlay : document.getElementById("js-modal-overlay"),
-  modal        : document.getElementById("js-modal"),
-  modalClose   : document.getElementById("js-modal-close"),
-  modalImgWrap : document.getElementById("js-modal-img-wrap"),
-  modalPart    : document.getElementById("js-modal-part"),
-  modalTitle   : document.getElementById("js-modal-title"),
-  modalBadge   : document.getElementById("js-modal-badge"),
-  modalSpecs   : document.getElementById("js-modal-specs"),
+  filterList: document.getElementById("js-filter-list"),
+  grid: document.getElementById("js-grid"),
+  pagination: document.getElementById("js-pagination"),
+  count: document.getElementById("js-count"),
+  search: document.getElementById("js-search"),
+  sort: document.getElementById("js-sort"),
+  modalOverlay: document.getElementById("js-modal-overlay"),
+  modal: document.getElementById("js-modal"),
+  modalClose: document.getElementById("js-modal-close"),
+  modalImgWrap: document.getElementById("js-modal-img-wrap"),
+  modalPart: document.getElementById("js-modal-part"),
+  modalTitle: document.getElementById("js-modal-title"),
+  modalBadge: document.getElementById("js-modal-badge"),
+  modalSpecs: document.getElementById("js-modal-specs"),
 };
-
 
 /* ── 4. Data layer ────────────────────────────────────────── */
 
@@ -83,7 +79,8 @@ function getFilteredProducts() {
   const q = state.query;
 
   let list = PRODUCTS.filter((p) => {
-    const matchesDesign = isAllSelected || state.activeDesigns.has(p.designType);
+    const matchesDesign =
+      isAllSelected || state.activeDesigns.has(p.designType);
     const matchesSearch =
       !q ||
       String(p.partNo).toLowerCase().includes(q) ||
@@ -93,7 +90,9 @@ function getFilteredProducts() {
   });
 
   if (state.sort === "az") {
-    list = list.slice().sort((a, b) => a.description.localeCompare(b.description));
+    list = list
+      .slice()
+      .sort((a, b) => a.description.localeCompare(b.description));
   }
 
   return list;
@@ -107,13 +106,12 @@ function getPageSlice(list) {
   return list.slice(start, start + CONFIG.ITEMS_PER_PAGE);
 }
 
-
 /* ── 5. Render: sidebar filters ───────────────────────────── */
 
 function renderFilters() {
   const designTypes = getDesignTypes();
-  const counts      = getDesignTypeCounts();
-  const allCount    = PRODUCTS.length;
+  const counts = getDesignTypeCounts();
+  const allCount = PRODUCTS.length;
 
   const items = [
     { label: CONFIG.ALL_LABEL, count: allCount },
@@ -123,7 +121,7 @@ function renderFilters() {
   dom.filterList.innerHTML = "";
 
   items.forEach(({ label, count }) => {
-    const isAll     = label === CONFIG.ALL_LABEL;
+    const isAll = label === CONFIG.ALL_LABEL;
     const isChecked = isAll
       ? state.activeDesigns.has(CONFIG.ALL_LABEL)
       : state.activeDesigns.has(label);
@@ -149,15 +147,14 @@ function renderFilters() {
   });
 }
 
-
 /* ── 6. Render: product grid ──────────────────────────────── */
 
 function renderGrid() {
   const filtered = getFilteredProducts();
-  const page     = getPageSlice(filtered);
+  const page = getPageSlice(filtered);
 
   dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
-  dom.grid.innerHTML    = "";
+  dom.grid.innerHTML = "";
 
   if (page.length === 0) {
     dom.grid.innerHTML = `
@@ -184,9 +181,10 @@ function createProductCard(product) {
   card.setAttribute("tabindex", "0");
   card.setAttribute("aria-label", `View details for ${product.description}`);
 
-  const dimPreview = product.matSizeA && product.matSizeB
-    ? `${product.matSizeA} × ${product.matSizeB} mm`
-    : "";
+  const dimPreview =
+    product.matSizeA && product.matSizeB
+      ? `${product.matSizeA} × ${product.matSizeB} mm`
+      : "";
 
   card.innerHTML = `
     <div class="card__image-wrap">${getCardMediaHTML(product)}</div>
@@ -194,17 +192,21 @@ function createProductCard(product) {
       <p class="card__part">Part No. ${product.partNo}</p>
       <h3 class="card__name">${product.description}</h3>
       <div class="card__footer">
-        ${product.designType
-          ? `<span class="card__badge">${product.designType}</span>`
-          : "<span></span>"}
-        ${dimPreview
-          ? `<span class="card__specs-preview">${dimPreview}</span>`
-          : ""}
+        ${
+          product.designType
+            ? `<span class="card__badge">${product.designType}</span>`
+            : "<span></span>"
+        }
+        ${
+          dimPreview
+            ? `<span class="card__specs-preview">${dimPreview}</span>`
+            : ""
+        }
       </div>
     </div>
   `;
 
-  card.addEventListener("click",   ()  => openModal(product));
+  card.addEventListener("click", () => openModal(product));
   card.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -215,7 +217,6 @@ function createProductCard(product) {
   return card;
 }
 
-
 /* ── 7. Render: pagination ────────────────────────────────── */
 
 function renderPagination() {
@@ -225,14 +226,16 @@ function renderPagination() {
   dom.pagination.innerHTML = "";
   if (totalPages <= 1) return;
 
-  const prev = makePaginationBtn("‹", state.page === 1, () => goToPage(state.page - 1));
+  const prev = makePaginationBtn("‹", state.page === 1, () =>
+    goToPage(state.page - 1),
+  );
   prev.setAttribute("aria-label", "Previous page");
   dom.pagination.appendChild(prev);
 
   buildPageRange(state.page, totalPages).forEach((p) => {
     if (p === "…") {
       const ellipsis = document.createElement("span");
-      ellipsis.className   = "pagination__ellipsis";
+      ellipsis.className = "pagination__ellipsis";
       ellipsis.textContent = "…";
       dom.pagination.appendChild(ellipsis);
     } else {
@@ -242,7 +245,9 @@ function renderPagination() {
     }
   });
 
-  const next = makePaginationBtn("›", state.page === totalPages, () => goToPage(state.page + 1));
+  const next = makePaginationBtn("›", state.page === totalPages, () =>
+    goToPage(state.page + 1),
+  );
   next.setAttribute("aria-label", "Next page");
   dom.pagination.appendChild(next);
 }
@@ -255,7 +260,9 @@ function buildPageRange(current, total) {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
 
   const pages = new Set(
-    [1, total, current, current - 1, current + 1].filter((p) => p >= 1 && p <= total)
+    [1, total, current, current - 1, current + 1].filter(
+      (p) => p >= 1 && p <= total,
+    ),
   );
   const sorted = [...pages].sort((a, b) => a - b);
   const result = [];
@@ -270,9 +277,9 @@ function buildPageRange(current, total) {
 
 function makePaginationBtn(label, disabled, onClick) {
   const btn = document.createElement("button");
-  btn.className   = "pagination__btn";
+  btn.className = "pagination__btn";
   btn.textContent = label;
-  btn.disabled    = disabled;
+  btn.disabled = disabled;
   if (!disabled) btn.addEventListener("click", onClick);
   return btn;
 }
@@ -284,23 +291,34 @@ function goToPage(page) {
   dom.grid.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-
 /* ── 8. Render: modal ─────────────────────────────────────── */
 
 function openModal(product) {
   dom.modalImgWrap.innerHTML = getModalMediaHTML(product);
 
-  dom.modalPart.textContent  = `Part No. ${product.partNo}`;
+  dom.modalPart.textContent = `Part No. ${product.partNo}`;
   dom.modalTitle.textContent = product.description;
 
-  dom.modalBadge.textContent   = product.designType ?? "";
+  dom.modalBadge.textContent = product.designType ?? "";
   dom.modalBadge.style.display = product.designType ? "inline-block" : "none";
 
   const specs = [
-    { label: "Mat size A",  value: product.matSizeA  ? `${product.matSizeA} mm`  : "—" },
-    { label: "Mat size B",  value: product.matSizeB  ? `${product.matSizeB} mm`  : "—" },
-    { label: "Thickness",   value: product.thickness ? `${product.thickness} mm` : "—" },
-    { label: "Weight",      value: product.weight    ? `${product.weight} kg/m²` : "—" },
+    {
+      label: "Mat size A",
+      value: product.matSizeA ? `${product.matSizeA} mm` : "—",
+    },
+    {
+      label: "Mat size B",
+      value: product.matSizeB ? `${product.matSizeB} mm` : "—",
+    },
+    {
+      label: "Thickness",
+      value: product.thickness ? `${product.thickness} mm` : "—",
+    },
+    {
+      label: "Weight",
+      value: product.weight ? `${product.weight} kg/m²` : "—",
+    },
     { label: "Design type", value: product.designType ?? "—" },
   ];
 
@@ -317,7 +335,6 @@ function closeModal() {
   dom.modalOverlay.classList.remove("modal-overlay--open");
   document.body.style.overflow = "";
 }
-
 
 /* ── 9. Media helpers ─────────────────────────────────────── */
 
@@ -363,8 +380,8 @@ function getCardMediaHTML(product) {
  */
 function getModalMediaHTML(product) {
   const sketchfabId = getSketchfabId(product.link3d);
-  const hasImage    = !!product.image;
-  const has3d       = !!sketchfabId;
+  const hasImage = !!product.image;
+  const has3d = !!sketchfabId;
 
   // Nothing available
   if (!hasImage && !has3d) {
@@ -388,7 +405,6 @@ function getModalMediaHTML(product) {
   // Photo only, no 3D link
   return `<img src="${product.image}" alt="${product.description}" />`;
 }
-
 
 /* ── 10. Event listeners ──────────────────────────────────── */
 
@@ -431,7 +447,7 @@ function initEventListeners() {
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => {
       state.query = e.target.value.toLowerCase().trim();
-      state.page  = 1;
+      state.page = 1;
       renderGrid();
       renderPagination();
     }, 220);
@@ -478,3 +494,31 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// ── Hamburger / mobile menu (matches index.js behaviour) ──
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+
+const nav = document.querySelector(".nav");
+window.addEventListener("scroll", () => {
+  nav.classList.toggle("scrolled", window.scrollY > 50);
+});
+
+hamburger.addEventListener("click", () => {
+  const isOpen = hamburger.classList.toggle("open");
+  mobileMenu.classList.toggle("open", isOpen);
+  mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+  hamburger.setAttribute("aria-expanded", String(isOpen));
+  document.body.style.overflow = isOpen ? "hidden" : "";
+});
+
+// Close drawer when a mobile link is clicked
+mobileMenu.querySelectorAll(".mobile-link").forEach((link) => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("open");
+    mobileMenu.classList.remove("open");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  });
+});
