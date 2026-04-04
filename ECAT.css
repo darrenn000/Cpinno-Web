@@ -208,7 +208,7 @@ body {
 .wire-loop{
   width:220px;
   height:220px;
-  object-fit:cover;}
+  object-fit:contain;}
 .wire-loop-line{
   color:white;
   text-decoration:none;
