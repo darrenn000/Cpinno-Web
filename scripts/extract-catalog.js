@@ -16,9 +16,9 @@ const fs     = require("fs-extra");
 const path   = require("path");
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────
-const EXCEL_FILE  = "./catalog.xlsx";   // ← change to your filename
-const OUTPUT_DIR  = "./images";
-const PRODUCTS_JS = "./products.js";
+const EXCEL_FILE  = "./data/catalog.xlsx";   // ← change to your filename
+const OUTPUT_DIR  = "./assets/E-cat/Product/NOE";
+const PRODUCTS_JS = "./data/products.js";
 // ───────────────────────────────────────────────────────────────────────────
 
 async function run() {
