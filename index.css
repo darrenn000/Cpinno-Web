@@ -315,17 +315,17 @@ nav {
   );
 }
 
-.contact-btn-wrap {
+.portfolio-btn-wrap {
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   margin-top: 20px;
 }
 
-.contact-btn {
+.portfolio-btn {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 10px;  
   background: #333;
   color: #fff;
   font-size: 22px;
@@ -342,7 +342,7 @@ nav {
   transition: background 0.2s;
 }
 
-.contact-btn:hover {
+.portfolio-btn:hover {
   background: var(--green-dark);
 }
 
@@ -609,7 +609,7 @@ footer {
     display: none;
   }
 
-  .contact-btn {
+  .portfolio-btn {
     font-size: 18px;
     padding: 12px 24px;
   }
