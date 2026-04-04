@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPInno – Contact Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+  <body>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <ul>
+        <li><a href="index.html#about" class="mobile-link">About Us</a></li>
+        <li><a href="index.html#services" class="mobile-link">Services</a></li>
+        <li><a href="products.html" class="mobile-link">Products</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="index.html">
+        <img
+          src="assets/CpinnoLogo.svg"
+          alt="CPInno Logo"
+        />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <!-- CONTACT CONTENT -->
+    <main class="contact-page">
+      <div class="contact-card">
+        <h1>Contact Us</h1>
+        <p class="contact-intro">
+          Get in touch with us for any enquiries about our products and services.
+        </p>
+
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-label">Address.</span>
+            <span class="contact-value">
+              Blk 8 Kaki Bukit Avenue 4 Premier@Kaki Bukit #02-51 Singapore 415875
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Tel.</span>
+            <span class="contact-value">
+              <a href="tel:+6567476860">+65 6747 6860</a>
+            </span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Email.</span>
+            <span class="contact-value">
+              <a href="mailto:info@cpinno.com.sg">info@cpinno.com.sg</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="index.js"></script>
+  </body>
+</html>
