@@ -1,1 +1,239 @@
-<p> failed projects </p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CPInno – Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="portfolio.css" />
+  </head>
+  <body>
+
+    <!-- LOADING SCREEN -->
+    <div id="loading-screen">
+      <div class="loader-spinner"></div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <ul>
+        <li><a href="index.html" class="mobile-link">Home</a></li>
+        <li><a href="index.html#about" class="mobile-link">About Us</a></li>
+        <li><a href="index.html#services" class="mobile-link">Services</a></li>
+        <li><a href="portfolio.html" class="mobile-link">Portfolio</a></li>
+        <li><a href="contact.html" class="mobile-link">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- NAV -->
+    <nav>
+      <a class="nav-logo" href="index.html">
+        <img src="assets/CpinnoLogo.svg" alt="CPInno Logo" onerror="this.onerror=null;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#about">About Us</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="products/ECAT.HTML">Products</a></li>
+        <li><a href="portfolio.html" class="active">Portfolio</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <!-- BANNER -->
+    <div class="portfolio-banner">
+      <div class="banner-inner">
+        <span class="banner-label">Our Work</span>
+        <h1 class="banner-title">PROJECT <span>PORTFOLIO</span></h1>
+        <div class="banner-divider"></div>
+      </div>
+    </div>
+
+    <!-- SLIDER -->
+    <section class="slider-section">
+      <div class="slides-viewport">
+        <div class="slides-track" id="slidesTrack">
+
+          <!-- SLIDE 1 -->
+          <div class="slide active">
+            <div class="slide-img-wrap">
+              <img src="assets/portfolio1.webp" alt="Project 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="slide-img-placeholder" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5"/>
+                  <path d="M21 15l-5-5L5 21" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Project Image</span>
+              </div>
+            </div>
+            <div class="slide-content">
+              <div class="slide-number">01</div>
+              <span class="slide-tag">Project · 2024</span>
+              <h2 class="slide-title">Project Title One</h2>
+              <div class="slide-divider"></div>
+              <p class="slide-desc">
+                Replace this with a short description of the project. Highlight key details such as the <strong>systems used</strong>, the scope of work, and what made this project stand out. Keep it concise and impactful.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 2 -->
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="assets/portfolio2.webp" alt="Project 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="slide-img-placeholder" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5"/>
+                  <path d="M21 15l-5-5L5 21" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Project Image</span>
+              </div>
+            </div>
+            <div class="slide-content">
+              <div class="slide-number">02</div>
+              <span class="slide-tag">Project · 2024</span>
+              <h2 class="slide-title">Project Title Two</h2>
+              <div class="slide-divider"></div>
+              <p class="slide-desc">
+                Replace this with a short description of the project. Highlight key details such as the <strong>systems used</strong>, the scope of work, and what made this project stand out. Keep it concise and impactful.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 3 -->
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="assets/portfolio3.webp" alt="Project 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="slide-img-placeholder" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5"/>
+                  <path d="M21 15l-5-5L5 21" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Project Image</span>
+              </div>
+            </div>
+            <div class="slide-content">
+              <div class="slide-number">03</div>
+              <span class="slide-tag">Project · 2023</span>
+              <h2 class="slide-title">Project Title Three</h2>
+              <div class="slide-divider"></div>
+              <p class="slide-desc">
+                Replace this with a short description of the project. Highlight key details such as the <strong>systems used</strong>, the scope of work, and what made this project stand out. Keep it concise and impactful.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 4 -->
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="assets/portfolio4.webp" alt="Project 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="slide-img-placeholder" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5"/>
+                  <path d="M21 15l-5-5L5 21" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Project Image</span>
+              </div>
+            </div>
+            <div class="slide-content">
+              <div class="slide-number">04</div>
+              <span class="slide-tag">Project · 2023</span>
+              <h2 class="slide-title">Project Title Four</h2>
+              <div class="slide-divider"></div>
+              <p class="slide-desc">
+                Replace this with a short description of the project. Highlight key details such as the <strong>systems used</strong>, the scope of work, and what made this project stand out. Keep it concise and impactful.
+              </p>
+            </div>
+          </div>
+
+          <!-- SLIDE 5 -->
+          <div class="slide">
+            <div class="slide-img-wrap">
+              <img src="assets/portfolio5.webp" alt="Project 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+              <div class="slide-img-placeholder" style="display:none;">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="18" height="18" rx="2" stroke-width="1.5"/>
+                  <circle cx="8.5" cy="8.5" r="1.5" stroke-width="1.5"/>
+                  <path d="M21 15l-5-5L5 21" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <span>Project Image</span>
+              </div>
+            </div>
+            <div class="slide-content">
+              <div class="slide-number">05</div>
+              <span class="slide-tag">Project · 2022</span>
+              <h2 class="slide-title">Project Title Five</h2>
+              <div class="slide-divider"></div>
+              <p class="slide-desc">
+                Replace this with a short description of the project. Highlight key details such as the <strong>systems used</strong>, the scope of work, and what made this project stand out. Keep it concise and impactful.
+              </p>
+            </div>
+          </div>
+
+        </div><!-- /slides-track -->
+
+        <!-- ARROW NAVIGATION -->
+        <div class="slider-nav">
+          <button class="nav-arrow" id="prevBtn" aria-label="Previous project" disabled>
+            <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="nav-arrow" id="nextBtn" aria-label="Next project">
+            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+          </button>
+        </div>
+
+      </div><!-- /slides-viewport -->
+
+      <!-- PAGE INDICATORS -->
+      <div class="slide-indicators" id="indicators" role="tablist" aria-label="Portfolio slides">
+        <button class="indicator active" data-index="0" aria-label="Slide 1" role="tab"></button>
+        <button class="indicator" data-index="1" aria-label="Slide 2" role="tab"></button>
+        <button class="indicator" data-index="2" aria-label="Slide 3" role="tab"></button>
+        <button class="indicator" data-index="3" aria-label="Slide 4" role="tab"></button>
+        <button class="indicator" data-index="4" aria-label="Slide 5" role="tab"></button>
+      </div>
+
+    </section>
+
+    <!-- FOOTER -->
+     <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Useful links</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="proproducts.html">Products</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact-us/contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-company">
+          <h4>Construction Productions Innovation Pte. Ltd</h4>
+          <p>
+            Blk 8 Kaki Bukit Avenue 4 Premier@Kaki Bukit #02-51 Singapore 415875<br />
+            <strong>Tel.&nbsp;&nbsp;</strong><a href="tel:+6567476860">+65 6747 6860</a><br />
+            <strong>Email.&nbsp;&nbsp;</strong><a href="mailto:info@cpinno.com.sg">info@cpinno.com.sg</a>
+          </p>
+        </div>
+        <div class="footer-newsletter">
+          <h4>Subscribe<br />to Newsletter:</h4>
+          <div class="newsletter-form">
+            <input type="email" placeholder="Your Email" />
+            <button type="submit">→</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="portfolio.js"></script>
+  </body>
+</html>

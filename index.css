@@ -170,7 +170,6 @@ nav {
   transition: color 0.2s;
 }
 
-.mobile-menu ul a:hover,
 .mobile-menu ul a:active {
   color: var(--green-bright);
 }
@@ -457,7 +456,8 @@ footer {
   text-decoration: none;
   transition: color 0.2s;
 }
-.footer-col ul a:hover {
+
+.footer-col ul a:active {
   color: var(--green-bright);
 }
 
@@ -474,7 +474,7 @@ footer {
   color: var(--white);
   text-decoration: none;
 }
-.footer-company a:hover {
+.footer-company a:active {
   text-decoration: underline;
 }
 .footer-company strong {
@@ -511,10 +511,13 @@ footer {
   border-radius: 0 5px 5px 0;
   transition: background 0.2s;
 }
-.newsletter-form button:hover {
+
+.newsletter-form button:active {
   background: var(--green-bright);
   color: #000;
 }
+
+ 
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 
