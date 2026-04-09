@@ -85,6 +85,14 @@ nav {
   color: var(--green-bright);
 }
 
+.nav-links a.active {
+  color: var(--green-bright);
+}
+
+.mobile-menu ul a.active {
+  color: var(--green-bright);
+}
+
 /* ── HAMBURGER BUTTON ────────────────────────────────────────── */
 .hamburger {
   display: none;

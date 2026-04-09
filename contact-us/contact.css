@@ -1,6 +1,6 @@
 .contact-page {
   min-height: 100vh;
-  background: var(--dark-bg);
+  background-color: #1e1e1e;
   display: flex;
   align-items: center;
   justify-content: center;
