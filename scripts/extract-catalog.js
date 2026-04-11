@@ -3,17 +3,18 @@
  * Run once: node extract-catalog.js
  *
  * Reads your .xlsx file, extracts:
- *   1. All embedded images (col G) → saved to ./images/<PartNo>.jpg
+ *   1. All embedded images (col G) → converted to WebP, saved to OUTPUT_DIR
  *   2. Product rows               → written to ./products.js
  *
  * Requirements:
- *   npm install xlsx adm-zip fs-extra
+ *   npm install xlsx adm-zip fs-extra sharp
  */
 
 const XLSX   = require("xlsx");
 const AdmZip = require("adm-zip");
 const fs     = require("fs-extra");
 const path   = require("path");
+const sharp  = require("sharp");
 
 // ─── CONFIG ────────────────────────────────────────────────────────────────
 const EXCEL_FILE  = "./data/catalog.xlsx";   // ← change to your filename
@@ -45,28 +46,26 @@ async function run() {
     String(r["Part No."] ?? r["Part No"] ?? "").trim()
   );
 
-  // Save each image named by its Part No.
-  mediaEntries.forEach((entry, i) => {
-    const ext     = path.extname(entry.entryName) || ".jpg";
-    const partNo  = partNumbers[i] || `img_${i}`;
-    const outPath = path.join(OUTPUT_DIR, `${partNo}${ext}`);
+  // Save each image as WebP named by its Part No.
+  for (let i = 0; i < mediaEntries.length; i++) {
+    const entry    = mediaEntries[i];
+    const partNo   = partNumbers[i] || `img_${i}`;
+    const webpPath = path.join(OUTPUT_DIR, `${partNo}.webp`);
 
     zip.extractEntryTo(entry, OUTPUT_DIR, false, true);
 
-    // adm-zip uses original filename; rename to part number
+    // adm-zip uses the original filename; convert then delete the original
     const extracted = path.join(OUTPUT_DIR, path.basename(entry.entryName));
-    if (fs.existsSync(extracted)) fs.renameSync(extracted, outPath);
-    console.log(`  Saved: ${outPath}`);
-  });
+    if (fs.existsSync(extracted)) {
+      await sharp(extracted).webp({ quality: 85 }).toFile(webpPath);
+      fs.removeSync(extracted);
+      console.log(`  Saved (WebP): ${webpPath}`);
+    }
+  }
 
   // ── 3. Build products array ─────────────────────────────────────────────
   const products = rows.map((r, i) => {
     const partNo = String(r["Part No."] ?? r["Part No"] ?? "").trim();
-
-    // Image extension from the embedded file (col G)
-    const ext = (mediaEntries[i]
-      ? path.extname(mediaEntries[i].entryName)
-      : ".jpg") || ".jpg";
 
     return {
       partNo,
@@ -76,7 +75,7 @@ async function run() {
       thickness   : r["Mat thickness approx. mm"] ?? r["Mat thickness approx, mm"] ?? r["Thickness"] ?? "",
       weight      : r["Weight kg/m2"] ?? r["Weight"] ?? "",
       designType  : String(r["Design Type"] ?? "").trim(),
-      image       : partNo ? `images/${partNo}${ext}` : "",  // col G — embedded product photo
+      image       : partNo ? `../assets/E-cat/Product/NOE/${partNo}.webp` : "",  // col G — embedded product photo (converted to WebP)
       link3d      : String(r["3D Link"] ?? "").trim(),        // col H — Sketchfab URL
     };
   });

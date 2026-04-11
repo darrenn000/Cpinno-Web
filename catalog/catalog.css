@@ -520,9 +520,14 @@ button, select, input { font-family: inherit; font-size: inherit; }
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-muted);
-  font-size: 12px;
   background: #eeecea;
+  color: #b5b2ae;
+}
+
+/* 3D-only variant — dark tile so the badge pops */
+.card__image-placeholder--3d {
+  background: #1a1a1a;
+  position: relative;
 }
 
 /* 3D badge — shown when a Sketchfab link exists */
@@ -537,6 +542,14 @@ button, select, input { font-family: inherit; font-size: inherit; }
   letter-spacing: 0.08em;
   padding: 3px 7px;
   border-radius: 4px;
+}
+
+/* Centred variant used inside the dark 3D-only placeholder tile */
+.card__3d-badge--center {
+  position: static;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 6px;
 }
 
 .card__body { padding: 14px 16px 16px; }
@@ -686,10 +699,13 @@ button, select, input { font-family: inherit; font-size: inherit; }
 
 .modal__image-placeholder {
   width: 100%;
+  min-height: 220px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-muted);
+  gap: 12px;
+  color: #b5b2ae;
   font-size: 13px;
 }
 

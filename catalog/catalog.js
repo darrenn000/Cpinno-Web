@@ -18,6 +18,12 @@
  * ──────────────────────────────────────────────────────────────
  */
 
+/* ── 0. Valid products (filter out empty rows from products.js) ── */
+// products.js may contain a trailing empty object; exclude any row missing partNo or description.
+const VALID_PRODUCTS = (typeof PRODUCTS !== "undefined" && Array.isArray(PRODUCTS))
+  ? PRODUCTS.filter((p) => p.partNo && p.description)
+  : [];
+
 /* ── 1. Config ────────────────────────────────────────────── */
 const CONFIG = {
   ITEMS_PER_PAGE: 20, // products shown per page
@@ -56,7 +62,7 @@ const dom = {
  * Returns a deduplicated, sorted list of all design types in the dataset.
  */
 function getDesignTypes() {
-  return [...new Set(PRODUCTS.map((p) => p.designType).filter(Boolean))].sort();
+  return [...new Set(VALID_PRODUCTS.map((p) => p.designType).filter(Boolean))].sort();
 }
 
 /**
@@ -64,7 +70,7 @@ function getDesignTypes() {
  * Returns { [designType]: count }
  */
 function getDesignTypeCounts() {
-  return PRODUCTS.reduce((acc, p) => {
+  return VALID_PRODUCTS.reduce((acc, p) => {
     if (p.designType) acc[p.designType] = (acc[p.designType] ?? 0) + 1;
     return acc;
   }, {});
@@ -78,7 +84,7 @@ function getFilteredProducts() {
   const isAllSelected = state.activeDesigns.has(CONFIG.ALL_LABEL);
   const q = state.query;
 
-  let list = PRODUCTS.filter((p) => {
+  let list = VALID_PRODUCTS.filter((p) => {
     const matchesDesign =
       isAllSelected || state.activeDesigns.has(p.designType);
     const matchesSearch =
@@ -111,7 +117,7 @@ function getPageSlice(list) {
 function renderFilters() {
   const designTypes = getDesignTypes();
   const counts = getDesignTypeCounts();
-  const allCount = PRODUCTS.length;
+  const allCount = VALID_PRODUCTS.length;
 
   const items = [
     { label: CONFIG.ALL_LABEL, count: allCount },
@@ -362,7 +368,21 @@ function getCardMediaHTML(product) {
   const has3d = !!getSketchfabId(product.link3d);
 
   if (!product.image) {
-    return `<div class="card__image-placeholder">No image</div>`;
+    // Has a 3D link but no photo — show a dark tile with centred 3D badge
+    if (has3d) {
+      return `<div class="card__image-placeholder card__image-placeholder--3d">
+                <span class="card__3d-badge card__3d-badge--center">3D</span>
+              </div>`;
+    }
+    // Truly nothing — show a polished grey placeholder icon
+    return `<div class="card__image-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+            </div>`;
   }
 
   return `
@@ -385,7 +405,15 @@ function getModalMediaHTML(product) {
 
   // Nothing available
   if (!hasImage && !has3d) {
-    return `<div class="modal__image-placeholder">No image available</div>`;
+    return `<div class="modal__image-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <path d="M21 15l-5-5L5 21"/>
+              </svg>
+              <span>No image available</span>
+            </div>`;
   }
 
   // Has 3D link — always show the 3D viewer (ignore photo)
@@ -478,10 +506,10 @@ function initEventListeners() {
 /* ── 11. Init ─────────────────────────────────────────────── */
 
 function init() {
-  if (typeof PRODUCTS === "undefined" || !Array.isArray(PRODUCTS)) {
+  if (VALID_PRODUCTS.length === 0) {
     dom.grid.innerHTML = `
       <div class="grid-empty">
-        <p>⚠️ products.js not found. Run <code>node extract-catalog.js</code> first.</p>
+        <p>⚠️ products.js not found or empty. Run <code>node extract-catalog.js</code> first.</p>
       </div>
     `;
     return;
