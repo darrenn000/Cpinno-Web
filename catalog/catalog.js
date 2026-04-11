@@ -178,6 +178,21 @@ function renderGrid() {
 }
 
 /**
+ * Returns a dimension preview string for a product card.
+ * Shows the first A×B pair and a "+N sizes" badge when multiple values exist.
+ */
+function buildDimPreview(a, b) {
+  const aVals = String(a).split(",").map((s) => s.trim());
+  const bVals = String(b).split(",").map((s) => s.trim());
+  const first = `${aVals[0]} × ${bVals[0]} mm`;
+  const extra =
+    aVals.length > 1
+      ? ` <span class="card__more-sizes">+${aVals.length - 1} sizes</span>`
+      : "";
+  return first + extra;
+}
+
+/**
  * Creates and returns a product card DOM element.
  */
 function createProductCard(product) {
@@ -189,7 +204,7 @@ function createProductCard(product) {
 
   const dimPreview =
     product.matSizeA && product.matSizeB
-      ? `${product.matSizeA} × ${product.matSizeB} mm`
+      ? buildDimPreview(product.matSizeA, product.matSizeB)
       : "";
 
   card.innerHTML = `
@@ -308,15 +323,28 @@ function openModal(product) {
   dom.modalBadge.textContent = product.designType ?? "";
   dom.modalBadge.style.display = product.designType ? "inline-block" : "none";
 
+  // Build mat size rows: paired list when multi-value, flat rows when single value
+  let matSizeRows;
+  if (product.matSizeA && product.matSizeB) {
+    const aVals = String(product.matSizeA).split(",").map((s) => s.trim());
+    const bVals = String(product.matSizeB).split(",").map((s) => s.trim());
+    if (aVals.length > 1) {
+      const pairs = aVals
+        .map((a, i) => `<li>${a} × ${bVals[i] ?? "—"} mm</li>`)
+        .join("");
+      matSizeRows = `<tr><td>Mat sizes</td><td><ul class="modal__size-list">${pairs}</ul></td></tr>`;
+    } else {
+      matSizeRows =
+        `<tr><td>Mat size A</td><td>${aVals[0]} mm</td></tr>` +
+        `<tr><td>Mat size B</td><td>${bVals[0]} mm</td></tr>`;
+    }
+  } else {
+    matSizeRows =
+      `<tr><td>Mat size A</td><td>${product.matSizeA ? `${product.matSizeA} mm` : "—"}</td></tr>` +
+      `<tr><td>Mat size B</td><td>${product.matSizeB ? `${product.matSizeB} mm` : "—"}</td></tr>`;
+  }
+
   const specs = [
-    {
-      label: "Mat size A",
-      value: product.matSizeA ? `${product.matSizeA} mm` : "—",
-    },
-    {
-      label: "Mat size B",
-      value: product.matSizeB ? `${product.matSizeB} mm` : "—",
-    },
     {
       label: "Thickness",
       value: product.thickness ? `${product.thickness} mm` : "—",
@@ -328,9 +356,11 @@ function openModal(product) {
     { label: "Design type", value: product.designType ?? "—" },
   ];
 
-  dom.modalSpecs.innerHTML = specs
-    .map(({ label, value }) => `<tr><td>${label}</td><td>${value}</td></tr>`)
-    .join("");
+  dom.modalSpecs.innerHTML =
+    matSizeRows +
+    specs
+      .map(({ label, value }) => `<tr><td>${label}</td><td>${value}</td></tr>`)
+      .join("");
 
   dom.modalOverlay.classList.add("modal-overlay--open");
   document.body.style.overflow = "hidden";

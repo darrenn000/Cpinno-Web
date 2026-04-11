@@ -598,6 +598,18 @@ button, select, input { font-family: inherit; font-size: inherit; }
   white-space: nowrap;
 }
 
+.card__more-sizes {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: #e8edf2;
+  color: #5a6a7a;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
 /* Empty state */
 .grid-empty {
   grid-column: 1 / -1;
@@ -773,6 +785,13 @@ button, select, input { font-family: inherit; font-size: inherit; }
 }
 
 .modal__specs tr:first-child td:first-child { color: var(--color-accent-dark); }
+
+.modal__size-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.8;
+}
 
 
 /* ── 12. Pagination ───────────────────────────────────────── */

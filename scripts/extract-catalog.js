@@ -32,7 +32,13 @@ async function run() {
 
   const mediaEntries = zipEntries
     .filter((e) => e.entryName.startsWith("xl/media/"))
-    .sort((a, b) => a.entryName.localeCompare(b.entryName));
+    .sort((a, b) => {
+      // Numeric sort on the number embedded in the filename (image1, image2, image10, ...)
+      // so that image10 comes after image9, not after image1.
+      const numA = parseInt((path.basename(a.entryName).match(/\d+/) || [0])[0], 10);
+      const numB = parseInt((path.basename(b.entryName).match(/\d+/) || [0])[0], 10);
+      return numA - numB;
+    });
 
   console.log(`Found ${mediaEntries.length} embedded image(s).`);
 
