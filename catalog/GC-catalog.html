@@ -3,107 +3,403 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GC Formliners – Product Catalog</title>
-
-    <!-- Fonts: Inter (matches index) + Barlow for catalog headings -->
+    <title>GC – Product Catalog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Barlow+Condensed:wght@400;600;700&family=Barlow:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <style>
+/* ── 1. Design tokens ─────────────────────────────────────── */
+:root {
+  --green-bright:  #b0fd30;
+  --green-mid:     #98d92f;
+  --green-dark:    #71a220;
+  --dark-bg:       #272727;
+  --white:         #ffffff;
+  --color-bg:          #f5f4f0;
+  --color-surface:     #ffffff;
+  --color-border:      #e0ddd6;
+  --color-border-dark: #c8c4bb;
+  --color-text-primary:   #1a1a1a;
+  --color-text-secondary: #5a5752;
+  --color-text-muted:     #9a9691;
+  --color-accent:      #8dc63f;
+  --color-accent-dark: #6fa82e;
+  --font-base:    'Inter', sans-serif;
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+  --nav-height:    90px;
+  --sidebar-width: 260px;
+  --content-max:   1440px;
+  --page-padding:  40px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-med:  240ms;
+}
 
-    <link rel="stylesheet" href="GC-catalog.css" />
+/* ── 2. Reset & base ──────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-height); overflow-x: hidden; }
+body {
+  font-family: var(--font-base);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+img { display: block; max-width: 100%; }
+button, select, input { font-family: inherit; font-size: inherit; }
+
+/* ── 3. Navigation ────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 160;
+  background: rgba(0,0,0,0.72); height: var(--nav-height);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px; transition: background 0.3s;
+}
+.nav.scrolled { background: rgba(0,0,0,0.92); }
+.nav-logo { display: block; flex-shrink: 0; }
+.nav-logo span {
+  font-family: var(--font-display);
+  font-size: 36px; font-weight: 700;
+  color: var(--green-bright); letter-spacing: 0.05em;
+}
+.nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+.nav-links li { display: flex; align-items: center; }
+.nav-links li + li::before {
+  content: ""; display: block; width: 1px; height: 44px;
+  background: rgba(255,255,255,0.45); margin: 0 32px;
+}
+.nav-links a {
+  color: var(--white); text-decoration: none;
+  font-size: 22px; font-weight: 400; white-space: nowrap; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--green-bright); }
+.nav-links a.nav-link--active { color: var(--green-bright); }
+
+/* ── 4. Mobile menu drawer ────────────────────────────────── */
+.mobile-menu {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.95); z-index: 150;
+  flex-direction: column; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.35s ease;
+}
+.mobile-menu.open { opacity: 1; pointer-events: all; }
+.mobile-menu ul { list-style: none; text-align: center; }
+.mobile-menu ul li { padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+.mobile-menu ul li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+.mobile-menu ul a {
+  color: var(--white); text-decoration: none;
+  font-size: 28px; font-weight: 400; letter-spacing: 0.04em; transition: color 0.2s;
+}
+.mobile-menu ul a:hover { color: var(--green-bright); }
+
+/* ── 5. Hamburger ─────────────────────────────────────────── */
+.hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  gap: 6px; width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer; padding: 4px; z-index: 200;
+}
+.hamburger span {
+  display: block; width: 100%; height: 3px;
+  background: var(--white); border-radius: 2px;
+  transition: transform 0.35s ease, opacity 0.25s ease, width 0.3s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* ── 6. Hero bar ──────────────────────────────────────────── */
+.hero-bar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  margin-top: var(--nav-height);
+}
+.hero-bar__inner {
+  max-width: var(--content-max); margin: 0 auto;
+  padding: 20px var(--page-padding);
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+}
+.hero-bar__title {
+  font-family: var(--font-display); font-size: 52px; font-weight: 700;
+  letter-spacing: -0.01em; line-height: 1; color: var(--color-text-primary);
+}
+.hero-bar__count { font-size: 14px; color: var(--color-text-muted); }
+
+/* ── 7. Layout shell ──────────────────────────────────────── */
+.catalog-layout {
+  max-width: var(--content-max); margin: 0 auto;
+  padding: 36px var(--page-padding) 80px;
+  display: grid; grid-template-columns: var(--sidebar-width) 1fr;
+  gap: 40px; align-items: start;
+}
+
+/* ── 8. Sidebar ───────────────────────────────────────────── */
+.sidebar { position: sticky; top: calc(var(--nav-height) + 24px); }
+.sidebar__section {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 8px; padding: 20px 20px 24px;
+}
+.sidebar__heading {
+  font-family: var(--font-display); font-size: 16px; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-text-primary); margin-bottom: 10px;
+}
+.sidebar__divider { height: 1px; background: var(--color-border); margin-bottom: 14px; }
+.sidebar__list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.sidebar__item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 8px; border-radius: 5px; cursor: pointer;
+  transition: background var(--dur-fast); user-select: none;
+}
+.sidebar__item:hover { background: var(--color-bg); }
+.sidebar__checkbox {
+  appearance: none; -webkit-appearance: none;
+  width: 18px; height: 18px; border: 1.5px solid var(--color-border-dark);
+  border-radius: 3px; background: var(--color-surface);
+  cursor: pointer; flex-shrink: 0; position: relative;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+.sidebar__checkbox:checked { background: var(--color-accent); border-color: var(--color-accent); }
+.sidebar__checkbox:checked::after {
+  content: ''; position: absolute; top: 2px; left: 5px;
+  width: 5px; height: 9px; border: 2px solid #fff;
+  border-top: none; border-left: none; transform: rotate(45deg);
+}
+.sidebar__label { font-size: 14px; color: var(--color-text-secondary); cursor: pointer; line-height: 1.3; }
+.sidebar__item--all .sidebar__label { font-weight: 600; color: var(--color-text-primary); }
+.sidebar__count {
+  margin-left: auto; font-size: 11px; color: var(--color-text-muted);
+  background: var(--color-bg); padding: 1px 6px; border-radius: 10px;
+}
+
+/* ── 9. Toolbar ───────────────────────────────────────────── */
+.toolbar { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.toolbar__search {
+  flex: 1; min-width: 200px; position: relative;
+  display: flex; align-items: center;
+}
+.toolbar__search svg { position: absolute; left: 13px; color: var(--color-text-muted); pointer-events: none; }
+.toolbar__search input {
+  width: 100%; padding: 10px 14px 10px 40px;
+  border: 1px solid var(--color-border); border-radius: 6px;
+  background: var(--color-surface); color: var(--color-text-primary);
+  font-size: 14px; outline: none; transition: border-color var(--dur-fast);
+}
+.toolbar__search input:focus { border-color: var(--color-accent); }
+.toolbar__search input::placeholder { color: var(--color-text-muted); }
+.toolbar__sort { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.toolbar__sort-label { font-size: 14px; color: var(--color-text-secondary); white-space: nowrap; font-weight: 500; }
+.toolbar__sort select {
+  padding: 9px 32px 9px 12px; border: 1px solid var(--color-border);
+  border-radius: 6px; background: var(--color-surface);
+  color: var(--color-text-primary); font-size: 14px; cursor: pointer;
+  outline: none; appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239a9691' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 12px center;
+  transition: border-color var(--dur-fast);
+}
+.toolbar__sort select:focus { border-color: var(--color-accent); }
+
+/* ── 10. Product grid & cards ─────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  border-radius: 8px; overflow: hidden; cursor: pointer;
+  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), border-color var(--dur-fast);
+  animation: cardIn var(--dur-med) var(--ease-out) both;
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.10); border-color: var(--color-border-dark); }
+.card__image-wrap { width: 100%; aspect-ratio: 4/3; background: var(--color-bg); overflow: hidden; position: relative; }
+.card__image-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 320ms var(--ease-out); }
+.card:hover .card__image-wrap img { transform: scale(1.04); }
+.card__image-placeholder {
+  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+  background: #eeecea; color: #b5b2ae;
+}
+.card__body { padding: 14px 16px 16px; }
+.card__name {
+  font-family: var(--font-display); font-size: 17px; font-weight: 600;
+  color: var(--color-text-primary); line-height: 1.25; margin-bottom: 6px;
+}
+.card__desc {
+  font-size: 12px; color: var(--color-text-secondary);
+  line-height: 1.5; margin-bottom: 10px;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.card__footer { display: flex; align-items: center; }
+.card__badge {
+  font-size: 11px; font-weight: 500; padding: 3px 8px; border-radius: 4px;
+  background: #eef6de; color: #4a7a18; letter-spacing: 0.02em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.grid-empty { grid-column: 1/-1; text-align: center; padding: 72px 24px; color: var(--color-text-secondary); }
+.grid-empty__icon { font-size: 32px; margin-bottom: 12px; opacity: 0.4; }
+
+/* ── 11. Modal ────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(20,20,20,0.55);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  z-index: 200; display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.modal-overlay--open { display: flex; }
+.modal {
+  background: var(--color-surface); border-radius: 12px;
+  width: 100%; max-width: 680px; max-height: 88vh; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative; animation: modalIn var(--dur-med) var(--ease-out) both;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal__close {
+  position: absolute; top: 14px; right: 14px; z-index: 10;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--color-border); background: var(--color-surface);
+  color: var(--color-text-secondary); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.modal__close:hover { background: var(--dark-bg); color: #fff; border-color: var(--dark-bg); }
+.modal__image-wrap {
+  border-radius: 12px 0 0 12px; overflow: hidden;
+  background: var(--color-bg); min-height: 300px;
+  display: flex; align-items: stretch;
+}
+.modal__image-wrap > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.modal__image-placeholder {
+  width: 100%; min-height: 220px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  color: #b5b2ae; font-size: 13px;
+}
+.modal__body { padding: 32px 28px; display: flex; flex-direction: column; gap: 14px; }
+.modal__title {
+  font-family: var(--font-display); font-size: 26px; font-weight: 700;
+  line-height: 1.2; color: var(--color-text-primary);
+}
+.modal__badge {
+  display: inline-block; background: #eef6de; color: #4a7a18;
+  font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 4px;
+  width: fit-content; letter-spacing: 0.02em;
+}
+.modal__desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.65; }
+
+/* ── 12. Pagination ───────────────────────────────────────── */
+.pagination {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; margin-top: 48px; flex-wrap: wrap;
+}
+.pagination__btn {
+  min-width: 36px; height: 36px; padding: 0 10px;
+  border: 1px solid var(--color-border); border-radius: 5px;
+  background: var(--color-surface); color: var(--color-text-secondary);
+  font-size: 14px; font-family: var(--font-base); cursor: pointer;
+  transition: all var(--dur-fast); display: flex; align-items: center; justify-content: center;
+}
+.pagination__btn:hover:not(:disabled) { background: var(--color-bg); border-color: var(--color-border-dark); color: var(--color-text-primary); }
+.pagination__btn--active { background: var(--dark-bg); border-color: var(--dark-bg); color: #fff; font-weight: 600; }
+.pagination__btn--active:hover { background: var(--dark-bg) !important; color: #fff !important; }
+.pagination__btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.pagination__ellipsis { color: var(--color-text-muted); font-size: 14px; padding: 0 4px; }
+
+/* ── 13. Animations ───────────────────────────────────────── */
+.card:nth-child(1) { animation-delay: 0ms; }
+.card:nth-child(2) { animation-delay: 30ms; }
+.card:nth-child(3) { animation-delay: 60ms; }
+.card:nth-child(4) { animation-delay: 90ms; }
+.card:nth-child(n+5) { animation-delay: 120ms; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+
+/* ── 14. Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav { padding: 0 24px; }
+  .nav-links a { font-size: 18px; }
+  .nav-links li + li::before { margin: 0 20px; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; height: 70px; }
+  .nav-links { display: none !important; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+  :root { --nav-height: 70px; }
+  .catalog-layout { grid-template-columns: 1fr; gap: 24px; }
+  .sidebar { position: static; }
+  .sidebar__list { display: grid; grid-template-columns: 1fr 1fr; }
+  .hero-bar__title { font-size: 36px; }
+  .modal { grid-template-columns: 1fr; max-width: 420px; }
+  .modal__image-wrap { border-radius: 12px 12px 0 0; min-height: 220px; }
+}
+@media (max-width: 480px) {
+  :root { --page-padding: 16px; }
+  .sidebar__list { grid-template-columns: 1fr; }
+}
+    </style>
   </head>
   <body>
-    <!-- ═══════════════════════════════════════════════
-       MOBILE MENU DRAWER
-  ═══════════════════════════════════════════════ -->
+
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <ul>
-        <li><a href="../products/ECAT.HTML" class="mobile-link">JLIFE</a></li>
-        <li>
-          <a href="catalog.html" class="mobile-link">FORMLINERS</a>
-        </li>
+        <li><a href="#" class="mobile-link">HOME</a></li>
+        <li><a href="#" class="mobile-link active">CATALOG</a></li>
       </ul>
     </div>
 
-    <!-- ═══════════════════════════════════════════════
-       NAVIGATION
-  ═══════════════════════════════════════════════ -->
+    <!-- Navigation -->
     <nav class="nav">
-      <a class="nav-logo" href="../index.html">
-        <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
+      <a class="nav-logo" href="#">
+        <span>GC</span>
       </a>
       <ul class="nav-links">
-        <li><a href="../products/ECAT.HTML">JLIFE</a></li>
-        <li>
-          <a href="catalog.html" class="nav-link--active"
-            >FORMLINERS</a
-          >
-        </li>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#" class="nav-link--active">CATALOG</a></li>
       </ul>
-      <button
-        class="hamburger"
-        id="hamburger"
-        aria-label="Toggle menu"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
       </button>
     </nav>
 
-    <!-- ═══════════════════════════════════════════════
-       PAGE HERO BAR
-  ═══════════════════════════════════════════════ -->
+    <!-- Hero Bar -->
     <div class="hero-bar">
       <div class="hero-bar__inner">
         <h1 class="hero-bar__title">GC</h1>
         <span class="hero-bar__count" id="js-count">— Products</span>
       </div>
     </div>
-  <!-- ═══════════════════════════════════════════════
-       CATALOG LAYOUT
-  ═══════════════════════════════════════════════ -->
+
+    <!-- Catalog Layout -->
     <main class="catalog-layout">
-      <!-- ── Sidebar ─────────────────────────────── -->
       <aside class="sidebar">
         <div class="sidebar__section">
           <h3 class="sidebar__heading">Design Type</h3>
           <div class="sidebar__divider"></div>
-          <ul class="sidebar__list" id="js-filter-list">
-            <!-- Populated by JS -->
-          </ul>
+          <ul class="sidebar__list" id="js-filter-list"></ul>
         </div>
       </aside>
 
-      <!-- ── Main content ────────────────────────── -->
       <section class="catalog-main">
-        <!-- Toolbar -->
         <div class="toolbar">
           <div class="toolbar__search">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <circle
-                cx="6.5"
-                cy="6.5"
-                r="5"
-                stroke="currentColor"
-                stroke-width="1.5"
-              />
-              <path
-                d="M11 11L14.5 14.5"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
+              <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
-            <input
-              type="text"
-              id="js-search"
-              placeholder="Search part number or description…"
-            />
+            <input type="text" id="js-search" placeholder="Search products…" />
           </div>
           <div class="toolbar__sort">
             <label class="toolbar__sort-label" for="js-sort">Sort By:</label>
@@ -114,57 +410,315 @@
           </div>
         </div>
 
-        <!-- Product grid -->
-        <div class="product-grid" id="js-grid">
-          <!-- Populated by JS -->
-        </div>
-
-        <!-- Pagination -->
-        <nav class="pagination" id="js-pagination" aria-label="Page navigation">
-          <!-- Populated by JS -->
-        </nav>
+        <div class="product-grid" id="js-grid"></div>
+        <nav class="pagination" id="js-pagination" aria-label="Page navigation"></nav>
       </section>
     </main>
 
-    <!-- ═══════════════════════════════════════════════
-       MODAL
-  ═══════════════════════════════════════════════ -->
-    <div
-      class="modal-overlay"
-      id="js-modal-overlay"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="js-modal-title"
-    >
+    <!-- Modal -->
+    <div class="modal-overlay" id="js-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="js-modal-title">
       <div class="modal" id="js-modal">
         <button class="modal__close" id="js-modal-close" aria-label="Close">
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path
-              d="M1 1L13 13M13 1L1 13"
-              stroke="currentColor"
-              stroke-width="1.8"
-              stroke-linecap="round"
-            />
+            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
           </svg>
         </button>
-        <div class="modal__image-wrap" id="js-modal-img-wrap">
-          <!-- Populated by JS -->
-        </div>
+        <div class="modal__image-wrap" id="js-modal-img-wrap"></div>
         <div class="modal__body">
-          <p class="modal__part-no" id="js-modal-part"></p>
           <h2 class="modal__title" id="js-modal-title"></h2>
           <span class="modal__badge" id="js-modal-badge"></span>
-          <table class="modal__specs" id="js-modal-specs">
-            <!-- Populated by JS -->
-          </table>
+          <p class="modal__desc" id="js-modal-desc"></p>
         </div>
       </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════
-       SCRIPTS
-  ═══════════════════════════════════════════════ -->
-    <script src="../data/GCproducts.js"></script>
-    <script src="GC-catalog.js"></script>
+    <script>
+/* ── Products data ─────────────────────────────────────────── */
+const PRODUCTS = [
+  {
+    partname: "GC Collection™",
+    description: "Our own range of ready-made repeating patterns.",
+    designType: "Patterns",
+    image: ""
+  },
+  {
+    partname: "Custom-made",
+    description: "Stop searching and start creating: Your custom masterpiece is only moments away.",
+    designType: "Patterns",
+    image: ""
+  },
+  {
+    partname: "GC Smooth",
+    description: "A blank membrane to create a beautiful velvety smooth and even concrete surface without any pattern.",
+    designType: "Smooth",
+    image: ""
+  },
+  {
+    partname: "GC Expose",
+    description: "Helps provide a fully exposed surface in a safe and environmentally friendly way.",
+    designType: "Expose",
+    image: ""
+  }
+];
+
+const VALID_PRODUCTS = PRODUCTS.filter(p => p.partname && p.description);
+
+const CONFIG = { ITEMS_PER_PAGE: 20, ALL_LABEL: "All" };
+
+const state = {
+  activeDesigns: new Set([CONFIG.ALL_LABEL]),
+  sort: "default",
+  query: "",
+  page: 1
+};
+
+const dom = {
+  filterList: document.getElementById("js-filter-list"),
+  grid: document.getElementById("js-grid"),
+  pagination: document.getElementById("js-pagination"),
+  count: document.getElementById("js-count"),
+  search: document.getElementById("js-search"),
+  sort: document.getElementById("js-sort"),
+  modalOverlay: document.getElementById("js-modal-overlay"),
+  modal: document.getElementById("js-modal"),
+  modalClose: document.getElementById("js-modal-close"),
+  modalImgWrap: document.getElementById("js-modal-img-wrap"),
+  modalTitle: document.getElementById("js-modal-title"),
+  modalBadge: document.getElementById("js-modal-badge"),
+  modalDesc: document.getElementById("js-modal-desc")
+};
+
+function getDesignTypes() {
+  return [...new Set(VALID_PRODUCTS.map(p => p.designType).filter(Boolean))].sort();
+}
+
+function getDesignTypeCounts() {
+  return VALID_PRODUCTS.reduce((acc, p) => {
+    if (p.designType) acc[p.designType] = (acc[p.designType] ?? 0) + 1;
+    return acc;
+  }, {});
+}
+
+function getFilteredProducts() {
+  const isAll = state.activeDesigns.has(CONFIG.ALL_LABEL);
+  const q = state.query;
+  let list = VALID_PRODUCTS.filter(p => {
+    const matchesDesign = isAll || state.activeDesigns.has(p.designType);
+    const matchesSearch = !q ||
+      p.partname.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      (p.designType && p.designType.toLowerCase().includes(q));
+    return matchesDesign && matchesSearch;
+  });
+  if (state.sort === "az") list = list.slice().sort((a, b) => a.partname.localeCompare(b.partname));
+  return list;
+}
+
+function getPageSlice(list) {
+  const start = (state.page - 1) * CONFIG.ITEMS_PER_PAGE;
+  return list.slice(start, start + CONFIG.ITEMS_PER_PAGE);
+}
+
+function renderFilters() {
+  const designTypes = getDesignTypes();
+  const counts = getDesignTypeCounts();
+  const items = [
+    { label: CONFIG.ALL_LABEL, count: VALID_PRODUCTS.length },
+    ...designTypes.map(dt => ({ label: dt, count: counts[dt] ?? 0 }))
+  ];
+  dom.filterList.innerHTML = "";
+  items.forEach(({ label, count }) => {
+    const isAll = label === CONFIG.ALL_LABEL;
+    const isChecked = isAll ? state.activeDesigns.has(CONFIG.ALL_LABEL) : state.activeDesigns.has(label);
+    const li = document.createElement("li");
+    const id = `filter-${label.replace(/\s+/g, "-").toLowerCase()}`;
+    li.className = "sidebar__item" + (isAll ? " sidebar__item--all" : "");
+    li.innerHTML = `
+      <input type="checkbox" class="sidebar__checkbox" id="${id}" data-type="${label}" ${isChecked ? "checked" : ""} />
+      <label class="sidebar__label" for="${id}">${label}</label>
+      <span class="sidebar__count">${count}</span>`;
+    li.querySelector("input").addEventListener("change", onFilterChange);
+    dom.filterList.appendChild(li);
+  });
+}
+
+function renderGrid() {
+  const filtered = getFilteredProducts();
+  const page = getPageSlice(filtered);
+  dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
+  dom.grid.innerHTML = "";
+  if (page.length === 0) {
+    dom.grid.innerHTML = `<div class="grid-empty"><div class="grid-empty__icon">◻</div><p>No products match your filters.</p></div>`;
+    return;
+  }
+  const fragment = document.createDocumentFragment();
+  page.forEach(p => fragment.appendChild(createProductCard(p)));
+  dom.grid.appendChild(fragment);
+}
+
+function createProductCard(product) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.setAttribute("role", "button");
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("aria-label", `View details for ${product.partname}`);
+
+  const imgHTML = product.image
+    ? `<img src="${product.image}" alt="${product.partname}" loading="lazy" />`
+    : `<div class="card__image-placeholder">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+      </div>`;
+
+  card.innerHTML = `
+    <div class="card__image-wrap">${imgHTML}</div>
+    <div class="card__body">
+      <h3 class="card__name">${product.partname}</h3>
+      <p class="card__desc">${product.description}</p>
+      <div class="card__footer">
+        ${product.designType ? `<span class="card__badge">${product.designType}</span>` : ""}
+      </div>
+    </div>`;
+
+  card.addEventListener("click", () => openModal(product));
+  card.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(product); }
+  });
+  return card;
+}
+
+function renderPagination() {
+  const total = Math.ceil(getFilteredProducts().length / CONFIG.ITEMS_PER_PAGE);
+  dom.pagination.innerHTML = "";
+  if (total <= 1) return;
+  const prev = makePaginationBtn("‹", state.page === 1, () => goToPage(state.page - 1));
+  prev.setAttribute("aria-label", "Previous page");
+  dom.pagination.appendChild(prev);
+  buildPageRange(state.page, total).forEach(p => {
+    if (p === "…") {
+      const el = document.createElement("span");
+      el.className = "pagination__ellipsis"; el.textContent = "…";
+      dom.pagination.appendChild(el);
+    } else {
+      const btn = makePaginationBtn(String(p), false, () => goToPage(p));
+      if (p === state.page) btn.classList.add("pagination__btn--active");
+      dom.pagination.appendChild(btn);
+    }
+  });
+  const next = makePaginationBtn("›", state.page === total, () => goToPage(state.page + 1));
+  next.setAttribute("aria-label", "Next page");
+  dom.pagination.appendChild(next);
+}
+
+function buildPageRange(current, total) {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pages = new Set([1, total, current, current - 1, current + 1].filter(p => p >= 1 && p <= total));
+  const sorted = [...pages].sort((a, b) => a - b);
+  const result = []; let prev = 0;
+  sorted.forEach(p => { if (p - prev > 1) result.push("…"); result.push(p); prev = p; });
+  return result;
+}
+
+function makePaginationBtn(label, disabled, onClick) {
+  const btn = document.createElement("button");
+  btn.className = "pagination__btn"; btn.textContent = label; btn.disabled = disabled;
+  if (!disabled) btn.addEventListener("click", onClick);
+  return btn;
+}
+
+function goToPage(page) {
+  state.page = page; renderGrid(); renderPagination();
+  dom.grid.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function openModal(product) {
+  dom.modalImgWrap.innerHTML = product.image
+    ? `<img src="${product.image}" alt="${product.partname}" />`
+    : `<div class="modal__image-placeholder">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <path d="M21 15l-5-5L5 21"/>
+        </svg>
+        <span>No image available</span>
+      </div>`;
+
+  dom.modalTitle.textContent = product.partname;
+  dom.modalBadge.textContent = product.designType ?? "";
+  dom.modalBadge.style.display = product.designType ? "inline-block" : "none";
+  dom.modalDesc.textContent = product.description;
+
+  dom.modalOverlay.classList.add("modal-overlay--open");
+  document.body.style.overflow = "hidden";
+  dom.modalClose.focus();
+}
+
+function closeModal() {
+  dom.modalOverlay.classList.remove("modal-overlay--open");
+  document.body.style.overflow = "";
+}
+
+function onFilterChange(e) {
+  const type = e.target.dataset.type;
+  if (!type) return;
+  if (type === CONFIG.ALL_LABEL) {
+    if (e.target.checked) { state.activeDesigns.clear(); state.activeDesigns.add(CONFIG.ALL_LABEL); }
+    else { e.target.checked = true; return; }
+  } else {
+    state.activeDesigns.delete(CONFIG.ALL_LABEL);
+    if (e.target.checked) { state.activeDesigns.add(type); }
+    else { state.activeDesigns.delete(type); if (state.activeDesigns.size === 0) state.activeDesigns.add(CONFIG.ALL_LABEL); }
+  }
+  state.page = 1; renderFilters(); renderGrid(); renderPagination();
+}
+
+function init() {
+  renderFilters(); renderGrid(); renderPagination();
+
+  let searchTimer;
+  dom.search.addEventListener("input", e => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(() => {
+      state.query = e.target.value.toLowerCase().trim();
+      state.page = 1; renderGrid(); renderPagination();
+    }, 220);
+  });
+
+  dom.sort.addEventListener("change", e => {
+    state.sort = e.target.value; state.page = 1; renderGrid(); renderPagination();
+  });
+
+  dom.modalClose.addEventListener("click", closeModal);
+  dom.modalOverlay.addEventListener("click", e => { if (e.target === dom.modalOverlay) closeModal(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+}
+
+document.addEventListener("DOMContentLoaded", init);
+
+// Nav scroll + hamburger
+const nav = document.querySelector(".nav");
+window.addEventListener("scroll", () => nav.classList.toggle("scrolled", window.scrollY > 50));
+
+const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+hamburger.addEventListener("click", () => {
+  const isOpen = hamburger.classList.toggle("open");
+  mobileMenu.classList.toggle("open", isOpen);
+  mobileMenu.setAttribute("aria-hidden", String(!isOpen));
+  hamburger.setAttribute("aria-expanded", String(isOpen));
+  document.body.style.overflow = isOpen ? "hidden" : "";
+});
+mobileMenu.querySelectorAll(".mobile-link").forEach(link => {
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("open"); mobileMenu.classList.remove("open");
+    mobileMenu.setAttribute("aria-hidden", "true");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  });
+});
+    </script>
   </body>
 </html>
