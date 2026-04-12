@@ -3,28 +3,28 @@ const PRODUCTS = [
     "partname": "GCCollectionTM",
     "description": "Our own range of ready-made repeating pattrns.",
     "designType": "Patterns",
-    "image": "../assets/E-cat/Product/GC/GCCOLLECTION.png",
+    "image":
   },
 
   {
     "partname": "Custom-made",
     "description": "Stop searching and start creating: Your custom masterpiece is only moments away.",
     "designType": "Patterns",
-    "image": "../assets/E-cat/Product/NOE/560000.webp",
+    "image": ,
   },
 
   {
-    "partname": "GCCollectionTM",
-    "description": "Our own range of ready-made repeating pattrns",
+    "partname": "GCSmooth",
+    "description": "A blank membrane to create a beautiful velevety smooth and even concrete surface without any pattern.",
     "designType": "Patterns",
-    "image": "../assets/E-cat/Product/NOE/560000.webp",
+    "image": ",
   },
 
   {
-    "partname": "GCCollectionTM",
-    "description": "Our own range of ready-made repeating pattrns",
+    "partname": "GCExpose",
+    "description": "Helps provide a fully exposed surface in a safe and enviromentally friendly way.",
     "designType": "Patterns",
-    "image": "../assets/E-cat/Product/NOE/560000.webp",
+    "image": "",
   },
 ];
 
