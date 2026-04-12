@@ -283,7 +283,7 @@ body {
   margin-top:200px;
   margin-bottom:250px;}
 
-  .foot-anchor{
+.foot-anchor{
   width:220px;
   height:220px;
   object-fit:contain;}
@@ -295,15 +295,15 @@ body {
   color:#b0fd30;}
 
 
-.steel-core-wire-loop{
+.Lifting-Clutches{
   width:220px;
   height:220px;
   object-fit:contain;}
-.steel-core-wire-loop-line{
+.Lifting-Clutches-line{
   color:white;
   text-decoration:none;
-  margin-left:35px;}
-.steel-core-wire-loop-line:hover {
+  margin-left:50px;}
+.Lifting-Clutches-line:hover {
   color:#b0fd30;}
 
 .eye-anchor{
@@ -328,7 +328,16 @@ body {
 .recess-former-line:hover {
   color:#b0fd30;}
 
-  
+.steel-core-wire-loop{
+  width:220px;
+  height:220px;
+  object-fit:contain;}
+.steel-core-wire-loop-line{
+  color:white;
+  text-decoration:none;
+  margin-left:35px;}
+.steel-core-wire-loop-line:hover {
+  color:#b0fd30;}
 
 
 
