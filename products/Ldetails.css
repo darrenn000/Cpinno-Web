@@ -154,6 +154,14 @@ hr{
   margin-top:200px;
   margin-bottom:250px;
   }
+
+.shr{
+  height:0.9px;
+  background-color: rgba(255, 255, 255, 0.199);
+  border:none;
+}
+
+
 .steel-core{
   width:449px;
   height:380px;
@@ -186,3 +194,35 @@ hr{
    margin-left:140px;
   }
 
+.page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:50px;
+  }
+  .page a{
+  color:whitesmoke;
+  padding:8px 16px;
+  text-decoration:none;
+  transition: color 0.2s;
+  cursor: pointer;
+  font-size:25px;
+  }
+
+  .page a:active{
+    color:#b0fd30;
+  }
+
+  .page a:hover{
+    color:#b0fd30;
+  }
+
+  .table-1{
+    line-height:1;
+    border-collapse:collapse;
+  }
+
+  th,td{
+    padding:0;
+    text-align:center;
+  }

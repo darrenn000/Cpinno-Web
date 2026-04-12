@@ -142,7 +142,7 @@ hr{
     color:#b0fd30;
    font-size:35px;
    text-decoration:none;
-   margin-left:100px;
+   margin-left:30px;
   }
 
 
@@ -161,9 +161,9 @@ hr{
 }
 .recess-nr-line{
     color:#b0fd30;
-   font-size:35px;
+   font-size:31px;
    text-decoration:none;
-   margin-left:100px;
+   margin-left:0px;
   }
 
 
@@ -184,7 +184,7 @@ hr{
     color:#b0fd30;
    font-size:35px;
    text-decoration:none;
-   margin-left:100px;
+   margin-left:40px;
   }
 
 
@@ -204,5 +204,28 @@ hr{
     color:#b0fd30;
    font-size:35px;
    text-decoration:none;
-   margin-left:100px;
+   margin-left:50px;
+  }
+
+  .page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:50px;
+  }
+  .page a{
+  color:whitesmoke;
+  padding:8px 16px;
+  text-decoration:none;
+  transition: color 0.2s;
+  cursor: pointer;
+  font-size:25px;
+  }
+
+  .page a:active{
+    color:#b0fd30;
+  }
+
+  .page a:hover{
+    color:#b0fd30;
   }
