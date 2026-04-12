@@ -169,3 +169,8 @@ hr{
   margin-left:660px;
   margin-right: 120px;
 }
+
+th,td{
+    padding:0;
+    text-align:center;
+  }

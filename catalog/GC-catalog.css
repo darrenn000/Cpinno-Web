@@ -1,0 +1,790 @@
+/* ============================================================
+   catalog.css
+   Scope: NOE Formliners product catalog
+   Structure:
+     1. Design tokens (CSS custom properties)
+     2. Reset & base
+     3. Navigation  ← matches index.css exactly
+     4. Mobile menu drawer  ← matches index.css exactly
+     5. Hamburger button  ← matches index.css exactly
+     6. Hero bar
+     7. Layout shell
+     8. Sidebar & filters
+     9. Toolbar (search + sort)
+    10. Product grid & cards
+    11. Modal
+    12. Pagination
+    13. Utilities & animations
+    14. Responsive
+   ============================================================ */
+
+
+/* ── 1. Design tokens ─────────────────────────────────────── */
+:root {
+  /* Brand — shared with index.css */
+  --green-bright:  #b0fd30;
+  --green-mid:     #98d92f;
+  --green-dark:    #71a220;
+  --dark-bg:       #272727;
+  --white:         #ffffff;
+
+  /* Catalog-specific neutrals */
+  --color-bg:          #f5f4f0;
+  --color-surface:     #ffffff;
+  --color-border:      #e0ddd6;
+  --color-border-dark: #c8c4bb;
+
+  /* Catalog-specific text */
+  --color-text-primary:   #1a1a1a;
+  --color-text-secondary: #5a5752;
+  --color-text-muted:     #9a9691;
+
+  /* Catalog accent (sidebar checkboxes, focus rings) */
+  --color-accent:      #8dc63f;
+  --color-accent-dark: #6fa82e;
+
+  /* Typography */
+  --font-base:    'Inter', sans-serif;          /* matches index */
+  --font-display: 'Barlow Condensed', sans-serif;
+  --font-body:    'Barlow', sans-serif;
+
+  /* Layout */
+  --nav-height:    90px;   /* matches index */
+  --sidebar-width: 260px;
+  --content-max:   1440px;
+  --page-padding:  40px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-med:  240ms;
+}
+
+
+/* ── 2. Reset & base ──────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-base);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img { display: block; max-width: 100%; }
+
+button, select, input { font-family: inherit; font-size: inherit; }
+
+
+/* ── 3. Navigation (matches index.css) ────────────────────── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 160;
+  background: rgba(0, 0, 0, 0.72);
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  transition: background 0.3s;
+}
+.nav.scrolled {
+  background: rgba(0, 0, 0, 0.92);
+}
+
+.nav-logo {
+  display: block;
+  flex-shrink: 0;
+}
+
+.nav-logo img {
+  height: 72px;
+  width: auto;
+  display: block;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+}
+
+.nav-links li {
+  display: flex;
+  align-items: center;
+}
+
+/* Divider between nav items — matches index.css ::before pattern */
+.nav-links li + li::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.45);
+  margin: 0 32px;
+}
+
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: 400;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--green-bright);
+}
+
+/* Active state — FORMLINERS is highlighted on the catalog page */
+.nav-links a.nav-link--active {
+  color: var(--green-bright);
+}
+
+
+/* ── 4. Mobile menu drawer (matches index.css) ────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 150;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  text-align: center;
+}
+
+.mobile-menu ul li {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-menu ul li:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.mobile-menu ul a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+
+.mobile-menu ul a:hover,
+.mobile-menu ul a:active {
+  color: var(--green-bright);
+}
+
+
+/* ── 5. Hamburger button (matches index.css) ──────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  transition:
+    transform 0.35s ease,
+    opacity 0.25s ease,
+    width 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; width: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+
+/* ── 6. Hero bar ──────────────────────────────────────────── */
+.hero-bar {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  margin-top: var(--nav-height); /* push below fixed nav */
+}
+
+.hero-bar__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 20px var(--page-padding);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.hero-bar__title {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: var(--color-text-primary);
+}
+
+.hero-bar__count {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+
+/* ── 7. Layout shell ──────────────────────────────────────── */
+.catalog-layout {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 36px var(--page-padding) 80px;
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+
+/* ── 8. Sidebar & filters ─────────────────────────────────── */
+.sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+}
+
+.sidebar__section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px 20px 24px;
+}
+
+.sidebar__heading {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  margin-bottom: 10px;
+}
+
+.sidebar__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: 14px;
+}
+
+.sidebar__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background var(--dur-fast);
+  user-select: none;
+}
+
+.sidebar__item:hover { background: var(--color-bg); }
+
+/* Custom checkbox */
+.sidebar__checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--color-border-dark);
+  border-radius: 3px;
+  background: var(--color-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: border-color var(--dur-fast), background var(--dur-fast);
+}
+
+.sidebar__checkbox:checked {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.sidebar__checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(45deg);
+}
+
+.sidebar__label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  line-height: 1.3;
+}
+
+.sidebar__item--all .sidebar__label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sidebar__count {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--color-text-muted);
+  background: var(--color-bg);
+  padding: 1px 6px;
+  border-radius: 10px;
+}
+
+
+/* ── 9. Toolbar ───────────────────────────────────────────── */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.toolbar__search {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toolbar__search svg {
+  position: absolute;
+  left: 13px;
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.toolbar__search input {
+  width: 100%;
+  padding: 10px 14px 10px 40px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--dur-fast);
+}
+
+.toolbar__search input:focus      { border-color: var(--color-accent); }
+.toolbar__search input::placeholder { color: var(--color-text-muted); }
+
+.toolbar__sort {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.toolbar__sort-label {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+.toolbar__sort select {
+  padding: 9px 32px 9px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239a9691' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  transition: border-color var(--dur-fast);
+}
+
+.toolbar__sort select:focus { border-color: var(--color-accent); }
+
+
+/* ── 10. Product grid & cards ─────────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out),
+    border-color var(--dur-fast);
+  animation: cardIn var(--dur-med) var(--ease-out) both;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+  border-color: var(--color-border-dark);
+}
+
+.card__image-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--color-bg);
+  overflow: hidden;
+  position: relative;
+}
+
+.card__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 320ms var(--ease-out);
+}
+
+.card:hover .card__image-wrap img { transform: scale(1.04); }
+
+.card__image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eeecea;
+  color: #b5b2ae;
+}
+
+/* Empty state */
+.grid-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 72px 24px;
+  color: var(--color-text-secondary);
+}
+
+.grid-empty__icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+  opacity: 0.4;
+}
+
+
+/* ── 11. Modal ────────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-overlay--open { display: flex; }
+
+.modal {
+  background: var(--color-surface);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 760px;
+  max-height: 88vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  animation: modalIn var(--dur-med) var(--ease-out) both;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+
+.modal__close:hover {
+  background: var(--dark-bg);
+  color: #fff;
+  border-color: var(--dark-bg);
+}
+
+/* Modal left panel */
+.modal__image-wrap {
+  border-radius: 12px 0 0 12px;
+  overflow: hidden;
+  background: var(--color-bg);
+  min-height: 300px;
+  display: flex;
+  align-items: stretch;
+}
+
+.modal__image-wrap > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal__image-wrap > iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  border: 0;
+  display: block;
+}
+
+.modal__image-placeholder {
+  width: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #b5b2ae;
+  font-size: 13px;
+}
+
+/* Modal right panel */
+.modal__body {
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal__part-no {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.modal__title {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin-top: -4px;
+}
+
+.modal__badge {
+  display: inline-block;
+  background: #eef6de;
+  color: #4a7a18;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 4px;
+  width: fit-content;
+  letter-spacing: 0.02em;
+}
+
+.modal__specs {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 6px;
+}
+
+.modal__specs tr          { border-bottom: 1px solid var(--color-border); }
+.modal__specs tr:last-child { border-bottom: none; }
+
+.modal__specs td {
+  padding: 9px 0;
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+
+.modal__specs td:first-child {
+  color: var(--color-text-secondary);
+  width: 48%;
+  padding-right: 12px;
+}
+
+.modal__specs td:last-child {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.modal__specs tr:first-child td:first-child { color: var(--color-accent-dark); }
+
+.modal__size-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.8;
+}
+
+
+/* ── 12. Pagination ───────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.pagination__btn {
+  min-width: 36px;
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-family: var(--font-base);
+  cursor: pointer;
+  transition: all var(--dur-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination__btn:hover:not(:disabled) {
+  background: var(--color-bg);
+  border-color: var(--color-border-dark);
+  color: var(--color-text-primary);
+}
+
+.pagination__btn--active {
+  background: var(--dark-bg);
+  border-color: var(--dark-bg);
+  color: #fff;
+  font-weight: 600;
+}
+
+.pagination__btn--active:hover {
+  background: var(--dark-bg) !important;
+  color: #fff !important;
+}
+
+.pagination__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination__ellipsis {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+
+/* ── 13. Utilities & animations ───────────────────────────── */
+.card:nth-child(1)   { animation-delay: 0ms; }
+.card:nth-child(2)   { animation-delay: 30ms; }
+.card:nth-child(3)   { animation-delay: 60ms; }
+.card:nth-child(4)   { animation-delay: 90ms; }
+.card:nth-child(5)   { animation-delay: 120ms; }
+.card:nth-child(6)   { animation-delay: 150ms; }
+.card:nth-child(7)   { animation-delay: 180ms; }
+.card:nth-child(8)   { animation-delay: 210ms; }
+.card:nth-child(n+9) { animation-delay: 240ms; }
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+
+/* ── 14. Responsive ───────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .nav { padding: 0 24px; }
+  .nav-links a { font-size: 18px; }
+  .nav-links li + li::before { margin: 0 20px; }
+}

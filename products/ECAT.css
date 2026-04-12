@@ -116,7 +116,7 @@ body {
   /* Hero Section Base */
 .hero {
   /* 1. The Image Magic */
-  background-image: url('hero.png'); /* Replace with your image file */
+  background-image: url('../assets/E-cat/e-cat-bg.svg'); /* Replace with your image file */
   background-size: cover;      /* Scales image to fill the container, won't stretch */
   background-position: center;  /* Centers the image within the viewport */
   background-repeat: no-repeat;

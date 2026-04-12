@@ -229,3 +229,8 @@ hr{
   .page a:hover{
     color:#b0fd30;
   }
+
+  th,td{
+    padding:0;
+    text-align:center;
+  }
