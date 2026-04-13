@@ -1,3 +1,4 @@
+<style>
 /* ── 1. Design tokens ─────────────────────────────────────── */
 :root {
   --green-bright:  #b0fd30;
@@ -335,4 +336,4 @@ button, select, input { font-family: inherit; font-size: inherit; }
   :root { --page-padding: 16px; }
   .sidebar__list { grid-template-columns: 1fr; }
 }
-}
+    </style>
