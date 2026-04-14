@@ -112,25 +112,25 @@ const PRODUCTS = [
     "link3d": "https://sketchfab.com/3d-models/madras-e22510d4447b40ae9f5e1544986466bc?utm_medium=embed&utm_campaign=share-popup&utm_content=e22510d4447b40ae9f5e1544986466bc"
   },
   {
-    "partNo": "655800",
+    "partNo": "566800",
     "description": "London",
     "matSizeA": 1050,
     "matSizeB": 10500,
     "thickness": 46301,
     "weight": 9,
     "designType": "Timber designs",
-    "image": "../assets/E-cat/Product/NOE/655800.webp",
+    "image": "../assets/E-cat/Product/NOE/566800.webp",
     "link3d": "https://sketchfab.com/3d-models/london-2f2265f51fc34539827c17057c4c19b6?utm_medium=embed&utm_campaign=share-popup&utm_content=2f2265f51fc34539827c17057c4c19b6"
   },
   {
-    "partNo": "652000",
+    "partNo": "562000",
     "description": "Ulm",
     "matSizeA": "1000, 2000, 6000",
     "matSizeB": "6000, 5900, 3000",
     "thickness": 9,
     "weight": 9,
     "designType": "Timber designs",
-    "image": "../assets/E-cat/Product/NOE/652000.webp",
+    "image": "../assets/E-cat/Product/NOE/562000.webp",
     "link3d": "https://sketchfab.com/3d-models/ulm-7be3ffbfb45d40588202a51a22892511?utm_medium=embed&utm_campaign=share-popup&utm_content=7be3ffbfb45d40588202a51a22892511"
   },
   {
