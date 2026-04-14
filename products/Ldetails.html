@@ -1,257 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPinno — Lifting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
 
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
+      <li><a href="ECAT.HTML#fs" class="mobile-link">Fixing System</a></li>
+      <li><a href="ECAT.HTML#Ls" class="mobile-link">Lifting System</a></li>
+      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners</a></li>
+    </ul>
+  </div>
 
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="Ldetails.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CPinno.Lifting</title>
-  </head>
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="../index.html">
+      <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-drop">
+        <a href="ECAT.HTML#JLIFE" class="active">JLIFE</a>
+        <div class="nav-drop__menu">
+          <a href="ECAT.HTML#cs">Connection System</a>
+          <a href="ECAT.HTML#fs">Fixing System</a>
+          <a href="ECAT.HTML#Ls">Lifting System</a>
+        </div>
+      </li>
+      <li class="nav-drop">
+        <a href="../catalog/catalog.html">FORMLINERS</a>
+        <div class="nav-drop__menu">
+          <a href="../catalog/catalog.html">NOE</a>
+          <a href="../catalog/GC-catalog.html">GC</a>
+        </div>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <body style="background-color:#3E3E33;">
-    <!-- navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="../index.html" class="logo">
-          <img src="../assets/Home/CpinnoLogo.svg" alt="Brand Name Logo" class="logo-img" />
-        </a>
-        <ul class="nav-links">
-          <li class="JL-drop"><a href="#JLIFE">JLIFE</a>
-            <div class="dropdown-content">
-              <a href="ECAT.HTML#cs">Connection System</a>
-              <a href="ECAT.HTML#fs">Fixing System</a>
-              <a href="ECAT.HTML#Ls">Lifting System</a>
-            </div>
-          </li>
-          <li class="JL-drop"><a href="#FORMLINERS">FORMLINERS</a>
-            <div class="dropdown-content">
-              <a href="../catalog/catalog.html">NOE</a>
-              <a href="../catalog/GC-catalog.html">GC</a>
-            </div>
-          </li>
-        </ul>
+  <div class="page-header">
+    <h1 class="page-header__title" id="page1">LIFTING SYSTEM</h1>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       Section 1 — Foot Anchor
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="foot-info">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="assets/foot anchor.png" alt="Foot Anchor" class="product-card__img" />
+        <span class="product-card__name">Foot Anchor</span>
       </div>
-    </nav>
-
-    <!--section 1-->
-    <h1 class="c-header" id="page1">LIFTING SYSTEM</h1>
-
-    <hr>
-
-    <div class="foot-info" id="foot-info">
-          <figure><img src="assets/foot anchor.png" class="foot" />
-          </a>
-          <figurecaption><p class="foot-line">
-          Foot Anchor
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th rowspan="2">Swiftlift Anchor Part No.</th>
-          <th rowspan="2">CLutch Load Group</th>
-          <th rowspan="2">Min Element Thickness [mm]</th>
-          <th colspan="3">Z-Permissible Loading [t] In Direction Of Lifting Cable/Chain</th>
-          <th rowspan="2">Minimum Edge Distance [a *]</th>
-          <th rowspan="2">Minimum Wall Reinforcement Welded Wire Mesh With Yield Strength ***</th>
-          <th colspan="2">****Additional Reinforcement For Diagonal Lift</th>
-        </tr>
-        
-        <tr>
-        <TD>row 1, cell 1,</TD>
-        <td>row 1, cell 2</td>
-        </tr>
-        <tr>
-        <TD>row 2, cell 1,</TD>
-        <td>row 2, cell 2</td>
-        </tr>
-      </TABLE>
-    </div>
-    <!--section ends here-->
-
-
-    <!--section 2-->
-
-    <div class="Lifting-Clutches-info" id="Lifting-Clutches-info">
-          <figure><img src="assets/steel core.png" class="Lifting-Clutches" />
-          </a>
-          <figurecaption><p class="Lifting-Clutches-line">
-          Lifting Clutches
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Description</th>
-          <th>Anchor Load <br>Group [T]</th>
-          <th>Load Capacity<br>[kN]</th>
-          <th>Quantity <br> [Per Box]</th>
-        </tr>
-
-        <tr>
-          <td>1LE-LR</td>
-          <td>Lifting Clutch</td>
-          <td>1.3</td>
-          <td>13kN</td>
-          <td>ea</td>
-        </tr>
-
-        <tr>
-          <td>2LE-LR</td>
-          <td>Lifting Clutch</td>
-          <td>2.5</td>
-          <td>25kN</td>
-          <td>ea</td>
-        </tr>
-
-        <tr>
-          <td>5LE-LR</td>
-          <td>Lifting Clutch</td>
-          <td>5.0</td>
-          <td>50kN</td>
-          <td>ea</td>
-        </tr>
-
-        <tr>
-          <td>10LE-LR</td>
-          <td>Lifting Clutch</td>
-          <td>10.0</td>
-          <td>100kN</td>
-          <td>ea</td>
-        </tr>
-
-        <tr>
-          <td>20LE</td>
-          <td>Lifting Clutch</td>
-          <td>20.0</td>
-          <td>200kN</td>
-          <td>ea</td>
-        </tr>
-
-<tr>
-          <td>32LE</td>
-          <td>Lifting Clutch</td>
-          <td>32.0</td>
-          <td>320kN</td>
-          <td>ea</td>
-        </tr>
-      </TABLE>
-    </div>
-    <!--section ends here-->
-
-    <!--section 3-->
-
-    <div class="eye-info" id="eye-info">
-          <figure><img src="assets/eye anchor.png" class="eye" />
-          </a>
-          <figurecaption><p class="eye-line">
-         Eye Anchor
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th rowspan="2">Part No. </th>
-          <th rowspan="2">Anchor Load Group [T]</th>
-          <th rowspan="2">Load Capacity [kN]</th>
-          <th colspan="5">Dimensions [mm] </th>
-          <th rowspan="2">Quantity [Per Box]</th>          
-        </tr>
-        <tr>
-        <th>Øds</th>
-        <th>ØD</th>
-        <th>ØD2</th>
-        <th>L1</th>
-        <th>L</th>
-        </tr>
-
-        <tr>
-          <td>1REA065</td>
-          <td>1.3</td>
-          <td>13kN</td>
-          <td>10</td>
-          <td>19</td>
-          <td>22</td>
-          <td>05</td>
-          <td>65</td>
-          <td>200</td>
-        </tr>
-        <tr>
-          <td>2REA090</td>
-          <td>2.5</td>
-          <td>25kN</td>
-          <td>14</td>
-          <td>26</td>
-          <td>33</td>
-          <td>07</td>
-          <td>90</td>
-          <td>100</td>
-        </tr>
-        <tr>
-          <td>5REA120</td>
-          <td>5.0</td>
-          <td>50kN</td>
-          <td>20</td>
-          <td>36</td>
-          <td>43</td>
-          <td>09</td>
-          <td>120</td>
-          <td>25</td>
-        </tr>
-        <tr>
-          <td>10REA175</td>
-          <td>10.0</td>
-          <td>100kN</td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>20</td>
-        </tr>
-
-        <tr>
-          <td>10REA180</td>
-          <td>10.0</td>
-          <td></td>
-          <td>28</td>
-          <td>47</td>
-          <td>57</td>
-          <td>11</td>
-          <td>180</td>
-          <td></td>
-        </tr>
-
-        <tr>
-          <td>20REA250</td>
-          <td>20.0</td>
-          <td>200kN</td>
-          <td>39</td>
-          <td>70</td>
-          <td>83</td>
-          <td>15</td>
-          <td>250</td>
-          <td>05</td>
-        </tr>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Swiftlift Anchor Part No.</th>
+              <th>Clutch Load Group</th>
+              <th>Min Element Thickness [mm]</th>
+              <th colspan="3">Z-Permissible Loading [t]</th>
+              <th>Min Edge Distance [a*]</th>
+              <th>Min Wall Reinforcement</th>
+              <th colspan="2">Additional Reinforcement (Diagonal Lift)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td colspan="10" style="text-align:left;color:var(--text-muted);font-size:12px;padding:14px 16px;">Detailed specifications to be added — please populate with your product data.</td></tr>
+          </tbody>
+        </table>
       </div>
-      <!--section ends here-->
-        
-      </TABLE>
     </div>
+  </section>
 
-     <div class="page">
-      <a href="#page1">&#171;</a>
-      <a href="#page1">1</a>
-      <a href="Ldetails2.html#page2">2</a>
-      <a href="Ldetails3.html#page3">3</a>
-      <a href="Ldetails2.html#page2">&#187;</a>
+  <!-- ══════════════════════════════════════
+       Section 2 — Lifting Clutches
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="Lifting-Clutches-info">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="assets/steel core.png" alt="Lifting Clutches" class="product-card__img" />
+        <span class="product-card__name">Lifting Clutches</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Part No.</th>
+              <th>Description</th>
+              <th>Anchor Load Group [T]</th>
+              <th>Load Capacity [kN]</th>
+              <th>Qty [Per Box]</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1LE-LR</td><td>Lifting Clutch</td><td>1.3</td><td>13 kN</td><td>EA</td></tr>
+            <tr><td>2LE-LR</td><td>Lifting Clutch</td><td>2.5</td><td>25 kN</td><td>EA</td></tr>
+            <tr><td>5LE-LR</td><td>Lifting Clutch</td><td>5.0</td><td>50 kN</td><td>EA</td></tr>
+            <tr><td>10LE-LR</td><td>Lifting Clutch</td><td>10.0</td><td>100 kN</td><td>EA</td></tr>
+            <tr><td>20LE</td><td>Lifting Clutch</td><td>20.0</td><td>200 kN</td><td>EA</td></tr>
+            <tr><td>32LE</td><td>Lifting Clutch</td><td>32.0</td><td>320 kN</td><td>EA</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
+  </section>
 
-  </body>
+  <!-- ══════════════════════════════════════
+       Section 3 — Eye Anchor
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="eye-info">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="assets/eye anchor.png" alt="Eye Anchor" class="product-card__img" />
+        <span class="product-card__name">Eye Anchor</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Part No.</th>
+              <th rowspan="2">Anchor Load Group [T]</th>
+              <th rowspan="2">Load Capacity [kN]</th>
+              <th colspan="5">Dimensions [mm]</th>
+              <th rowspan="2">Qty [Per Box]</th>
+            </tr>
+            <tr>
+              <th>Øds</th><th>ØD</th><th>ØD2</th><th>L1</th><th>L</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1REA065</td><td>1.3</td><td>13 kN</td><td>10</td><td>19</td><td>22</td><td>05</td><td>65</td><td>200</td></tr>
+            <tr><td>2REA090</td><td>2.5</td><td>25 kN</td><td>14</td><td>26</td><td>33</td><td>07</td><td>90</td><td>100</td></tr>
+            <tr><td>5REA120</td><td>5.0</td><td>50 kN</td><td>20</td><td>36</td><td>43</td><td>09</td><td>120</td><td>25</td></tr>
+            <tr><td>10REA175</td><td>10.0</td><td>100 kN</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>20</td></tr>
+            <tr><td>10REA180</td><td>10.0</td><td>—</td><td>28</td><td>47</td><td>57</td><td>11</td><td>180</td><td>—</td></tr>
+            <tr><td>20REA250</td><td>20.0</td><td>200 kN</td><td>39</td><td>70</td><td>83</td><td>15</td><td>250</td><td>05</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Pagination ── -->
+  <nav class="page-nav" aria-label="Lifting System pages">
+    <span class="page-nav__btn page-nav__btn--active">1</span>
+    <a class="page-nav__btn" href="Ldetails2.html#page2">2</a>
+    <a class="page-nav__btn" href="Ldetails3.html#page3">3</a>
+    <a class="page-nav__btn" href="Ldetails2.html#page2">›</a>
+  </nav>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false); mobileMenu.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+  </script>
+</body>
 </html>

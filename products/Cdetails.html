@@ -1,239 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPinno — Connection System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
 
+  <!-- ── Mobile menu ── -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
+      <li><a href="ECAT.HTML#fs" class="mobile-link">Fixing System</a></li>
+      <li><a href="ECAT.HTML#Ls" class="mobile-link">Lifting System</a></li>
+      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners</a></li>
+    </ul>
+  </div>
 
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="Cdetails.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CPinno.Connecting</title>
-  </head>
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="../index.html">
+      <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-drop">
+        <a href="ECAT.HTML#JLIFE" class="active">JLIFE</a>
+        <div class="nav-drop__menu">
+          <a href="ECAT.HTML#cs">Connection System</a>
+          <a href="ECAT.HTML#fs">Fixing System</a>
+          <a href="ECAT.HTML#Ls">Lifting System</a>
+        </div>
+      </li>
+      <li class="nav-drop">
+        <a href="../catalog/catalog.html">FORMLINERS</a>
+        <div class="nav-drop__menu">
+          <a href="../catalog/catalog.html">NOE</a>
+          <a href="../catalog/GC-catalog.html">GC</a>
+        </div>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
+  <!-- ── Page header ── -->
+  <div class="page-header">
+    <h1 class="page-header__title">CONNECTION SYSTEM</h1>
+  </div>
 
+  <!-- ══════════════════════════════════════
+       Section 1 — Wire Loop
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="wire-loop-info">
+    <div class="product-layout">
 
-
-
-
-  <body style="background-color:#3E3E33;">
-    <!-- navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="../index.html" class="logo">
-          <img src="../assets/Home/CpinnoLogo.svg" alt="Brand Name Logo" class="logo-img" />
-        </a>
-        <ul class="nav-links">
-          <li class="JL-drop"><a href="#JLIFE">JLIFE</a>
-            <div class="dropdown-content">
-              <a href="ECAT.HTML#cs">Connection System</a>
-              <a href="ECAT.HTML#fs">Fixing System</a>
-              <a href="ECAT.HTML#Ls">Lifting System</a>
-            </div>
-          </li>
-          <li><a href="#FORMLINERS">FORMLINERS</a></li>
-        </ul>
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/wire loop.png" alt="Wire Loop" class="product-card__img" />
+        <span class="product-card__name">Wire Loop</span>
       </div>
-    </nav>
 
-
-    <!--section 1-->
-    <h1 class="c-header">CONNECTION SYSTEM</h1>
-
-    <hr>
-
-    <div class="wire-loop-info" id="wire-loop-info">
-          <figure><img src="../assets/E-cat/Product/JLife/wire loop.png" class="wire-loop" />
-          </a>
-          <figurecaption><p class="wire-loop-line">
-          Wire Loop
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th rowspan="2">Part No.</th>
-          <th colspan="6">Dimensions<br>[mm]</th>
-          <th>Wire Loop</th>
-        </tr>
-        <tr>
-          <td>&emsp;L&emsp;</td>
-          <td>&emsp;XL&emsp;</td>
-          <td>&emsp;B&emsp;</td>
-          <td>&emsp;a&emsp;</td>
-          <td>&emsp;b&emsp;</td>
-          <td>&emsp;h&emsp;</td>
-          <td>EN-12385-4</td>
-        </tr>
-        <tr>
-          <td>SLB-80</td>
-          <td>210</td>
-          <td>80</td>
-          <td>60</td>
-          <td rowspan="3">50</td>
-          <td rowspan="3">160</td>
-          <td rowspan="3">20</td>
-          <td>1770 N/mm2</td>
-        </tr>
-
-        <tr>
-          <td>SLB-100</td>
-          <td>210</td>
-          <td>100</td>
-          <td>65</td>
-          <td>1770 N/mm2</td>
-        </tr>
-
-        <tr>
-          <td>SLB-120</td>
-          <td>210</td>
-          <td>120</td>
-          <td>70</td>
-          <td>1770 N/mm2</td>
-        </tr>
-
-        <tr>
-          <td>SLB-140</td>
-          <td>370</td>
-          <td>140</td>
-          <td>70</td>
-          <td>70</td>
-          <td>200</td>
-          <td>30</td>
-          <td>1770 N/mm2</td>
-        </tr>
-        <tr>
-            <td colspan="8">&emsp;</td>
-        </tr>
-        <tr>
-          <th colspan="2">Part No.</th>
-          <th colspan="3">Diameter<br>[mm]</th>
-          <th colspan="3">Length<br>[mm]</th>
-        </tr>
-        <tr>
-            <td colspan="2">SL6-120</td>
-            <td colspan="3">6</td>
-            <td colspan="3">335</td>
-        </tr>
-
-        <tr>
-            <td colspan="2">SL6-100</td>
-            <td colspan="3">6</td>
-            <td colspan="3">315</td>
-        </tr>
-
-        <tr>
-            <td colspan="2">SL6-80</td>
-            <td colspan="3">6</td>
-            <td colspan="3">295</td>
-        </tr>
-
-        <tr>
-            <td colspan="2">SL8/520</td>
-            <td colspan="3">8</td>
-            <td colspan="3">520</td>
-        </tr>
-
-        <tr>
-            <td colspan="2">SL8/460</td>
-            <td colspan="3">8</td>
-            <td colspan="3">460</td>
-        </tr>
-
-        <tr>
-            <td colspan="2">SL8/400</td>
-            <td colspan="3">8</td>
-            <td colspan="3">315</td>
-        </tr>
-
-        
-
-      </TABLE>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Part No.</th>
+              <th colspan="6">Dimensions [mm]</th>
+              <th>Wire Loop</th>
+            </tr>
+            <tr>
+              <th>L</th><th>XL</th><th>B</th><th>a</th><th>b</th><th>h</th>
+              <th>EN-12385-4</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>SLB-80</td><td>210</td><td>80</td><td>60</td><td rowspan="3">50</td><td rowspan="3">160</td><td rowspan="3">20</td><td>1770 N/mm²</td></tr>
+            <tr><td>SLB-100</td><td>210</td><td>100</td><td>65</td><td>1770 N/mm²</td></tr>
+            <tr><td>SLB-120</td><td>210</td><td>120</td><td>70</td><td>1770 N/mm²</td></tr>
+            <tr><td>SLB-140</td><td>370</td><td>140</td><td>70</td><td>70</td><td>200</td><td>30</td><td>1770 N/mm²</td></tr>
+            <tr class="sub-head">
+              <td colspan="8">Diameter &amp; Length Variants</td>
+            </tr>
+            <tr>
+              <th colspan="2">Part No.</th>
+              <th colspan="3">Diameter [mm]</th>
+              <th colspan="3">Length [mm]</th>
+            </tr>
+            <tr><td colspan="2">SL6-120</td><td colspan="3">6</td><td colspan="3">335</td></tr>
+            <tr><td colspan="2">SL6-100</td><td colspan="3">6</td><td colspan="3">315</td></tr>
+            <tr><td colspan="2">SL6-80</td><td colspan="3">6</td><td colspan="3">295</td></tr>
+            <tr><td colspan="2">SL8/520</td><td colspan="3">8</td><td colspan="3">520</td></tr>
+            <tr><td colspan="2">SL8/460</td><td colspan="3">8</td><td colspan="3">460</td></tr>
+            <tr><td colspan="2">SL8/400</td><td colspan="3">8</td><td colspan="3">315</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
+  </section>
 
+  <!-- ══════════════════════════════════════
+       Section 2 — Double Wire Loop Box
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="D-wire-info">
+    <div class="product-layout">
 
-    <!--section 2-->
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/double wire box.png" alt="Double Wire Loop Box" class="product-card__img" />
+        <span class="product-card__name">Double Wire Loop Box</span>
+      </div>
 
-    <div class="D-wire-info" id="D-wire-info">
-          <figure><img src="../assets/E-cat/Product/JLife/double wire box.png" class="D-wire" />
-          </a>
-          <figurecaption><p class="D-wire-line">
-          Double Wire Loop Box
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th rowspan="2">Part No.</th>
-          <th rowspan="2">Length<br>[mm]</th>
-          <th colspan="4">Recommended Design Resistance Load</th>
-        </tr>
-        <tr>
-          <td>Load resistance type</td>
-          <td>Direct Tensile</td>
-          <td>In-Plane Shear</td>
-          <td>Out-Of-Plane Shear</td>
-        </tr>
-
-        <tr>
-          <th rowspan="2">DLB 80</th>
-          <th rowspan="2">80</th>
-          <td>Design Resistance[kN/box]</td>
-          <td>18.0</td>
-          <td>25</td>
-          <td>7.0</td>
-        </tr>
-
-        <tr>
-          <td>Application</td>
-          <td>PPVC Wall Connection</td>
-          <td>PPVC Wall Connection</td>
-          <td>Facade Wall Connection</td>
-      </TABLE>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th rowspan="2">Part No.</th>
+              <th rowspan="2">Length [mm]</th>
+              <th colspan="4">Recommended Design Resistance Load</th>
+            </tr>
+            <tr>
+              <th>Load Resistance Type</th>
+              <th>Direct Tensile</th>
+              <th>In-Plane Shear</th>
+              <th>Out-Of-Plane Shear</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="2">DLB 80</td>
+              <td rowspan="2">80</td>
+              <td>Design Resistance [kN/box]</td>
+              <td>18.0</td><td>25</td><td>7.0</td>
+            </tr>
+            <tr>
+              <td>Application</td>
+              <td colspan="2">PPVC Wall Connection</td>
+              <td>Facade Wall Connection</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
+  </section>
 
+  <!-- ══════════════════════════════════════
+       Section 3 — Round Wire Loop Box
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="R-wire-info">
+    <div class="product-layout">
 
-    <!--section 3-->
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/round wire.png" alt="Round Wire Loop Box" class="product-card__img" />
+        <span class="product-card__name">Round Wire Loop Box</span>
+      </div>
 
-    <div class="R-wire-info" id="R-wire-info">
-          <figure><img src="../assets/E-cat/Product/JLife/round wire.png" class="R-wire" />
-          </a>
-          <figurecaption><p class="R-wire-line">
-          Round Wire Loop Box
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Diameter<br>[mm]</th>
-          <th>Total Length<br>[mm]</th>
-          <th>Properties<br>[N/mm2]</th>
-          <th>Min Ultimate <br>Load [kn]</th>
-          <th>Factored Load F<br>[kn]</th>
-        </tr>
-
-        <tr>
-        <td>WLO-6/120</td>
-        <td>6</td>
-        <td>400</td>
-        <td>1770</td>
-        <td>42.5</td>
-        <td>14.1</td>
-        </tr>
-        <tr>
-        <td>WLO-8/120</td>
-        <td>8</td>
-        <td>400</td>
-        <td>1770</td>
-        <td>60</td>
-        <td>20</td>
-        </tr>
-      </TABLE>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Part No.</th>
+              <th>Diameter [mm]</th>
+              <th>Total Length [mm]</th>
+              <th>Properties [N/mm²]</th>
+              <th>Min Ultimate Load [kN]</th>
+              <th>Factored Load F [kN]</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>WLO-6/120</td><td>6</td><td>400</td><td>1770</td><td>42.5</td><td>14.1</td></tr>
+            <tr><td>WLO-8/120</td><td>8</td><td>400</td><td>1770</td><td>60</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </section>
 
-  </body>
+  <script>
+    // ── Sticky nav
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    // ── Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+    }));
+
+    // ── Scroll-reveal sections
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+  </script>
+</body>
 </html>

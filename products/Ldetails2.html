@@ -1,334 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPinno — Lifting System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
 
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
+      <li><a href="ECAT.HTML#fs" class="mobile-link">Fixing System</a></li>
+      <li><a href="ECAT.HTML#Ls" class="mobile-link">Lifting System</a></li>
+      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners</a></li>
+    </ul>
+  </div>
 
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="Ldetails2.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CPinno.Lifting</title>
-  </head>
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="../index.html">
+      <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-drop">
+        <a href="ECAT.HTML#JLIFE" class="active">JLIFE</a>
+        <div class="nav-drop__menu">
+          <a href="ECAT.HTML#cs">Connection System</a>
+          <a href="ECAT.HTML#fs">Fixing System</a>
+          <a href="ECAT.HTML#Ls">Lifting System</a>
+        </div>
+      </li>
+      <li class="nav-drop">
+        <a href="../catalog/catalog.html">FORMLINERS</a>
+        <div class="nav-drop__menu">
+          <a href="../catalog/catalog.html">NOE</a>
+          <a href="../catalog/GC-catalog.html">GC</a>
+        </div>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <body style="background-color:#3E3E33;">
-    <!-- navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="../index.html" class="logo">
-          <img src="../assets/Home/CpinnoLogo.svg" alt="Brand Name Logo" class="logo-img" />
-        </a>
-        <ul class="nav-links">
-          <li class="JL-drop"><a href="#JLIFE">JLIFE</a>
-            <div class="dropdown-content">
-              <a href="ECAT.HTML#cs">Connection System</a>
-              <a href="ECAT.HTML#fs">Fixing System</a>
-              <a href="ECAT.HTML#Ls">Lifting System</a>
-            </div>
-          </li>
-          <li class="JL-drop"><a href="#FORMLINERS">FORMLINERS</a>
-            <div class="dropdown-content">
-              <a href="../catalog/catalog.html">NOE</a>
-              <a href="../catalog/GC-catalog.html">GC</a>
-            </div>
-          </li>
-        </ul>
+  <div class="page-header">
+    <h1 class="page-header__title" id="page2">LIFTING SYSTEM</h1>
+  </div>
+
+  <!-- Recess Formers shared table structure -->
+
+  <section class="product-section" id="recess-info">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/plastic-rf.png" alt="Recess Formers [Plastic]" class="product-card__img" />
+        <span class="product-card__name">Recess Formers — Plastic</span>
       </div>
-    </nav>
-
-    <!--section 1-->
-    <h1 class="c-header" id="page2">LIFTING SYSTEM</h1>
-
-    <hr>
-
-    <div class="recess-p-info" id="recess-info">
-          <figure><img src="../assets/E-cat/Product/JLife/plastic-rf.png" class="recess-p" />
-          </a>
-          <figurecaption><p class="recess-p-line">
-          Recess Formers [plastics]
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Description</th>
-          <th>Anchor Load Group<br>[t]</th>
-          <th>Quantity <br>[Per Box]</th>
-        </tr>
-
-        <tr>
-        <td>2PR</td>
-        <td>Plastic Recess Former</td>
-        <td>2.5</td>
-        <td>500</td>
-        </tr>
-
-        <tr>
-        <td>5PR</td>
-        <td>Plastic Recess Former</td>
-        <td>5.0</td>
-        <td>200</td>
-        </tr>
-
-        <tr>
-          <td>2PRFRE</td>
-          <td>Plastic Reduced Recess Former</td>
-          <td>2.5</td>
-          <td>150</td>
-        </tr>
-        
-        <tr>
-          <td>5PRFRE</td>
-          <td>Plastic Reduced Recess Former</td>
-          <td>5.0</td>
-          <td>100</td>
-        </tr>
-      </TABLE>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Part No.</th><th>Description</th><th>Anchor Load Group [t]</th><th>Qty [Per Box]</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>2PR</td><td>Plastic Recess Former</td><td>2.5</td><td>500</td></tr>
+            <tr><td>5PR</td><td>Plastic Recess Former</td><td>5.0</td><td>200</td></tr>
+            <tr><td>2PRFRE</td><td>Plastic Reduced Recess Former</td><td>2.5</td><td>150</td></tr>
+            <tr><td>5PRFRE</td><td>Plastic Reduced Recess Former</td><td>5.0</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
-   
+  </section>
 
-    <!--section 2-->
-    <div class="recess-nr-info" >
-          <figure><img src="../assets/E-cat/Product/JLife/nr-rf.png" class="recess-nr" />
-          </a>
-          <figurecaption><p class="recess-nr-line">
-          Recess Formers [Narrow Rubber]
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Description</th>
-          <th>Anchor Load Group<br>[t]</th>
-          <th>Quantity <br>[Per Box]</th>
-        </tr>
-
-        <tr>
-          <td>1RRFRE</td>
-          <td>Narrow Rubber Recess Former</td>
-          <td>1.3</td>
-          <td>60</td>
-        </tr>
-
-        <tr>
-          <td>2RRFRE</td>
-          <td>Narrow Rubber Recess Former</td>
-          <td>2.5</td>
-          <td>50</td>
-        </tr>
-
-       <tr>
-           <td>5RRFRE</td>
-           <td>Narrow Rubber Recess Former</td>
-           <td>5.0</td>
-           <td>25</td>
-      </tr>
-
-      <tr>
-           <td>10RRFRE</td>
-           <td>Narrow Rubber Recess Former</td>
-           <td>10.0</td>
-           <td>20</td>
-      </tr>
-
-      <tr>
-           <td>20RRFRE</td>
-           <td>Narrow Rubber Recess Former</td>
-           <td>20.0</td>
-           <td>10</td>
-      </tr>
-
-      <tr>
-           <td>32RRFRE</td>
-           <td>Narrow Rubber Recess Former</td>
-           <td>32.0</td>
-           <td>1</td>
-      </tr>
-
-    
-      </TABLE>
+  <section class="product-section">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/nr-rf.png" alt="Recess Formers [Narrow Rubber]" class="product-card__img" />
+        <span class="product-card__name">Recess Formers — Narrow Rubber</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Part No.</th><th>Description</th><th>Anchor Load Group [t]</th><th>Qty [Per Box]</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1RRFRE</td><td>Narrow Rubber Recess Former</td><td>1.3</td><td>60</td></tr>
+            <tr><td>2RRFRE</td><td>Narrow Rubber Recess Former</td><td>2.5</td><td>50</td></tr>
+            <tr><td>5RRFRE</td><td>Narrow Rubber Recess Former</td><td>5.0</td><td>25</td></tr>
+            <tr><td>10RRFRE</td><td>Narrow Rubber Recess Former</td><td>10.0</td><td>20</td></tr>
+            <tr><td>20RRFRE</td><td>Narrow Rubber Recess Former</td><td>20.0</td><td>10</td></tr>
+            <tr><td>32RRFRE</td><td>Narrow Rubber Recess Former</td><td>32.0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
+  </section>
 
-
-    <!--section 3-->
-   <div class="recess-r-info">
-          <figure><img src="../assets/E-cat/Product/JLife/rubber-rf.png" class="recess-r" />
-          </a>
-          <figurecaption><p class="recess-r-line">
-          Recess Formers [rubber]
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Description</th>
-          <th>Anchor Load Group<br>[t]</th>
-          <th>Quantity <br>[Per Box]</th>
-        </tr>
-
-        <tr>
-        <td>1RRFRO</td>
-        <td>Rubber Recess Former</td>
-        <td>1.3</td>
-        <td>60</td>
-        </tr>
-
-        <tr>
-        <TD>2RRFRO</TD>
-        <td>Rubber Recess Former</td>
-        <td>2.5</td>
-        <td>50</td>
-        </tr>
-
-        <tr>
-           <td>5RRFRO</td>
-           <td>Rubber Recess Former</td>
-           <td>5.0</td>
-           <td>25</td>
-        </tr>
-
-         <tr>
-           <td>10RRFRO</td>
-           <td>Rubber Recess Former</td>
-           <td>10.0</td>
-           <td>20</td>
-        </tr>
-
-         <tr>
-           <td>20RRFRO</td>
-           <td>Rubber Recess Former</td>
-           <td>20.0</td>
-           <td>10</td>
-        </tr>
-
-         <tr>
-           <td>32RRFRO</td>
-           <td>Rubber Recess Former</td>
-           <td>32.0</td>
-           <td>1</td>
-        </tr>
-
-      </TABLE>
+  <section class="product-section">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/rubber-rf.png" alt="Recess Formers [Rubber]" class="product-card__img" />
+        <span class="product-card__name">Recess Formers — Rubber</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Part No.</th><th>Description</th><th>Anchor Load Group [t]</th><th>Qty [Per Box]</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1RRFRO</td><td>Rubber Recess Former</td><td>1.3</td><td>60</td></tr>
+            <tr><td>2RRFRO</td><td>Rubber Recess Former</td><td>2.5</td><td>50</td></tr>
+            <tr><td>5RRFRO</td><td>Rubber Recess Former</td><td>5.0</td><td>25</td></tr>
+            <tr><td>10RRFRO</td><td>Rubber Recess Former</td><td>10.0</td><td>20</td></tr>
+            <tr><td>20RRFRO</td><td>Rubber Recess Former</td><td>20.0</td><td>10</td></tr>
+            <tr><td>32RRFRO</td><td>Rubber Recess Former</td><td>32.0</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-    <!--section ends here-->
+  </section>
 
-
-    <!--section 4-->
-  <div class="recess-s-info">
-          <figure><img src="../assets/E-cat/Product/JLife/steel-rf.png" class="recess-s" />
-          </a>
-          <figurecaption><p class="recess-s-line">
-          Recess Formers [Steel]
-          </p></figurecaption></figure>   
-      
-      <TABLE class=table-1 BORDER="1">
-        <tr>
-          <th>Part No.</th>
-          <th>Description</th>
-          <th>Anchor Load Group<br>[t]</th>
-          <th>Quantity <br>[Per Box]</th>
-        </tr>
-
-        <tr>
-          <td>1SRFRO</td>
-          <td>Steel Recess Former</td>
-          <td>1.3</td>
-          <td>50</td>
-        </tr>
-
-        <tr>
-          <td>2SRFRO</td>
-          <td>Steel Recess Former</td>
-          <td>2.5</td>
-          <td>10</td>
-        </tr>
-
-        <tr>
-          <td>5SRFRO</td>
-          <td>Steel Recess Former</td>
-          <td>5.0</td>
-          <td>1</td>
-        </tr>
-
-        <tr>
-          <td>1RRI</td>
-          <td>Rubber Ring Used With 1SRFRO</td>
-          <td>1.3</td>
-          <td>50</td>
-        </tr>
-
-        <tr>
-          <td>2RR</td>
-          <td>Rubber Ring Used With 2SRFRO</td>
-          <td>2.5</td>
-          <td>100</td>
-        </tr>
-
-        <tr>
-          <td>5RR</td>
-          <td>Rubber Ring Used With 5SRFRO</td>
-          <td>5.0</td>
-          <td>100</td>
-        </tr>
-
-        <tr>
-          <td>2SRFROB</td>
-          <td>Steel Bored Recess Former For Use With Collets</td>
-          <td>2.5</td>
-          <td>10</td>
-        </tr>
-
-        <tr>
-          <td>5SRFROB</td>
-          <td>Steel Bored Recess Former For Use With Collets</td>
-          <td>5.0</td>
-          <td>50</td>
-        </tr>
-
-        <tr>
-          <td>2SRFCC</td>
-          <td>Collets Collar</td>
-          <td>2.5</td>
-          <td>20</td>
-        </tr>
-
-        <tr>
-          <td>5SRFCC</td>
-          <td>Collets Collar</td>
-          <td>5.0</td>
-          <td>100</td>
-        </tr>
-
-        <tr>
-          <td>2SRFCS</td>
-          <td>Collets Shell set</td>
-          <td>2.5</td>
-          <td>20</td>
-        </tr>
-
-        <tr>
-          <td>5SRFCS</td>
-          <td>Collets Shell set</td>
-          <td>5.0</td>
-          <td>100</td>
-        </tr>
-      </TABLE>
+  <section class="product-section">
+    <div class="product-layout">
+      <div class="product-card">
+        <img src="../assets/E-cat/Product/JLife/steel-rf.png" alt="Recess Formers [Steel]" class="product-card__img" />
+        <span class="product-card__name">Recess Formers — Steel</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Part No.</th><th>Description</th><th>Anchor Load Group [t]</th><th>Qty [Per Box]</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1SRFRO</td><td>Steel Recess Former</td><td>1.3</td><td>50</td></tr>
+            <tr><td>2SRFRO</td><td>Steel Recess Former</td><td>2.5</td><td>10</td></tr>
+            <tr><td>5SRFRO</td><td>Steel Recess Former</td><td>5.0</td><td>1</td></tr>
+            <tr><td>1RRI</td><td>Rubber Ring — Used With 1SRFRO</td><td>1.3</td><td>50</td></tr>
+            <tr><td>2RR</td><td>Rubber Ring — Used With 2SRFRO</td><td>2.5</td><td>100</td></tr>
+            <tr><td>5RR</td><td>Rubber Ring — Used With 5SRFRO</td><td>5.0</td><td>100</td></tr>
+            <tr><td>2SRFROB</td><td>Steel Bored Recess Former (Collets)</td><td>2.5</td><td>10</td></tr>
+            <tr><td>5SRFROB</td><td>Steel Bored Recess Former (Collets)</td><td>5.0</td><td>50</td></tr>
+            <tr><td>2SRFCC</td><td>Collets Collar</td><td>2.5</td><td>20</td></tr>
+            <tr><td>5SRFCC</td><td>Collets Collar</td><td>5.0</td><td>100</td></tr>
+            <tr><td>2SRFCS</td><td>Collets Shell Set</td><td>2.5</td><td>20</td></tr>
+            <tr><td>5SRFCS</td><td>Collets Shell Set</td><td>5.0</td><td>100</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </section>
 
-    <div class="page">
-      <a href="Ldetails.html#page1">&#171;</a>
-      <a href="Ldetails.html#page1">1</a>
-      <a href="#page2">2</a>
-      <a href="Ldetails3.html#page3">3</a>
-      <a href="Ldetails3.html#page3">&#187;</a>
-    </div>
-    <!--section ends here-->
+  <nav class="page-nav" aria-label="Lifting System pages">
+    <a class="page-nav__btn" href="Ldetails.html#page1">‹</a>
+    <a class="page-nav__btn" href="Ldetails.html#page1">1</a>
+    <span class="page-nav__btn page-nav__btn--active">2</span>
+    <a class="page-nav__btn" href="Ldetails3.html#page3">3</a>
+    <a class="page-nav__btn" href="Ldetails3.html#page3">›</a>
+  </nav>
 
-    </body>
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false); mobileMenu.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+    }));
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+  </script>
+</body>
 </html>

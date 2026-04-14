@@ -1,187 +1,603 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPinno — Product Catalogue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* ── Hero ───────────────────────────────────────────────── */
+    .ecat-hero {
+      margin-top: var(--nav-h);
+      position: relative;
+      height: 380px;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+      background: var(--dark-mid);
+    }
+    .ecat-hero__bg {
+      position: absolute; inset: 0;
+      background-image: url('../assets/E-cat/e-cat-bg.svg');
+      background-size: cover; background-position: center;
+      opacity: 0.18;
+      filter: grayscale(1);
+    }
+    /* Diagonal green slash */
+    .ecat-hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(176,253,48,0.04) 100%);
+      pointer-events: none;
+    }
+    /* Bottom fade */
+    .ecat-hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(to bottom, transparent, var(--dark));
+      pointer-events: none;
+    }
+    .ecat-hero__content {
+      position: relative; z-index: 2;
+      padding: 0 var(--pad) 56px;
+      max-width: 900px;
+    }
+    .ecat-hero__eyebrow {
+      font-family: var(--font-display);
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); opacity: 0.7;
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ecat-hero__eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 2px;
+      background: var(--green); opacity: 0.7;
+    }
+    .ecat-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 7vw, 86px);
+      font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff;
+      line-height: 0.95;
+    }
+    .ecat-hero__title span { color: var(--green); }
+    .ecat-hero__sub {
+      margin-top: 18px;
+      font-family: var(--font-body);
+      font-size: 16px; font-weight: 400;
+      color: var(--text-muted);
+      max-width: 520px; line-height: 1.6;
+    }
 
+    /* ── Section nav pills ──────────────────────────────────── */
+    .section-pills {
+      position: sticky;
+      top: var(--nav-h);
+      z-index: 100;
+      background: rgba(10,10,8,0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 var(--pad);
+      display: flex; align-items: center; gap: 0;
+    }
+    .section-pills__item {
+      font-family: var(--font-display);
+      font-size: 13px; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 16px 24px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .section-pills__item:hover {
+      color: var(--green);
+      border-bottom-color: rgba(176,253,48,0.4);
+    }
+    .section-pills__item.active {
+      color: var(--green);
+      border-bottom-color: var(--green);
+    }
 
-  <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="ECAT.css" />
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CPinno</title>
-  </head>
+    /* ── Catalogue section ──────────────────────────────────── */
+    .cat-section {
+      padding: 80px var(--pad);
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-section:last-child { border-bottom: none; }
 
+    /* Section heading */
+    .cat-section__head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 52px;
+    }
+    .cat-section__label {
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.20em; text-transform: uppercase;
+      color: var(--green); opacity: 0.6;
+      margin-bottom: 8px;
+    }
+    .cat-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+    .cat-section__rule {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, var(--border-green), transparent);
+      margin-bottom: 6px;
+    }
 
+    /* ── Product grid ───────────────────────────────────────── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
 
+    /* ── Product card ───────────────────────────────────────── */
+    .prod-card {
+      position: relative;
+      background: var(--dark-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+      animation: fadeUp 0.6s var(--ease) both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .prod-card:nth-child(1) { animation-delay: 0ms; }
+    .prod-card:nth-child(2) { animation-delay: 60ms; }
+    .prod-card:nth-child(3) { animation-delay: 120ms; }
+    .prod-card:nth-child(4) { animation-delay: 180ms; }
+    .prod-card:nth-child(5) { animation-delay: 240ms; }
 
+    .prod-card:hover {
+      border-color: var(--border-green);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(176,253,48,0.08);
+    }
 
+    /* Top accent line on hover */
+    .prod-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .prod-card:hover::before { opacity: 1; }
 
-  <body style="background-color:#3E3E33;">
-    <!-- navbar -->
-    <nav class="navbar">
-      <div class="nav-container">
-        <a href="../index.html" class="logo">
-          <img src="../assets/Home/CPinnoLogo.svg" alt="Brand Name Logo" class="logo-img" />
-        </a>
-        <ul class="nav-links">
-          <li class="JL-drop"><a href="#JLIFE">JLIFE</a>
-            <div class="dropdown-content">
-              <a href="#cs">Connection System</a>
-              <a href="#fs">Fixing System</a>
-              <a href="#Ls">Lifting System</a>
-            </div>
-          </li>
-          <li class="JL-drop"><a href="#FORMLINERS">FORMLINERS</a>
-            <div class="dropdown-content">
-              <a href="../catalog/catalog.html">NOE</a>
-              <a href="../catalog/GC-catalog.html">GC</a>
-            </div>
-          </li>
-        </ul>
+    /* Image area */
+    .prod-card__img-wrap {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--dark-surface);
+      display: flex; align-items: center; justify-content: center;
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+    /* Subtle radial glow behind image */
+    .prod-card__img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(176,253,48,0.0) 0%, transparent 70%);
+      transition: background 0.4s;
+    }
+    .prod-card:hover .prod-card__img-wrap::after {
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(176,253,48,0.07) 0%, transparent 70%);
+    }
+    .prod-card__img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.4));
+      transition: transform 0.4s var(--ease), filter 0.4s;
+      position: relative; z-index: 1;
+    }
+    .prod-card:hover .prod-card__img {
+      transform: scale(1.08) translateY(-4px);
+      filter: drop-shadow(0 8px 20px rgba(176,253,48,0.15)) drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+    }
+    .prod-card__img-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .prod-card__img-placeholder svg {
+      opacity: 0.15;
+    }
+
+    /* Body */
+    .prod-card__body {
+      padding: 18px 20px 22px;
+      border-top: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 8px;
+      flex: 1;
+    }
+    .prod-card__name {
+      font-family: var(--font-display);
+      font-size: 17px; font-weight: 700;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--text);
+      line-height: 1.2;
+      transition: color 0.2s;
+    }
+    .prod-card:hover .prod-card__name { color: var(--green); }
+
+    .prod-card__cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-display);
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: auto;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .prod-card:hover .prod-card__cta { color: var(--green); }
+    .prod-card__cta svg {
+      width: 12px; height: 12px;
+      transition: transform 0.2s var(--ease);
+    }
+    .prod-card:hover .prod-card__cta svg { transform: translateX(4px); }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .ecat-hero { height: 280px; }
+      .ecat-hero__content { padding-bottom: 40px; }
+      .section-pills { overflow-x: auto; gap: 0; }
+      .section-pills::-webkit-scrollbar { display: none; }
+      .section-pills__item { padding: 14px 16px; font-size: 12px; }
+      .cat-section { padding: 56px 24px; }
+      .cat-section__head { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .cat-section__rule { display: none; }
+      .product-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 14px; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .prod-card__img-wrap { padding: 20px; }
+      .prod-card__name { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Mobile menu ── -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="#cs" class="mobile-link">Connection System</a></li>
+      <li><a href="#fs" class="mobile-link">Fixing System</a></li>
+      <li><a href="#Ls" class="mobile-link">Lifting System</a></li>
+      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners — NOE</a></li>
+      <li><a href="../catalog/GC-catalog.html" class="mobile-link">Formliners — GC</a></li>
+    </ul>
+  </div>
+
+  <!-- ── Navigation ── -->
+  <nav class="nav" id="mainNav">
+    <a class="nav-logo" href="../index.html">
+      <img src="../assets/Home/CPinnoLogo.svg" alt="CPInno Logo" />
+    </a>
+    <ul class="nav-links">
+      <li class="nav-drop">
+        <a href="#JLIFE" class="active">JLIFE</a>
+        <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
+          <a href="#cs">Connection System</a>
+          <a href="#fs">Fixing System</a>
+          <a href="#Ls">Lifting System</a>
+        </div></div>
+      </li>
+      <li class="nav-drop">
+        <a href="#FORMLINERS">FORMLINERS</a>
+        <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
+          <a href="../catalog/catalog.html">NOE</a>
+          <a href="../catalog/GC-catalog.html">GC</a>
+        </div></div>
+      </li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <header class="ecat-hero">
+    <div class="ecat-hero__bg"></div>
+    <div class="ecat-hero__content">
+      <p class="ecat-hero__eyebrow">Product Catalogue</p>
+      <h1 class="ecat-hero__title">JLIFE<span>®</span></h1>
+      <p class="ecat-hero__sub">Precision-engineered lifting, fixing and connection systems for precast concrete construction.</p>
+    </div>
+  </header>
+
+  <!-- ── Sticky section pills ── -->
+  <nav class="section-pills" id="sectionPills" aria-label="Jump to section">
+    <a class="section-pills__item active" href="#cs">Connection System</a>
+    <a class="section-pills__item" href="#fs">Fixing System</a>
+    <a class="section-pills__item" href="#Ls">Lifting System</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       Section 1 — Connection System
+  ══════════════════════════════════════ -->
+  <section class="cat-section" id="cs">
+    <div class="cat-section__head">
+      <div>
+        <p class="cat-section__label">01 — JLIFE®</p>
+        <h2 class="cat-section__title">Connection<br>System</h2>
       </div>
-    </nav>
+      <div class="cat-section__rule"></div>
+    </div>
 
+    <div class="product-grid">
 
-    <!-- Hero section -->
-    <header class="hero">
-      <div class="hero-content">
-        <h1>
-          Design your future with <span class="highlight">precision.</span>
-        </h1>
-        <p>
-          Build beautiful, functional websites using modern tools and seamless
-          typography.
-        </p>
+      <a class="prod-card" href="Cdetails.html#wire-loop-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/wire loop.png" alt="Wire Loop" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Wire Loop</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="prod-card" href="Cdetails.html#D-wire-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/double wire box.png" alt="Double Wire Loop Box" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Double Wire Loop Box</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="prod-card" href="Cdetails.html#R-wire-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/round wire.png" alt="Round Wire Loop Box" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Round Wire Loop Box</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       Section 2 — Fixing System
+  ══════════════════════════════════════ -->
+  <section class="cat-section" id="fs">
+    <div class="cat-section__head">
+      <div>
+        <p class="cat-section__label">02 — JLIFE®</p>
+        <h2 class="cat-section__title">Fixing<br>System</h2>
       </div>
-      <div class="hero-overlay"></div>
-    </header>
-    <!-- showcase section -->
+      <div class="cat-section__rule"></div>
+    </div>
 
+    <div class="product-grid">
 
-<!--section 1 starts here-->
-<div class=section-1 id="cs">
-  <h1 class="HEADER-1">
-    Connection System
-  </h1>
-
-  <div class="c-total-position">
-
-    <div class="img-container-1c">
-          <figure></figure><img src="assets/wire loop.png" class="wire-loop" />
+      <a class="prod-card" href="Fdetails.html#cis-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/cis.png" alt="Cast In Socket" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Cast In Socket</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
       </a>
-      <figurecaption><p><a class="wire-loop-line" href="Cdetails.html#wire-loop-info">
-        Wire Loop</a></p></figurecaption></figure>
-               
-    </div>
 
-    <div class="img-container-2c">
-          <figure><img src="assets/double wire box.png" class="double-loop" />
-        </a>
-        <figurecaption><p><a class="double-wire-line" href="Cdetails.html#D-wire-info">
-          Double Wire Loop Box 
-        </a></p></figurecaption></figure>
-    </div>
-
-    <div class="img-container-3c">
-          <figure><img src="assets/round wire.png" class="round-loop" />
-        </a>
-        <figurecaption><p><a class="round-wire-line" href="Cdetails.html#R-wire-info">
-          Round Wire Loop Box 
-        </a></p></figurecaption></figure>
-    </div>
-
-  </div>
-</div>
- <!--showcase ends here -->
-
-
-
-<!--section 2 starts here-->
-<div id="fs">
-  <h1 class="HEADER-1">
-    Fixing System
-  </h1>
-  <div class="f-total-position">
-
-    <div class="img-container-1f">
-          <figure><img src="assets/cis.png" class="cast-in-socket" />
+      <a class="prod-card" href="Fdetails.html#cim-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/cim.png" alt="Metric Threaded Insert (CIM)" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Metric Threaded Insert (CIM)</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
       </a>
-      <figurecaption><p><a class="cast-in-socket-line" href="Fdetails.html#cis-info">
-          Cast In Socket
-        </a></p></figurecaption></figure>             
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       Section 3 — Lifting System
+  ══════════════════════════════════════ -->
+  <section class="cat-section" id="Ls">
+    <div class="cat-section__head">
+      <div>
+        <p class="cat-section__label">03 — JLIFE®</p>
+        <h2 class="cat-section__title">Lifting<br>System</h2>
+      </div>
+      <div class="cat-section__rule"></div>
     </div>
 
-    <div class="img-container-2f">
-          <figure><img src="assets/cim.png" class="metric-threaded-insert" />
-        </a>
-        <figurecaption><p><a class="metric-threaded-insert-line" href="Fdetails.html#cim-info">
-          Metric Threaded Insert (CIM)
-        </a></p></figurecaption></figure>
-    </div>
+    <div class="product-grid">
 
-  </div>
-</div>
-<!--showcase ends here -->
-
-
-
-<!--section 3 starts here-->
-<div id="Ls">
-  <h1 class="HEADER-1">
-    Lifting System
-  </h1>
-  <div class="L-total-position">
-
-    <div class="img-container-1L">
-          <figure><img src="assets/foot anchor.png" class="foot-anchor" />
+      <a class="prod-card" href="Ldetails.html#foot-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/foot anchor.png" alt="Foot Anchor" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Foot Anchor</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
       </a>
-      <figurecaption><p><a class="foot-anchor-line" href="Ldetails.html#foot-info">
-          Foot Anchor
-       </a></p></figurecaption></figure>                
-    </div>
 
-    <div class="img-container-2L">
-          <figure><img src="assets/steel core.png" class="Lifting-Clutches" />
-        </a>
-        <figurecaption><p><a class="Lifting-Clutches-line" href="Ldetails.html#Lifting-Clutches-info">
-          Lifting Clutches
-      </a></p></figurecaption></figure>
-    </div>
-
-    <div class="img-container-3L">
-          <figure><img src="assets/eye anchor.png" class="eye-anchor" />
+      <a class="prod-card" href="Ldetails.html#Lifting-Clutches-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/steel core.png" alt="Lifting Clutches" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Lifting Clutches</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
       </a>
-      <figurecaption><p><a class="eye-anchor-line" href="Ldetails.html#eye-info">
-          Eye Anchor
-      </a></p></figurecaption></figure>                
-    </div>
 
-    <div class="img-container-4L">
-          <img src="assets/recess former.png" class="recess-former" />
+      <a class="prod-card" href="Ldetails.html#eye-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/eye anchor.png" alt="Eye Anchor" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Eye Anchor</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
       </a>
-      <figurecaption><p><a class="recess-former-line" href="Ldetails2.html#recess-info">
-          Recess Former
-      </a></p></figurecaption></figure>               
+
+      <a class="prod-card" href="Ldetails2.html#recess-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/recess former.png" alt="Recess Former" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Recess Former</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="prod-card" href="Ldetails3.html#steel-core-info">
+        <div class="prod-card__img-wrap">
+          <img src="assets/steel core.png" alt="Steel Core Wire Loop" class="prod-card__img" />
+        </div>
+        <div class="prod-card__body">
+          <p class="prod-card__name">Steel Core Wire Loop</p>
+          <span class="prod-card__cta">
+            View Specs
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 6h8M6 2l4 4-4 4"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
     </div>
+  </section>
 
-    <div class="img-container-5L">
-          <figure><img src="assets/steel core.png" class="steel-core-wire-loop" />
-        </a>
-        <figurecaption><p><a class="steel-core-wire-loop-line" href="Ldetails3.html#steel-core-info">
-          Steel Core Wire Loop
-      </a></p></figurecaption></figure>
-    </div>
+  <script>
+    // ── Sticky nav scroll
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () =>
+      nav.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
 
-  </div>
-</div>
-<!--showcase ends here -->
+    // ── Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+      mobileMenu.setAttribute('aria-hidden', !open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.setAttribute('aria-hidden', true);
+      document.body.style.overflow = '';
+    }));
 
+    // ── Active section pill highlight on scroll
+    const sections = document.querySelectorAll('.cat-section');
+    const pills    = document.querySelectorAll('.section-pills__item');
+    const pillsNav = document.getElementById('sectionPills');
 
-  </body>
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          pills.forEach(p => {
+            p.classList.toggle('active', p.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, {
+      rootMargin: `-${getComputedStyle(document.documentElement).getPropertyValue('--nav-h').trim()} 0px -60% 0px`
+    });
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // ── Card scroll-reveal
+    const cardObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.animationPlayState = 'running';
+          cardObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.prod-card').forEach(card => {
+      card.style.animationPlayState = 'paused';
+      cardObserver.observe(card);
+    });
+  </script>
+</body>
 </html>
-
-
