@@ -580,3 +580,40 @@ mobileMenu.querySelectorAll(".mobile-link").forEach((link) => {
     document.body.style.overflow = "";
   });
 });
+
+// ── Mobile filter collapse ──────────────────────────────────────
+const filterToggle = document.getElementById("js-filter-toggle");
+const filterList = document.getElementById("js-filter-list");
+const filterDivider = document.getElementById("js-filter-divider");
+
+function syncFilterCollapse() {
+  if (window.innerWidth <= 768) {
+    // Collapse by default on mobile if not already set
+    if (filterToggle.getAttribute("aria-expanded") === "true") {
+      filterToggle.setAttribute("aria-expanded", "false");
+      filterList.classList.add("collapsed");
+      if (filterDivider) filterDivider.classList.add("collapsed");
+    }
+  } else {
+    // Always expanded on desktop
+    filterToggle.setAttribute("aria-expanded", "true");
+    filterList.classList.remove("collapsed");
+    if (filterDivider) filterDivider.classList.remove("collapsed");
+  }
+}
+
+filterToggle.addEventListener("click", () => {
+  const isExpanded = filterToggle.getAttribute("aria-expanded") === "true";
+  filterToggle.setAttribute("aria-expanded", String(!isExpanded));
+  filterList.classList.toggle("collapsed", isExpanded);
+  if (filterDivider) filterDivider.classList.toggle("collapsed", isExpanded);
+});
+
+syncFilterCollapse();
+window.addEventListener("resize", syncFilterCollapse);
+
+// ── Back to top
+const btt = document.getElementById("backToTop");
+window.addEventListener("scroll", () => {
+  btt.classList.toggle("visible", window.scrollY > 400);
+});

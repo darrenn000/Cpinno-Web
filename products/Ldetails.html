@@ -6,7 +6,7 @@
   <title>CPinno — Lifting System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
 </head>
 <body>
@@ -16,7 +16,8 @@
       <li><a href="ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
       <li><a href="ECAT.HTML#fs" class="mobile-link">Fixing System</a></li>
       <li><a href="ECAT.HTML#Ls" class="mobile-link">Lifting System</a></li>
-      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners</a></li>
+      <li><a href="../catalog/catalog.html" class="mobile-link">Formliners — NOE</a></li>
+      <li><a href="../catalog/GC-catalog.html" class="mobile-link">Formliners — GC</a></li>
     </ul>
   </div>
 
@@ -27,18 +28,18 @@
     <ul class="nav-links">
       <li class="nav-drop">
         <a href="ECAT.HTML#JLIFE" class="active">JLIFE</a>
-        <div class="nav-drop__menu">
+        <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
           <a href="ECAT.HTML#cs">Connection System</a>
           <a href="ECAT.HTML#fs">Fixing System</a>
           <a href="ECAT.HTML#Ls">Lifting System</a>
-        </div>
+        </div></div>
       </li>
       <li class="nav-drop">
         <a href="../catalog/catalog.html">FORMLINERS</a>
-        <div class="nav-drop__menu">
+        <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
           <a href="../catalog/catalog.html">NOE</a>
           <a href="../catalog/GC-catalog.html">GC</a>
-        </div>
+        </div></div>
       </li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -50,13 +51,21 @@
     <h1 class="page-header__title" id="page1">LIFTING SYSTEM</h1>
   </div>
 
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="ECAT.HTML">JLIFE</a>
+    <span class="breadcrumb__sep">›</span>
+    <a href="ECAT.HTML#Ls">Lifting System</a>
+    <span class="breadcrumb__sep">›</span>
+    <span class="breadcrumb__current">Page 1 / 3</span>
+  </nav>
+
   <!-- ══════════════════════════════════════
        Section 1 — Foot Anchor
   ══════════════════════════════════════ -->
   <section class="product-section" id="foot-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="assets/foot anchor.png" alt="Foot Anchor" class="product-card__img" />
+        <img src="../assets/E-cat/Product/JLife/foot anchor.png" alt="Foot Anchor" class="product-card__img" />
         <span class="product-card__name">Foot Anchor</span>
       </div>
       <div class="table-wrap">
@@ -97,7 +106,7 @@
   <section class="product-section" id="Lifting-Clutches-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="assets/steel core.png" alt="Lifting Clutches" class="product-card__img" />
+        <img src="../assets/E-cat/Product/JLife/steel core.png" alt="Lifting Clutches" class="product-card__img" />
         <span class="product-card__name">Lifting Clutches</span>
       </div>
       <div class="table-wrap">
@@ -130,7 +139,7 @@
   <section class="product-section" id="eye-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="assets/eye anchor.png" alt="Eye Anchor" class="product-card__img" />
+        <img src="../assets/E-cat/Product/JLife/eye anchor.png" alt="Eye Anchor" class="product-card__img" />
         <span class="product-card__name">Eye Anchor</span>
       </div>
       <div class="table-wrap">
@@ -168,9 +177,15 @@
     <a class="page-nav__btn" href="Ldetails2.html#page2">›</a>
   </nav>
 
+  <a href="#page1" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
   <script>
     const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      btt.classList.toggle('visible', window.scrollY > 400);
+    });
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -190,5 +205,31 @@
     }, { threshold: 0.08 });
     document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
   </script>
+
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__heading">Products</p>
+        <ul class="site-footer__links">
+          <li><a href="ECAT.HTML#cs">Connection System</a></li>
+          <li><a href="ECAT.HTML#fs">Fixing System</a></li>
+          <li><a href="ECAT.HTML#Ls">Lifting System</a></li>
+          <li><a href="../catalog/catalog.html">Formliners — NOE</a></li>
+          <li><a href="../catalog/GC-catalog.html">Formliners — GC</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="site-footer__heading">Construction Productions Innovation Pte. Ltd</p>
+        <p class="site-footer__info">
+          Blk 8 Kaki Bukit Avenue 4 Premier@Kaki Bukit #02-51 Singapore 415875<br>
+          <strong>Tel.&nbsp;&nbsp;</strong><a href="tel:+6567476860">+65 6747 6860</a><br>
+          <strong>Email.&nbsp;&nbsp;</strong><a href="mailto:info@cpinno.com.sg">info@cpinno.com.sg</a>
+        </p>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      © 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.
+    </div>
+  </footer>
 </body>
 </html>
