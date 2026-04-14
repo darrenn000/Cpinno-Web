@@ -31,10 +31,12 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMenu();
 });
 
-// ── Sticky nav ──────────────────────────────────────────────────
+// ── Sticky nav + back-to-top ────────────────────────────────────
+const btt = document.getElementById("backToTop");
 window.addEventListener("scroll", () => {
   nav.style.background =
     window.scrollY > 60 ? "rgba(0,0,0,0.88)" : "rgba(0,0,0,0.52)";
+  btt.classList.toggle("visible", window.scrollY > 400);
 });
 
 // ── Directional fade-in on scroll ──────────────────────────────

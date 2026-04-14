@@ -21,10 +21,11 @@
   ═══════════════════════════════════════════════ -->
     <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
       <ul>
-        <li><a href="../products/ECAT.HTML" class="mobile-link">JLIFE</a></li>
-        <li>
-          <a href="catalog.html" class="mobile-link">FORMLINERS</a>
-        </li>
+        <li><a href="../products/ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
+        <li><a href="../products/ECAT.HTML#fs" class="mobile-link">Fixing System</a></li>
+        <li><a href="../products/ECAT.HTML#Ls" class="mobile-link">Lifting System</a></li>
+        <li><a href="catalog.html" class="mobile-link">Formliners — NOE</a></li>
+        <li><a href="GC-catalog.html" class="mobile-link">Formliners — GC</a></li>
       </ul>
     </div>
 
@@ -36,11 +37,20 @@
         <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
       </a>
       <ul class="nav-links">
-        <li><a href="../products/ECAT.HTML">JLIFE</a></li>
-        <li>
-          <a href="catalog.html" class="nav-link--active"
-            >FORMLINERS</a
-          >
+        <li class="nav-drop">
+          <a href="../products/ECAT.HTML">JLIFE</a>
+          <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
+            <a href="../products/ECAT.HTML#cs">Connection System</a>
+            <a href="../products/ECAT.HTML#fs">Fixing System</a>
+            <a href="../products/ECAT.HTML#Ls">Lifting System</a>
+          </div></div>
+        </li>
+        <li class="nav-drop">
+          <a href="catalog.html" class="nav-link--active">FORMLINERS</a>
+          <div class="nav-drop__menu"><div class="nav-drop__menu-inner">
+            <a href="catalog.html">NOE</a>
+            <a href="GC-catalog.html">GC</a>
+          </div></div>
         </li>
       </ul>
       <button
@@ -72,8 +82,13 @@
       <!-- ── Sidebar ─────────────────────────────── -->
       <aside class="sidebar">
         <div class="sidebar__section">
-          <h3 class="sidebar__heading">Design Type</h3>
-          <div class="sidebar__divider"></div>
+          <div class="sidebar__header" id="js-filter-header">
+            <h3 class="sidebar__heading">Design Type</h3>
+            <button class="sidebar__toggle" id="js-filter-toggle" aria-expanded="true" aria-label="Toggle filters">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5l5 5 5-5"/></svg>
+            </button>
+          </div>
+          <div class="sidebar__divider" id="js-filter-divider"></div>
           <ul class="sidebar__list" id="js-filter-list">
             <!-- Populated by JS -->
           </ul>
@@ -167,5 +182,32 @@
   ═══════════════════════════════════════════════ -->
     <script src="../data/products.js"></script>
     <script src="catalog.js"></script>
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
+  <footer class="site-footer">
+    <div class="site-footer__grid">
+      <div>
+        <p class="site-footer__heading">Products</p>
+        <ul class="site-footer__links">
+          <li><a href="../products/ECAT.HTML#cs">Connection System</a></li>
+          <li><a href="../products/ECAT.HTML#fs">Fixing System</a></li>
+          <li><a href="../products/ECAT.HTML#Ls">Lifting System</a></li>
+          <li><a href="catalog.html">Formliners — NOE</a></li>
+          <li><a href="GC-catalog.html">Formliners — GC</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="site-footer__heading">Construction Productions Innovation Pte. Ltd</p>
+        <p class="site-footer__info">
+          Blk 8 Kaki Bukit Avenue 4 Premier@Kaki Bukit #02-51 Singapore 415875<br>
+          <strong>Tel.&nbsp;&nbsp;</strong><a href="tel:+6567476860">+65 6747 6860</a><br>
+          <strong>Email.&nbsp;&nbsp;</strong><a href="mailto:info@cpinno.com.sg">info@cpinno.com.sg</a>
+        </p>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      © 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.
+    </div>
+  </footer>
   </body>
 </html>
