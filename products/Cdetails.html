@@ -67,7 +67,31 @@
     <div class="product-layout">
 
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/wire loop.png" alt="Wire Loop" class="product-card__img" />
+        <!-- ── Image carousel ── -->
+        <div class="carousel" id="wl-carousel">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/wire loop.png" alt="Wire Loop" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace src with your second wire loop image path -->
+              <img src="../assets/E-cat/Product/JLife/wire loop2.png" alt="Wire Loop — Detail" class="product-card__img" />
+            </div>
+          </div>
+
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+          </div>
+        </div>
+
         <span class="product-card__name">Wire Loop</span>
       </div>
 
@@ -108,6 +132,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- ══════════════════════════════════════
        Section 2 — Double Wire Loop Box
@@ -187,14 +212,90 @@
 
   <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
+
+  <style>
+    /* ── Carousel ─────────────────────────────────────────── */
+    .carousel {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .carousel__track {
+      display: flex;
+      transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+    .carousel__slide {
+      min-width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+    }
+    .carousel__slide .product-card__img {
+      /* override sticky transform from product-card hover — carousel handles motion */
+      transition: filter 0.4s;
+    }
+
+    /* Prev / next arrow buttons */
+    .carousel__btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 30px; height: 30px;
+      background: rgba(14,14,12,0.75);
+      border: 1px solid var(--border-green);
+      border-radius: 50%;
+      color: var(--green);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, background 0.2s, transform 0.2s;
+      z-index: 10;
+      padding: 0;
+    }
+    .carousel__btn svg { width: 14px; height: 14px; }
+    .carousel__btn--prev { left: 6px; }
+    .carousel__btn--next { right: 6px; }
+    .carousel:hover .carousel__btn { opacity: 1; }
+    .carousel__btn:hover {
+      background: var(--green);
+      color: var(--dark);
+    }
+    .carousel__btn--prev:hover { transform: translateY(-50%) translateX(-1px); }
+    .carousel__btn--next:hover { transform: translateY(-50%) translateX(1px); }
+
+    /* Dot indicators */
+    .carousel__dots {
+      position: absolute;
+      bottom: 8px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px;
+      z-index: 10;
+    }
+    .carousel__dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(176,253,48,0.30);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel__dot.active {
+      background: var(--green);
+      transform: scale(1.3);
+    }
+
+    /* Touch swipe hint on mobile */
+    @media (max-width: 768px) {
+      .carousel__btn { opacity: 0.7; }
+    }
+  </style>
+
   <script>
     // ── Sticky nav
     const nav = document.getElementById('mainNav');
-    const btt = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-      btt.classList.toggle('visible', window.scrollY > 400);
-    });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
 
     // ── Hamburger
     const hamburger = document.getElementById('hamburger');
@@ -219,9 +320,39 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+
+    // ── Wire Loop Carousel ──────────────────────────────────
+    (function () {
+      const carousel = document.getElementById('wl-carousel');
+      const track    = carousel.querySelector('.carousel__track');
+      const slides   = carousel.querySelectorAll('.carousel__slide');
+      const dots     = carousel.querySelectorAll('.carousel__dot');
+      const btnPrev  = carousel.querySelector('.carousel__btn--prev');
+      const btnNext  = carousel.querySelector('.carousel__btn--next');
+      let current = 0;
+      const total = slides.length;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+      // Touch / swipe support
+      let startX = 0;
+      carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+    })();
   </script>
 
-  <footer class="site-footer">
+   <footer class="site-footer">
     <div class="site-footer__grid">
       <div>
         <p class="site-footer__heading">Products</p>
