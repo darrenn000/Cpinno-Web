@@ -70,8 +70,17 @@
   ═══════════════════════════════════════════════ -->
     <div class="hero-bar">
       <div class="hero-bar__inner">
-        <h1 class="hero-bar__title">NOE</h1>
-        <span class="hero-bar__count" id="js-count">— Products</span>
+        <nav class="hero-bar__breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="hero-bar__sep">/</span>
+          Formliners
+          <span class="hero-bar__sep">/</span>
+          NOE
+        </nav>
+        <div class="hero-bar__row">
+          <h1 class="hero-bar__title">NOE</h1>
+        </div>
+        <p class="hero-bar__subtitle">Architectural concrete formliners for natural, textured off-form surfaces</p>
       </div>
     </div>
 
@@ -128,7 +137,11 @@
               <option value="az">Alphabetically, A–Z</option>
             </select>
           </div>
+          <span class="toolbar__results" id="js-results-count"></span>
         </div>
+
+        <!-- Active filter chips -->
+        <div class="filter-chips" id="js-filter-chips"></div>
 
         <!-- Product grid -->
         <div class="product-grid" id="js-grid">
@@ -173,6 +186,7 @@
           <table class="modal__specs" id="js-modal-specs">
             <!-- Populated by JS -->
           </table>
+          <a class="modal__enquire" id="js-modal-enquire" href="../contact-us/contact.html">Enquire about this product →</a>
         </div>
       </div>
     </div>

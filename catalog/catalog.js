@@ -41,9 +41,11 @@ const state = {
 /* ── 3. DOM references ────────────────────────────────────── */
 const dom = {
   filterList: document.getElementById("js-filter-list"),
+  filterChips: document.getElementById("js-filter-chips"),
   grid: document.getElementById("js-grid"),
   pagination: document.getElementById("js-pagination"),
   count: document.getElementById("js-count"),
+  resultsCount: document.getElementById("js-results-count"),
   search: document.getElementById("js-search"),
   sort: document.getElementById("js-sort"),
   modalOverlay: document.getElementById("js-modal-overlay"),
@@ -54,6 +56,7 @@ const dom = {
   modalTitle: document.getElementById("js-modal-title"),
   modalBadge: document.getElementById("js-modal-badge"),
   modalSpecs: document.getElementById("js-modal-specs"),
+  modalEnquire: document.getElementById("js-modal-enquire"),
 };
 
 /* ── 4. Data layer ────────────────────────────────────────── */
@@ -153,28 +156,100 @@ function renderFilters() {
   });
 }
 
+/* ── 5b. Render: active filter chips ─────────────────────── */
+
+function renderFilterChips() {
+  if (!dom.filterChips) return;
+  dom.filterChips.innerHTML = "";
+  if (state.activeDesigns.has(CONFIG.ALL_LABEL)) return;
+
+  const active = [...state.activeDesigns];
+
+  active.forEach((type) => {
+    const chip = document.createElement("button");
+    chip.className = "filter-chip";
+    chip.setAttribute("aria-label", `Remove filter: ${type}`);
+    chip.innerHTML = `${type} <span class="filter-chip__x" aria-hidden="true">×</span>`;
+    chip.addEventListener("click", () => removeFilterChip(type));
+    dom.filterChips.appendChild(chip);
+  });
+
+  if (active.length > 1) {
+    const clearAll = document.createElement("button");
+    clearAll.className = "filter-chip filter-chip--clear";
+    clearAll.innerHTML = `Clear all <span class="filter-chip__x" aria-hidden="true">×</span>`;
+    clearAll.addEventListener("click", () => {
+      state.activeDesigns.clear();
+      state.activeDesigns.add(CONFIG.ALL_LABEL);
+      state.page = 1;
+      renderFilters();
+      renderFilterChips();
+      renderGrid();
+      renderPagination();
+    });
+    dom.filterChips.appendChild(clearAll);
+  }
+}
+
+function removeFilterChip(type) {
+  state.activeDesigns.delete(type);
+  if (state.activeDesigns.size === 0) state.activeDesigns.add(CONFIG.ALL_LABEL);
+  state.page = 1;
+  renderFilters();
+  renderFilterChips();
+  renderGrid();
+  renderPagination();
+}
+
+
 /* ── 6. Render: product grid ──────────────────────────────── */
 
 function renderGrid() {
   const filtered = getFilteredProducts();
   const page = getPageSlice(filtered);
+  const total = VALID_PRODUCTS.length;
 
-  dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
+  if (dom.count) dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
+
+  if (dom.resultsCount) {
+    dom.resultsCount.textContent = filtered.length !== total
+      ? `${filtered.length} of ${total} products`
+      : `${total} products`;
+  }
+
   dom.grid.innerHTML = "";
 
   if (page.length === 0) {
+    const hasSearch = state.query.length > 0;
+    const hasFilter = !state.activeDesigns.has(CONFIG.ALL_LABEL);
+    const queryText = hasSearch ? ` for "<strong>${state.query}</strong>"` : "";
+    const resetLabel = hasSearch && hasFilter ? "Clear filters & search" : hasSearch ? "Clear search" : "Clear filters";
     dom.grid.innerHTML = `
       <div class="grid-empty">
         <div class="grid-empty__icon">◻</div>
-        <p>No products match your current filters.</p>
+        <p>No products found${queryText}.</p>
+        <button class="grid-empty__reset" id="js-reset-filters">${resetLabel}</button>
       </div>
     `;
+    document.getElementById("js-reset-filters")?.addEventListener("click", resetFilters);
     return;
   }
 
   const fragment = document.createDocumentFragment();
   page.forEach((product) => fragment.appendChild(createProductCard(product)));
   dom.grid.appendChild(fragment);
+}
+
+function resetFilters() {
+  state.activeDesigns.clear();
+  state.activeDesigns.add(CONFIG.ALL_LABEL);
+  state.query = "";
+  state.page = 1;
+  dom.search.value = "";
+  renderFilters();
+  renderFilterChips();
+  renderGrid();
+  renderPagination();
 }
 
 /**
@@ -224,6 +299,7 @@ function createProductCard(product) {
             : ""
         }
       </div>
+      <span class="card__cta">View details →</span>
     </div>
   `;
 
@@ -494,6 +570,7 @@ function onFilterChange(e) {
 
   state.page = 1;
   renderFilters();
+  renderFilterChips();
   renderGrid();
   renderPagination();
 }
@@ -546,6 +623,7 @@ function init() {
   }
 
   renderFilters();
+  renderFilterChips();
   renderGrid();
   renderPagination();
   initEventListeners();

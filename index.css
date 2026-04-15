@@ -425,6 +425,47 @@ nav {
   font-weight: 700;
 }
 
+.service-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.service-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 3px;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.service-btn--primary {
+  background: var(--green-bright);
+  color: #1a1a18;
+  border: 1px solid var(--green-bright);
+}
+
+.service-btn--primary:hover {
+  background: var(--green-mid);
+  border-color: var(--green-mid);
+}
+
+.service-btn--ghost {
+  background: transparent;
+  color: var(--green-bright);
+  border: 1px solid rgba(176,253,48,0.40);
+}
+
+.service-btn--ghost:hover {
+  background: rgba(176,253,48,0.10);
+  border-color: var(--green-bright);
+}
+
 /* ── FOOTER ──────────────────────────────────────────────────── */
 footer {
   background: var(--footer-bg);
@@ -434,7 +475,7 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 180px 1fr 260px;
+  grid-template-columns: 180px 1fr;
   gap: 40px;
 }
 
@@ -661,6 +702,11 @@ footer {
   }
   .service-text p {
     font-size: 16px;
+  }
+
+  .service-btn {
+    font-size: 14px;
+    padding: 10px 20px;
   }
 
   footer {
