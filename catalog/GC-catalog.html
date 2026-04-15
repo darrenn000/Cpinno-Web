@@ -66,8 +66,17 @@
     <!-- Hero Bar -->
     <div class="hero-bar">
       <div class="hero-bar__inner">
-        <h1 class="hero-bar__title">GC</h1>
-        <span class="hero-bar__count" id="js-count">— Products</span>
+        <nav class="hero-bar__breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span class="hero-bar__sep">/</span>
+          Formliners
+          <span class="hero-bar__sep">/</span>
+          Graphic Concrete
+        </nav>
+        <div class="hero-bar__row">
+          <h1 class="hero-bar__title">GC</h1>
+        </div>
+        <p class="hero-bar__subtitle">Graphic Concrete formliners for photo-realistic imagery and patterns on precast surfaces</p>
       </div>
     </div>
 
@@ -102,7 +111,11 @@
               <option value="az">Alphabetically, A–Z</option>
             </select>
           </div>
+          <span class="toolbar__results" id="js-results-count"></span>
         </div>
+
+        <!-- Active filter chips -->
+        <div class="filter-chips" id="js-filter-chips"></div>
 
         <div class="product-grid" id="js-grid"></div>
         <nav class="pagination" id="js-pagination" aria-label="Page navigation"></nav>
@@ -122,6 +135,7 @@
           <h2 class="modal__title" id="js-modal-title"></h2>
           <span class="modal__badge" id="js-modal-badge"></span>
           <p class="modal__desc" id="js-modal-desc"></p>
+          <a class="modal__enquire" id="js-modal-enquire" href="../contact-us/contact.html">Enquire about this product →</a>
         </div>
       </div>
     </div>

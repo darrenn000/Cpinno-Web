@@ -11,9 +11,11 @@ const state = {
 
 const dom = {
   filterList: document.getElementById("js-filter-list"),
+  filterChips: document.getElementById("js-filter-chips"),
   grid: document.getElementById("js-grid"),
   pagination: document.getElementById("js-pagination"),
   count: document.getElementById("js-count"),
+  resultsCount: document.getElementById("js-results-count"),
   search: document.getElementById("js-search"),
   sort: document.getElementById("js-sort"),
   modalOverlay: document.getElementById("js-modal-overlay"),
@@ -22,7 +24,8 @@ const dom = {
   modalImgWrap: document.getElementById("js-modal-img-wrap"),
   modalTitle: document.getElementById("js-modal-title"),
   modalBadge: document.getElementById("js-modal-badge"),
-  modalDesc: document.getElementById("js-modal-desc")
+  modalDesc: document.getElementById("js-modal-desc"),
+  modalEnquire: document.getElementById("js-modal-enquire")
 };
 
 function getDesignTypes() {
@@ -82,15 +85,41 @@ function renderFilters() {
 function renderGrid() {
   const filtered = getFilteredProducts();
   const page = getPageSlice(filtered);
-  dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
+  const total = VALID_PRODUCTS.length;
+
+  if (dom.count) dom.count.textContent = `${filtered.length} Product${filtered.length !== 1 ? "s" : ""}`;
+
+  if (dom.resultsCount) {
+    dom.resultsCount.textContent = filtered.length !== total
+      ? `${filtered.length} of ${total} products`
+      : `${total} products`;
+  }
+
   dom.grid.innerHTML = "";
   if (page.length === 0) {
-    dom.grid.innerHTML = `<div class="grid-empty"><div class="grid-empty__icon">◻</div><p>No products match your filters.</p></div>`;
+    const hasSearch = state.query.length > 0;
+    const hasFilter = !state.activeDesigns.has(CONFIG.ALL_LABEL);
+    const queryText = hasSearch ? ` for "<strong>${state.query}</strong>"` : "";
+    const resetLabel = hasSearch && hasFilter ? "Clear filters & search" : hasSearch ? "Clear search" : "Clear filters";
+    dom.grid.innerHTML = `<div class="grid-empty"><div class="grid-empty__icon">◻</div><p>No products found${queryText}.</p><button class="grid-empty__reset" id="js-reset-filters">${resetLabel}</button></div>`;
+    document.getElementById("js-reset-filters")?.addEventListener("click", resetFilters);
     return;
   }
   const fragment = document.createDocumentFragment();
   page.forEach(p => fragment.appendChild(createProductCard(p)));
   dom.grid.appendChild(fragment);
+}
+
+function resetFilters() {
+  state.activeDesigns.clear();
+  state.activeDesigns.add(CONFIG.ALL_LABEL);
+  state.query = "";
+  state.page = 1;
+  dom.search.value = "";
+  renderFilters();
+  renderFilterChips();
+  renderGrid();
+  renderPagination();
 }
 
 function createProductCard(product) {
@@ -118,6 +147,7 @@ function createProductCard(product) {
       <div class="card__footer">
         ${product.designType ? `<span class="card__badge">${product.designType}</span>` : ""}
       </div>
+      <span class="card__cta">View details →</span>
     </div>`;
 
   card.addEventListener("click", () => openModal(product));
@@ -125,6 +155,42 @@ function createProductCard(product) {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(product); }
   });
   return card;
+}
+
+function renderFilterChips() {
+  if (!dom.filterChips) return;
+  dom.filterChips.innerHTML = "";
+  if (state.activeDesigns.has(CONFIG.ALL_LABEL)) return;
+
+  const active = [...state.activeDesigns];
+  active.forEach((type) => {
+    const chip = document.createElement("button");
+    chip.className = "filter-chip";
+    chip.setAttribute("aria-label", `Remove filter: ${type}`);
+    chip.innerHTML = `${type} <span class="filter-chip__x" aria-hidden="true">×</span>`;
+    chip.addEventListener("click", () => removeFilterChip(type));
+    dom.filterChips.appendChild(chip);
+  });
+
+  if (active.length > 1) {
+    const clearAll = document.createElement("button");
+    clearAll.className = "filter-chip filter-chip--clear";
+    clearAll.innerHTML = `Clear all <span class="filter-chip__x" aria-hidden="true">×</span>`;
+    clearAll.addEventListener("click", () => {
+      state.activeDesigns.clear();
+      state.activeDesigns.add(CONFIG.ALL_LABEL);
+      state.page = 1;
+      renderFilters(); renderFilterChips(); renderGrid(); renderPagination();
+    });
+    dom.filterChips.appendChild(clearAll);
+  }
+}
+
+function removeFilterChip(type) {
+  state.activeDesigns.delete(type);
+  if (state.activeDesigns.size === 0) state.activeDesigns.add(CONFIG.ALL_LABEL);
+  state.page = 1;
+  renderFilters(); renderFilterChips(); renderGrid(); renderPagination();
 }
 
 function renderPagination() {
@@ -209,11 +275,11 @@ function onFilterChange(e) {
     if (e.target.checked) { state.activeDesigns.add(type); }
     else { state.activeDesigns.delete(type); if (state.activeDesigns.size === 0) state.activeDesigns.add(CONFIG.ALL_LABEL); }
   }
-  state.page = 1; renderFilters(); renderGrid(); renderPagination();
+  state.page = 1; renderFilters(); renderFilterChips(); renderGrid(); renderPagination();
 }
 
 function init() {
-  renderFilters(); renderGrid(); renderPagination();
+  renderFilters(); renderFilterChips(); renderGrid(); renderPagination();
 
   let searchTimer;
   dom.search.addEventListener("input", e => {
@@ -223,6 +289,7 @@ function init() {
       state.page = 1; renderGrid(); renderPagination();
     }, 220);
   });
+
 
   dom.sort.addEventListener("change", e => {
     state.sort = e.target.value; state.page = 1; renderGrid(); renderPagination();
