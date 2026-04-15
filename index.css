@@ -434,7 +434,7 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 180px 1fr 260px;
+  grid-template-columns: 180px 1fr;
   gap: 40px;
 }
 
