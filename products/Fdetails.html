@@ -8,15 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
-  <style>
-    /* Second table sits directly below the first in the same section */
-    .table-stack { display: flex; flex-direction: column; gap: 32px; }
-    .table-label {
-      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--text-muted);
-      margin-bottom: 10px;
-    }
-  </style>
 </head>
 <body>
 
@@ -67,14 +58,13 @@
   </nav>
 
   <!-- ══════════════════════════════════════
-       Section 1 — Cast In Socket
+       Section 1 — Cast In Socket  (carousel: 2 images)
   ══════════════════════════════════════ -->
   <section class="product-section" id="cast-in-socket-info">
     <div class="product-layout">
 
       <div class="product-card">
-        <!-- ── Image carousel ── -->
-        <div class="carousel" id="carousel">
+        <div class="carousel" id="carousel-cis">
           <div class="carousel__track">
             <div class="carousel__slide">
               <img src="../assets/E-cat/Product/JLife/cis.png" alt="Cast In Socket" class="product-card__img" />
@@ -83,20 +73,17 @@
               <img src="../assets/E-cat/Product/JLife/cis2.png" alt="Cast In Socket — Detail" class="product-card__img" />
             </div>
           </div>
-
           <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
           </button>
           <button class="carousel__btn carousel__btn--next" aria-label="Next image">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
           </button>
-
           <div class="carousel__dots">
             <button class="carousel__dot active" aria-label="Image 1"></button>
             <button class="carousel__dot" aria-label="Image 2"></button>
           </div>
         </div>
-
         <span class="product-card__name">Cast In Socket</span>
       </div>
 
@@ -109,7 +96,7 @@
               <th colspan="9">Dimensions</th>
             </tr>
             <tr>
-              <th></th><th>L</th><th>e</th><th>s⁺</th><th>k</th><th>G</th><th>B</th><th>W</th>
+              <th>Thread</th><th>L</th><th>e</th><th>s⁺</th><th>k</th><th>G</th><th>B</th><th>W [kg]</th>
             </tr>
           </thead>
           <tbody>
@@ -142,8 +129,6 @@
       </div>
 
       <div class="table-stack">
-
-        <!-- Dimensions table -->
         <div>
           <p class="table-label">Dimensions</p>
           <div class="table-wrap">
@@ -175,7 +160,6 @@
           </div>
         </div>
 
-        <!-- Load capacity table -->
         <div>
           <p class="table-label">Tensile Capacity</p>
           <div class="table-wrap">
@@ -203,19 +187,121 @@
             </table>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-      </div><!-- /.table-stack -->
+  <!-- ══════════════════════════════════════
+       Section 3 — Cast-In Channels + T-Bolts  (carousel: 3 images)
+  ══════════════════════════════════════ -->
+  <section class="product-section" id="C+T-info">
+    <div class="product-layout">
+
+      <div class="product-card">
+        <div class="carousel" id="carousel-ct">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/C+T.png" alt="Cast In Channel + T-Bolt" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your second cast-in channel image -->
+              <img src="../assets/E-cat/Product/JLife/C+T1.png" alt="Cast In Channel — View 2" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your third cast-in channel image -->
+              <img src="../assets/E-cat/Product/JLife/C+T2.png" alt="Cast In Channel — View 3" class="product-card__img" />
+            </div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+            <button class="carousel__dot" aria-label="Image 3"></button>
+          </div>
+        </div>
+        <span class="product-card__name">Cast In Channel + T-Bolt</span>
+      </div>
+
+      <div class="table-stack">
+
+        <div>
+          <p class="table-label">Channel Dimensions</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th rowspan="2">Cast-In Channel<br>Part No.</th>
+                  <th rowspan="2">Channel Section</th>
+                  <th rowspan="2">Load Capacity (kN)<br>NRD=VRD<br>Steel / SS</th>
+                  <th rowspan="2">Channel Flexure (Nm)<br>Steel / SS<br>MRd,s,flex</th>
+                  <th rowspan="2">T-Bolt<br>Part No.</th>
+                  <th rowspan="2">Metric Size</th>
+                  <th rowspan="2">T-Bolt Min Spacing<br>Sslb [mm]</th>
+                  <th colspan="5">Geometric Values</th>
+                </tr>
+                <tr>
+                  <th>bch [mm]</th><th>hch [mm]</th><th>hnom [mm]</th><th>hef [mm]</th><th>cmin [mm]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>JCCL-72/49</td><td>72/49</td><td>45.00 / 50.56</td><td>9868 / 6408</td><td>JTB-72</td><td>M20, M24, M30</td><td>121</td><td>72</td><td>49</td><td>182</td><td>179</td><td>150</td></tr>
+                <tr><td>JCCL-54/33</td><td>54/33</td><td>41.67 / 36.67</td><td>2832 / 2696</td><td>JTB-50</td><td>M12, M16, M20</td><td>80</td><td>54</td><td>33</td><td>157</td><td>155</td><td>100</td></tr>
+                <tr><td>JCCL-49/30</td><td>49/30</td><td>17.22 / 25.00</td><td>1646 / 1600</td><td>JTB-50</td><td>M12, M16, M20</td><td>74</td><td>49</td><td>30</td><td>96</td><td>94</td><td>75</td></tr>
+                <tr><td>JCCL-40/25</td><td>40/25</td><td>12.22 / 15.00</td><td>1356 / 1048</td><td>JTB-40</td><td>M10, M12, M16</td><td>64</td><td>40</td><td>25</td><td>81</td><td>79</td><td>50</td></tr>
+                <tr><td>JCCL-38/17</td><td>38/17</td><td>10.56 / 12.22</td><td>595 / 651</td><td>JTB-38</td><td>M10, M12, M16</td><td>47</td><td>38</td><td>17</td><td>78</td><td>76</td><td>50</td></tr>
+                <tr><td>JCCL-28/15</td><td>28/15</td><td>7.22 / 8.33</td><td>349 / 348</td><td>JTB-28</td><td>M8, M10, M12</td><td>41</td><td>28</td><td>15</td><td>47</td><td>45</td><td>40</td></tr>
+                <tr><td>JCCL-41/41</td><td>41/41</td><td>9.56</td><td>637</td><td>JTB-41</td><td>M10, M12, M16</td><td>28</td><td>41</td><td>41</td><td>105</td><td>103</td><td>50</td></tr>
+                <tr><td>JCCL-41/21</td><td>41/21</td><td>9.56</td><td>595</td><td>JTB-41</td><td>M10, M12, M16</td><td>28</td><td>41</td><td>21</td><td>82</td><td>82</td><td>50</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div>
+          <p class="table-label">T-Bolt Tensile &amp; Shear Capacity — JTB41</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th colspan="6">T-Bolt Geometry (JTB41)</th>
+                  <th colspan="3">Steel / Stainless</th>
+                  <th colspan="2">Stainless A4</th>
+                </tr>
+                <tr>
+                  <th>Ø</th><th>b1</th><th>b2</th><th>k</th><th>l</th><th>Vmin [mm]</th>
+                  <th>4.6 / 8.8 NRd [kN]</th><th>4.6 / 8.8 VRd [kN]</th><th>8.8 VRdl [kN]</th>
+                  <th>A4 NRd [kN]</th><th>A4 VRd [kN]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>M10</td><td>20</td><td>34</td><td>10</td><td>20–300</td><td>14.5</td><td>11.6 / 30.9</td><td>6.9 / 18.6</td><td>—</td><td>21.7</td><td>13.0</td></tr>
+                <tr><td>M12</td><td>20</td><td>34</td><td>10</td><td>20–300</td><td>17.0</td><td>16.9 / 44.9</td><td>12.1 / 27.0</td><td>7.0</td><td>31.3</td><td>18.9</td></tr>
+                <tr><td>M16</td><td>20</td><td>34</td><td>10</td><td>20–300</td><td>20.5</td><td>31.4 / 76.0</td><td>22.6 / 50.2</td><td>7.0</td><td>58.8</td><td>35.2</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
   <script>
-    // ── Sticky nav
+    // ── Nav & hamburger
     const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+      btt.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
 
-    // ── Hamburger
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -226,48 +312,46 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false);
-      mobileMenu.setAttribute('aria-hidden', true);
+      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false); mobileMenu.setAttribute('aria-hidden', true);
       document.body.style.overflow = '';
     }));
 
-    // ── Scroll-reveal sections
+    // ── Scroll-reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
 
-    // ── Carousel ──────────────────────────────────
-    (function () {
-      const carousel = document.getElementById('carousel');
-      const track    = carousel.querySelector('.carousel__track');
-      const slides   = carousel.querySelectorAll('.carousel__slide');
-      const dots     = carousel.querySelectorAll('.carousel__dot');
-      const btnPrev  = carousel.querySelector('.carousel__btn--prev');
-      const btnNext  = carousel.querySelector('.carousel__btn--next');
+    // ── Reusable carousel initialiser
+    function initCarousel(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const track   = el.querySelector('.carousel__track');
+      const dots    = el.querySelectorAll('.carousel__dot');
+      const btnPrev = el.querySelector('.carousel__btn--prev');
+      const btnNext = el.querySelector('.carousel__btn--next');
       let current = 0;
-      const total = slides.length;
+      const total = el.querySelectorAll('.carousel__slide').length;
 
       function goTo(index) {
         current = (index + total) % total;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
       }
-
       btnPrev.addEventListener('click', () => goTo(current - 1));
       btnNext.addEventListener('click', () => goTo(current + 1));
       dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
-
-      // Touch / swipe support
       let startX = 0;
-      carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
-      carousel.addEventListener('touchend', e => {
+      el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      el.addEventListener('touchend', e => {
         const diff = startX - e.changedTouches[0].clientX;
         if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
       });
-    })();
+    }
+
+    initCarousel('carousel-cis');
+    initCarousel('carousel-ct');
   </script>
 
   <footer class="site-footer">
@@ -291,9 +375,7 @@
         </p>
       </div>
     </div>
-    <div class="site-footer__bottom">
-      © 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.
-    </div>
+    <div class="site-footer__bottom">© 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.</div>
   </footer>
 </body>
 </html>
