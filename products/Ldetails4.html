@@ -64,8 +64,32 @@
   ══════════════════════════════════════ -->
   <section class="product-section" id="swivel-eye-info">
     <div class="product-layout">
+
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/Swivel Eye.png" alt="Swivel Eye" class="product-card__img" />
+        <!-- ── Image carousel ── -->
+        <div class="carousel" id="carousel">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/Swivel Eye.png" alt="Swivel Eye" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/Swi2.png" alt="Swivel Eye — Detail" class="product-card__img" />
+            </div>
+          </div>
+
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+          </div>
+        </div>
+
         <span class="product-card__name">Swivel Eye</span>
       </div>
       <div class="table-wrap">
@@ -153,12 +177,11 @@
   <a href="#page4" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
   <script>
+    // ── Sticky nav
     const nav = document.getElementById('mainNav');
-    const btt = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 50);
-      btt.classList.toggle('visible', window.scrollY > 400);
-    });
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+    // ── Hamburger
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -169,14 +192,79 @@
       document.body.style.overflow = open ? 'hidden' : '';
     });
     document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
-      hamburger.classList.remove('open'); mobileMenu.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', false); mobileMenu.setAttribute('aria-hidden', true);
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+      mobileMenu.setAttribute('aria-hidden', true);
       document.body.style.overflow = '';
     }));
+
+    // ── Scroll-reveal sections
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+
+    // ── Carousel ──────────────────────────────────
+    (function () {
+      const carousel = document.getElementById('carousel');
+      const track    = carousel.querySelector('.carousel__track');
+      const slides   = carousel.querySelectorAll('.carousel__slide');
+      const dots     = carousel.querySelectorAll('.carousel__dot');
+      const btnPrev  = carousel.querySelector('.carousel__btn--prev');
+      const btnNext  = carousel.querySelector('.carousel__btn--next');
+      let current = 0;
+      const total = slides.length;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+      // Touch / swipe support
+      let startX = 0;
+      carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+    })();
+
+     // ── Carousel ──────────────────────────────────
+    (function () {
+      const carousel = document.getElementById('sc-carousel');
+      const track    = carousel.querySelector('.sc-carousel__track');
+      const slides   = carousel.querySelectorAll('.sc-carousel__slide');
+      const dots     = carousel.querySelectorAll('.sc-carousel__dot');
+      const btnPrev  = carousel.querySelector('.sc-carousel__btn--prev');
+      const btnNext  = carousel.querySelector('.sc-carousel__btn--next');
+      let current = 0;
+      const total = slides.length;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+      // Touch / swipe support
+      let startX = 0;
+      carousel.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+    })();
+
   </script>
 
   <footer class="site-footer">

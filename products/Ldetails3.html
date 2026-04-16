@@ -59,13 +59,33 @@
     <span class="breadcrumb__current">Page 3 / 4</span>
   </nav>
 
-   <!-- ══════════════════════════════════════
-       Section 1 — Lifting Clutches
+  <!-- ══════════════════════════════════════
+       Section 1 — Lifting Clutches (carousel: 2 images)
   ══════════════════════════════════════ -->
   <section class="product-section" id="Lifting-Clutches-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/steel core.png" alt="Lifting Clutches" class="product-card__img" />
+        <div class="carousel" id="carousel-clutch">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/lifting clutch.png" alt="Lifting Clutch" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your second lifting clutch image -->
+              <img src="../assets/E-cat/Product/JLife/lifting clutch2.png" alt="Lifting Clutch — Detail" class="product-card__img" />
+            </div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+          </div>
+        </div>
         <span class="product-card__name">Lifting Clutches</span>
       </div>
       <div class="table-wrap">
@@ -92,14 +112,38 @@
     </div>
   </section>
 
-
-   <!-- ══════════════════════════════════════
-       Section 2 — Lifting Sockets
+  <!-- ══════════════════════════════════════
+       Section 2 — Lifting Sockets (carousel: 3 images)
   ══════════════════════════════════════ -->
   <section class="product-section" id="lifting-socket-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/Lifting Socket.png" alt="Lifting Socket" class="product-card__img" />
+        <div class="carousel" id="carousel-socket">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/Lifting Socket.png" alt="Lifting Socket" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your second lifting socket image -->
+              <img src="../assets/E-cat/Product/JLife/Lifting Socket2.png" alt="Lifting Socket — View 2" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your third lifting socket image -->
+              <img src="../assets/E-cat/Product/JLife/Lifting Socket3.png" alt="Lifting Socket — View 3" class="product-card__img" />
+            </div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+            <button class="carousel__dot" aria-label="Image 3"></button>
+          </div>
+        </div>
         <span class="product-card__name">Lifting Socket</span>
       </div>
       <div class="table-wrap">
@@ -111,20 +155,21 @@
               <th colspan="3">Safe Working Loads (SWL) [kN]</th>
             </tr>
             <tr>
-              <th>R[mm]</th><th>D[mm]</th><th>H[mm]</th><th>L[mm]</th><th>A[mm]</th><th>β = 0°-15°</th><th> &gamma; =15°-45°</th><th>&gamma; =0°-90°</th>
+              <th>R [mm]</th><th>D [mm]</th><th>H [mm]</th><th>L [mm]</th><th>A [mm]</th>
+              <th>β = 0°–15°</th><th>γ = 15°–45°</th><th>γ = 0°–90°</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>JLS12</td><td>12</td><td>15,5</td><td>40</td><td>22</td><td>8</td><td>5</td><td>5</td><td>2.5</td></tr>
+            <tr><td>JLS12</td><td>12</td><td>15.5</td><td>40</td><td>22</td><td>8</td><td>5</td><td>5</td><td>2.5</td></tr>
             <tr><td>JLS14</td><td>14</td><td>18</td><td>47</td><td>25</td><td>10</td><td>8</td><td>8</td><td>4</td></tr>
-            <tr><td>JLS16</td><td>16</td><td>21,4</td><td>54</td><td>27</td><td>13</td><td>12</td><td>12</td><td>6</td></tr>
-            <tr><td>JLS18</td><td>18</td><td>22,3</td><td>65</td><td>34</td><td>13</td><td>16</td><td>16</td><td>8</td></tr>
+            <tr><td>JLS16</td><td>16</td><td>21.4</td><td>54</td><td>27</td><td>13</td><td>12</td><td>12</td><td>6</td></tr>
+            <tr><td>JLS18</td><td>18</td><td>22.3</td><td>65</td><td>34</td><td>13</td><td>16</td><td>16</td><td>8</td></tr>
             <tr><td>JLS20</td><td>20</td><td>27</td><td>69</td><td>35</td><td>15</td><td>20</td><td>20</td><td>10</td></tr>
             <tr><td>JLS24</td><td>24</td><td>31</td><td>78</td><td>43</td><td>18</td><td>25</td><td>25</td><td>12.5</td></tr>
             <tr><td>JLS30</td><td>30</td><td>40</td><td>103</td><td>56</td><td>22</td><td>40</td><td>40</td><td>20</td></tr>
             <tr><td>JLS36</td><td>36</td><td>47</td><td>125</td><td>68</td><td>27</td><td>63</td><td>63</td><td>31.5</td></tr>
-            <tr><td>JLS42</td><td>42</td><td>54</td><td>145</td><td>80</td><td>32</td><td></td><td></td><td></td></tr>
-            <tr><td>JLS52</td><td>52</td><td>67</td><td>195</td><td>97</td><td>40</td><td></td><td></td><td></td></tr>
+            <tr><td>JLS42</td><td>42</td><td>54</td><td>145</td><td>80</td><td>32</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>JLS52</td><td>52</td><td>67</td><td>195</td><td>97</td><td>40</td><td>—</td><td>—</td><td>—</td></tr>
           </tbody>
         </table>
       </div>
@@ -132,12 +177,32 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       Section 3 — Lifting Plate Sockets
+       Section 3 — Lifting Plate Socket (carousel: 2 images)
   ══════════════════════════════════════ -->
   <section class="product-section" id="lifting-plate-socket-info">
     <div class="product-layout">
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/Lifting Plate.png" alt="Lifting Plate" class="product-card__img" />
+        <div class="carousel" id="carousel-plate">
+          <div class="carousel__track">
+            <div class="carousel__slide">
+              <img src="../assets/E-cat/Product/JLife/Lifting Plate.png" alt="Lifting Plate Socket" class="product-card__img" />
+            </div>
+            <div class="carousel__slide">
+              <!-- Replace with your second lifting plate socket image -->
+              <img src="../assets/E-cat/Product/JLife/Lifting Plate2.png" alt="Lifting Plate Socket — Detail" class="product-card__img" />
+            </div>
+          </div>
+          <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+          <div class="carousel__dots">
+            <button class="carousel__dot active" aria-label="Image 1"></button>
+            <button class="carousel__dot" aria-label="Image 2"></button>
+          </div>
+        </div>
         <span class="product-card__name">Lifting Plate Socket</span>
       </div>
       <div class="table-wrap">
@@ -145,13 +210,13 @@
           <thead>
             <tr>
               <th>Part No.</th>
-              <th>Thread[Rd]</th>
-              <th>a[mm]</th>
-              <th>b[mm]</th>
-              <th>i[mm]</th>
-              <th>e[mm]</th>
-              <th>Spacing[mm]</th>
-              <th>Edge Distance[mm]</th>
+              <th>Thread [Rd]</th>
+              <th>a [mm]</th>
+              <th>b [mm]</th>
+              <th>i [mm]</th>
+              <th>e [mm]</th>
+              <th>Spacing [mm]</th>
+              <th>Edge Distance [mm]</th>
             </tr>
           </thead>
           <tbody>
@@ -181,12 +246,13 @@
   <a href="#page3" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
 
   <script>
+    // ── Nav & hamburger
     const nav = document.getElementById('mainNav');
     const btt = document.getElementById('backToTop');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 50);
       btt.classList.toggle('visible', window.scrollY > 400);
-    });
+    }, { passive: true });
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => {
@@ -201,10 +267,43 @@
       hamburger.setAttribute('aria-expanded', false); mobileMenu.setAttribute('aria-hidden', true);
       document.body.style.overflow = '';
     }));
+
+    // ── Scroll-reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.product-section').forEach(s => observer.observe(s));
+
+    // ── Reusable carousel initialiser
+    function initCarousel(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const track   = el.querySelector('.carousel__track');
+      const dots    = el.querySelectorAll('.carousel__dot');
+      const btnPrev = el.querySelector('.carousel__btn--prev');
+      const btnNext = el.querySelector('.carousel__btn--next');
+      let current = 0;
+      const total = el.querySelectorAll('.carousel__slide').length;
+
+      function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+      btnPrev.addEventListener('click', () => goTo(current - 1));
+      btnNext.addEventListener('click', () => goTo(current + 1));
+      dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+      let startX = 0;
+      el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+      el.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
+      });
+    }
+
+    initCarousel('carousel-clutch');
+    initCarousel('carousel-socket');
+    initCarousel('carousel-plate');
   </script>
 
   <footer class="site-footer">
@@ -228,9 +327,7 @@
         </p>
       </div>
     </div>
-    <div class="site-footer__bottom">
-      © 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.
-    </div>
+    <div class="site-footer__bottom">© 2026 Construction Productions Innovation Pte. Ltd. All rights reserved.</div>
   </footer>
 </body>
 </html>

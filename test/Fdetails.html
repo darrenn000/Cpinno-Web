@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPinno — Connection System</title>
+  <title>CPinno — Fixing System</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
+  <style>
+    /* Second table sits directly below the first in the same section */
+    .table-stack { display: flex; flex-direction: column; gap: 32px; }
+    .table-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ── Mobile menu ── -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
       <li><a href="ECAT.HTML#cs" class="mobile-link">Connection System</a></li>
@@ -22,7 +30,6 @@
     </ul>
   </div>
 
-  <!-- ── Navigation ── -->
   <nav class="nav" id="mainNav">
     <a class="nav-logo" href="../index.html">
       <img src="../assets/Home/CpinnoLogo.svg" alt="CPInno Logo" />
@@ -49,21 +56,18 @@
     </button>
   </nav>
 
-  <!-- ── Page header ── -->
   <div class="page-header">
-    <h1 class="page-header__title">CONNECTION SYSTEM</h1>
+    <h1 class="page-header__title">FIXING SYSTEM</h1>
   </div>
 
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <a href="ECAT.HTML">JLIFE</a>
     <span class="breadcrumb__sep">›</span>
-    <span class="breadcrumb__current">Connection System</span>
+    <span class="breadcrumb__current">Fixing System</span>
   </nav>
 
-  <!-- ══════════════════════════════════════
-       Section 1 — Wire Loop
-  ══════════════════════════════════════ -->
-  <section class="product-section" id="wire-loop-info">
+
+  <section class="product-section" id="cast-in-socket-info">
     <div class="product-layout">
 
       <div class="product-card">
@@ -71,10 +75,10 @@
         <div class="carousel" id="wl-carousel">
           <div class="carousel__track">
             <div class="carousel__slide">
-              <img src="../assets/E-cat/Product/JLife/wire loop.png" alt="Wire Loop" class="product-card__img" />
+              <img src="../assets/E-cat/Product/JLife/cis.png" alt="Cast In Socket" class="product-card__img" />
             </div>
             <div class="carousel__slide">
-              <img src="../assets/E-cat/Product/JLife/wire loop2.png" alt="Wire Loop — Detail" class="product-card__img" />
+              <img src="../assets/E-cat/Product/JLife/cis2.png" alt="Cast In Socket — Detail" class="product-card__img" />
             </div>
           </div>
 
@@ -91,7 +95,7 @@
           </div>
         </div>
 
-        <span class="product-card__name">Wire Loop</span>
+        <span class="product-card__name">Cast In Socket</span>
       </div>
 
       <div class="table-wrap">
@@ -99,78 +103,25 @@
           <thead>
             <tr>
               <th rowspan="2">Part No.</th>
-              <th colspan="6">Dimensions [mm]</th>
-              <th>Wire Loop</th>
+              <th rowspan="2">Design Load (kN)</th>
+              <th colspan="9">Dimensions</th>
             </tr>
             <tr>
-              <th>L</th><th>XL</th><th>B</th><th>a</th><th>b</th><th>h</th>
-              <th>EN-12385-4</th>
+              <th></th><th>L</th><th>e</th><th>s⁺</th><th>k</th><th>G</th><th>B</th><th>W</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>SLB-80</td><td>210</td><td>80</td><td>60</td><td rowspan="3">50</td><td rowspan="3">160</td><td rowspan="3">20</td><td>1770 N/mm²</td></tr>
-            <tr><td>SLB-100</td><td>210</td><td>100</td><td>65</td><td>1770 N/mm²</td></tr>
-            <tr><td>SLB-120</td><td>210</td><td>120</td><td>70</td><td>1770 N/mm²</td></tr>
-            <tr><td>SLB-140</td><td>370</td><td>140</td><td>70</td><td>70</td><td>200</td><td>30</td><td>1770 N/mm²</td></tr>
-            <tr class="sub-head">
-              <td colspan="8">Diameter &amp; Length Variants</td>
-            </tr>
-            <tr>
-              <th colspan="2">Part No.</th>
-              <th colspan="3">Diameter [mm]</th>
-              <th colspan="3">Length [mm]</th>
-            </tr>
-            <tr><td colspan="2">SL6-120</td><td colspan="3">6</td><td colspan="3">335</td></tr>
-            <tr><td colspan="2">SL6-100</td><td colspan="3">6</td><td colspan="3">315</td></tr>
-            <tr><td colspan="2">SL6-80</td><td colspan="3">6</td><td colspan="3">295</td></tr>
-            <tr><td colspan="2">SL8/520</td><td colspan="3">8</td><td colspan="3">520</td></tr>
-            <tr><td colspan="2">SL8/460</td><td colspan="3">8</td><td colspan="3">460</td></tr>
-            <tr><td colspan="2">SL8/400</td><td colspan="3">8</td><td colspan="3">315</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- ══════════════════════════════════════
-       Section 2 — Double Wire Loop Box
-  ══════════════════════════════════════ -->
-  <section class="product-section" id="D-wire-info">
-    <div class="product-layout">
-
-      <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/double wire box.png" alt="Double Wire Loop Box" class="product-card__img" />
-        <span class="product-card__name">Double Wire Loop Box</span>
-      </div>
-
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th rowspan="2">Part No.</th>
-              <th rowspan="2">Length [mm]</th>
-              <th colspan="4">Recommended Design Resistance Load</th>
-            </tr>
-            <tr>
-              <th>Load Resistance Type</th>
-              <th>Direct Tensile</th>
-              <th>In-Plane Shear</th>
-              <th>Out-Of-Plane Shear</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td rowspan="2">DLB 80</td>
-              <td rowspan="2">80</td>
-              <td>Design Resistance [kN/box]</td>
-              <td>18.0</td><td>25</td><td>7.0</td>
-            </tr>
-            <tr>
-              <td>Application</td>
-              <td colspan="2">PPVC Wall Connection</td>
-              <td>Facade Wall Connection</td>
-            </tr>
+            <tr><td>CIS-6/40</td><td>2.10</td><td>M6</td><td>40</td><td>6.2</td><td>15</td><td>—</td><td>—</td><td>—</td><td>1.2</td></tr>
+            <tr><td>CIS-8/50</td><td>2.80</td><td>M8</td><td>50</td><td>6.2</td><td>20</td><td>—</td><td>—</td><td>—</td><td>1.5</td></tr>
+            <tr><td>CIS-10/55</td><td>4.90</td><td>M10</td><td>55</td><td>7.2</td><td>20</td><td>—</td><td>—</td><td>—</td><td>1.5</td></tr>
+            <tr><td>CIS-12/60</td><td>7.00</td><td>M12</td><td>60</td><td>7.2</td><td>20</td><td>10</td><td>300</td><td>60</td><td>2</td></tr>
+            <tr><td>CIS-12/80</td><td>6.16</td><td>M12</td><td>80</td><td>7.2</td><td>40</td><td>10</td><td>300</td><td>70</td><td>1.5</td></tr>
+            <tr><td>CIS-16/70</td><td>9.80</td><td>M16</td><td>70</td><td>9.2</td><td>20</td><td>10</td><td>300</td><td>70</td><td>2.3</td></tr>
+            <tr><td>CIS-16/80</td><td>11.20</td><td>M16</td><td>80</td><td>12.2</td><td>30</td><td>10</td><td>350</td><td>70</td><td>2.5</td></tr>
+            <tr><td>CIS-16/100</td><td>14.00</td><td>M16</td><td>100</td><td>9.2</td><td>50</td><td>10</td><td>350</td><td>70</td><td>2.5</td></tr>
+            <tr><td>CIS-16/120</td><td>16.80</td><td>M16</td><td>120</td><td>9.2</td><td>30</td><td>10</td><td>350</td><td>70</td><td>3</td></tr>
+            <tr><td>CIS-20/100</td><td>17.50</td><td>M20</td><td>95</td><td>14.2</td><td>40</td><td>12</td><td>400</td><td>80</td><td>3.5</td></tr>
+            <tr><td>CIS-24/120</td><td>25.20</td><td>M24</td><td>120</td><td>14.2</td><td>50</td><td>12</td><td>450</td><td>80</td><td>22.5</td></tr>
           </tbody>
         </table>
       </div>
@@ -178,38 +129,85 @@
   </section>
 
   <!-- ══════════════════════════════════════
-       Section 3 — Round Wire Loop Box
+       Section 2 — Metric Threaded Insert
   ══════════════════════════════════════ -->
-  <section class="product-section" id="R-wire-info">
+  <section class="product-section" id="cim-info">
     <div class="product-layout">
 
       <div class="product-card">
-        <img src="../assets/E-cat/Product/JLife/round wire.png" alt="Round Wire Loop Box" class="product-card__img" />
-        <span class="product-card__name">Round Wire Loop Box</span>
+        <img src="../assets/E-cat/Product/JLife/cim.png" alt="Metric Threaded Insert (CIM)" class="product-card__img" />
+        <span class="product-card__name">Metric Threaded Insert (CIM)</span>
       </div>
 
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr>
-              <th>Part No.</th>
-              <th>Diameter [mm]</th>
-              <th>Total Length [mm]</th>
-              <th>Properties [N/mm²]</th>
-              <th>Min Ultimate Load [kN]</th>
-              <th>Factored Load F [kN]</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>WLO-6/120</td><td>6</td><td>400</td><td>1770</td><td>42.5</td><td>14.1</td></tr>
-            <tr><td>WLO-8/120</td><td>8</td><td>400</td><td>1770</td><td>60</td><td>20</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="table-stack">
+
+        <!-- Dimensions table -->
+        <div>
+          <p class="table-label">Dimensions</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Part No.</th>
+                  <th>Thread Size</th>
+                  <th>Cross Hole Diameter</th>
+                  <th>Thread Depth</th>
+                  <th>Anchor Length</th>
+                  <th>Qty [Per Box]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>CIM10X40G</td><td>M10</td><td>8.8 / 9.2 mm</td><td>15 mm</td><td>40 mm</td><td>100</td></tr>
+                <tr><td>CIM12X50G</td><td>M12</td><td>9.1 / 9.5 mm</td><td>20 mm</td><td>50 mm</td><td>100</td></tr>
+                <tr><td>CIM16X75G</td><td>M16</td><td>11 / 11.6 mm</td><td>35 mm</td><td>75 mm</td><td>25</td></tr>
+                <tr><td>CIM20X75G</td><td>M20</td><td>15 / 15.5 mm</td><td>32 / 33 mm</td><td>75 mm</td><td>50</td></tr>
+                <tr><td>CIM20x120G</td><td>M20</td><td>—</td><td>47 mm</td><td>120 mm</td><td>20</td></tr>
+                <tr><td>CIM24X100G</td><td>M24</td><td>20 / 20.5 mm</td><td>45 mm</td><td>90 mm</td><td>20</td></tr>
+                <tr class="sub-head"><td colspan="6">316 Stainless Steel TCMs with Elephant Foot</td></tr>
+                <tr><td>CCM10X45SS</td><td>M10</td><td>8.4 mm</td><td>20 mm</td><td>45 mm</td><td>EA</td></tr>
+                <tr><td>CCM12X55SS</td><td>M12</td><td>8.4 mm</td><td>25 mm</td><td>50 mm</td><td>EA</td></tr>
+                <tr><td>CCM16X70SS</td><td>M16</td><td>11.0 mm</td><td>32 mm</td><td>70 mm</td><td>EA</td></tr>
+                <tr><td>CCM20X95SS</td><td>M20</td><td>11.0 mm</td><td>35 mm</td><td>95 mm</td><td>EA</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Load capacity table -->
+        <div>
+          <p class="table-label">Tensile Capacity</p>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Product Code</th>
+                  <th>Char. Tensile Capacity NRk,s [kN]</th>
+                  <th>Design Resistance EC2 (÷1.8) [kN]</th>
+                  <th>Design Resistance AS 4100 (×0.8) [kN]</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>CIM1040G</td><td>30.60</td><td>17.00</td><td>24.48</td></tr>
+                <tr><td>CCM1040SS</td><td>33.80</td><td>18.78</td><td>27.04</td></tr>
+                <tr><td>CIM1250G</td><td>49.70</td><td>27.61</td><td>39.76</td></tr>
+                <tr><td>CCM1250SS</td><td>55.00</td><td>30.56</td><td>44.00</td></tr>
+                <tr><td>CIM1675G</td><td>105.80</td><td>58.78</td><td>84.64</td></tr>
+                <tr><td>CCM1675SS</td><td>130.50</td><td>72.50</td><td>104.40</td></tr>
+                <tr><td>CIM2095G</td><td>129.90</td><td>72.17</td><td>103.92</td></tr>
+                <tr><td>CCM2095SS</td><td>112.70</td><td>62.61</td><td>90.16</td></tr>
+                <tr><td>CIM24100G</td><td>23.90</td><td>128.28</td><td>184.72</td></tr>
+                <tr><td>CCM24100SS</td><td>256.80</td><td>142.67</td><td>205.44</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div><!-- /.table-stack -->
     </div>
   </section>
 
   <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+  
 
   <script>
     // ── Sticky nav
@@ -271,7 +269,7 @@
     })();
   </script>
 
-   <footer class="site-footer">
+  <footer class="site-footer">
     <div class="site-footer__grid">
       <div>
         <p class="site-footer__heading">Products</p>
